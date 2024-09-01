@@ -66,19 +66,14 @@ impl PinyinWord {
         }
     }
 
-    // output: "重 zhong4,chong2"
+    // output: "重:zhong4,chong2"
     pub fn to_string(&self) -> String {
         let pinyin = self.pinyin.iter().map(|p| p.to_string()).collect::<Vec<_>>().join(" ");
 
         format!("{}:{}", self.word, pinyin)
     }
 
-    // s: "重:zhong4 chong2"
-    // output: PinyinWord { word: "重", pinyin: [["zhong", 4], ["chong", 2]] }
-    // s: "重庆:chong2 qing4"
-    // output: PinyinWord { word: "重庆", pinyin: [["chong", 2], ["qing", 4]] }
-    // s: "重庆口味:chong2 qing4 kou3 wei4"
-    // output: PinyinWord { word: "重庆", pinyin: [["chong", 2], ["qing", 4], ["kou", 3], ["wei", 4]] }
+    // "重:zhong4 chong2" -> PinyinWord { word: "重", pinyin: [["zhong", 4], ["chong", 2]] }
     pub fn from_string(s: &str) -> Self {
         let mut parts = s.split(":");
         let word = parts.next().unwrap().to_string();
@@ -92,7 +87,8 @@ impl PinyinWord {
 }
 
 fn format_tone(pinyin: &str, tone: u8) -> String {
-    // find the vowel
+    // find the vowel to mark
+    // if the vowel is 'i' or 'u' or 'ü', find the next vowel
     let mut chars = pinyin.chars().collect::<Vec<char>>();
     let mut last_vowel_idx = 0;
 

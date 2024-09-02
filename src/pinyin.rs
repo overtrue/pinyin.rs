@@ -41,8 +41,15 @@ impl Pinyin {
     }
 
     pub fn from_string(s: &str) -> Self {
-        let tone = s.chars().last().unwrap().to_digit(10).unwrap() as u8;
-        let pinyin = s.chars().take(s.len() - 1).collect::<String>();
+        // if s ends with a number, it's a tone pinyin, otherwise it's a toneless pinyin
+        let mut tone = 5;
+        let mut end = s.len();
+        if s.chars().last().unwrap().is_numeric() {
+            tone = s.chars().last().unwrap().to_digit(10).unwrap() as u8;
+            end -= 1;
+        }
+
+        let pinyin = s.chars().take(end).collect::<String>();
         Self {
             pinyin,
             tone,

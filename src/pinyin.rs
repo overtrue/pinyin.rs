@@ -106,7 +106,11 @@ impl FromStr for PinyinWord {
             .ok_or(PingyinError::ParseStrError(s.to_string()))?
             .to_string();
         let mut pinyin = vec![];
-        for p in word.split(" ") {
+        for p in parts
+            .next()
+            .ok_or(PingyinError::ParseStrError(s.to_string()))?
+            .split(" ")
+        {
             pinyin.push(Pinyin::from_str(p)?);
         }
 

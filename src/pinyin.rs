@@ -1,6 +1,7 @@
 use crate::error::PingyinError;
 use std::{cmp::PartialEq, fmt::Display, str::FromStr};
 
+#[allow(dead_code)]
 #[derive(Debug, PartialEq)]
 enum ToneStyle {
     Number,
@@ -15,6 +16,7 @@ struct Pinyin {
 }
 
 impl Pinyin {
+    #[allow(dead_code)]
     pub fn new(pinyin: &str, tone: u8) -> Self {
         assert!((1..=5).contains(&tone));
 
@@ -24,10 +26,12 @@ impl Pinyin {
         }
     }
 
+    #[allow(dead_code)]
     pub fn is_toneless(&self) -> bool {
         self.tone == 5
     }
 
+    #[allow(dead_code)]
     pub fn format(&self, style: ToneStyle) -> String {
         match style {
             ToneStyle::Number => self.to_string(),
@@ -74,6 +78,7 @@ struct PinyinWord {
 }
 
 impl PinyinWord {
+    #[allow(dead_code)]
     pub fn new(word: &str, pinyin: Vec<Pinyin>) -> Self {
         Self {
             word: word.to_string(),
@@ -100,16 +105,16 @@ impl FromStr for PinyinWord {
 
     // "重:zhong4 chong2" -> PinyinWord { word: "重", pinyin: [["zhong", 4], ["chong", 2]] }
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let mut parts = s.split(":");
+        let mut parts = s.split(':');
         let word = parts
             .next()
-            .ok_or(PingyinError::ParseStrError(s.to_string()))?
+            .ok_or_else(|| PingyinError::ParseStrError(s.to_string()))?
             .to_string();
         let mut pinyin = vec![];
         for p in parts
             .next()
-            .ok_or(PingyinError::ParseStrError(s.to_string()))?
-            .split(" ")
+            .ok_or_else(|| PingyinError::ParseStrError(s.to_string()))?
+            .split(' ')
         {
             pinyin.push(Pinyin::from_str(p)?);
         }

@@ -105,16 +105,16 @@ impl FromStr for PinyinWord {
 
     // "重:zhong4 chong2" -> PinyinWord { word: "重", pinyin: [["zhong", 4], ["chong", 2]] }
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let mut parts = s.split(":");
+        let mut parts = s.split(':');
         let word = parts
             .next()
-            .ok_or(PingyinError::ParseStrError(s.to_string()))?
+            .ok_or_else(|| PingyinError::ParseStrError(s.to_string()))?
             .to_string();
         let mut pinyin = vec![];
         for p in parts
             .next()
-            .ok_or(PingyinError::ParseStrError(s.to_string()))?
-            .split(" ")
+            .ok_or_else(|| PingyinError::ParseStrError(s.to_string()))?
+            .split(' ')
         {
             pinyin.push(Pinyin::from_str(p)?);
         }

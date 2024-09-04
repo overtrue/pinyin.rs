@@ -1,4 +1,5 @@
 mod pinyin;
+mod error;
 
 use std::collections::HashMap;
 use daachorse::{CharwiseDoubleArrayAhoCorasickBuilder, MatchKind};

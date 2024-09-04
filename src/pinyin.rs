@@ -1,4 +1,5 @@
-use std::cmp::PartialEq;
+use crate::error::PingyinError;
+use std::{cmp::PartialEq, fmt::Display, str::FromStr};
 
 #[derive(Debug, PartialEq)]
 enum ToneStyle {
@@ -15,7 +16,7 @@ struct Pinyin {
 
 impl Pinyin {
     pub fn new(pinyin: &str, tone: u8) -> Self {
-        assert!(tone >= 1 && tone <= 5);
+        assert!((1..=5).contains(&tone));
 
         Self {
             pinyin: pinyin.to_string(),
@@ -27,11 +28,6 @@ impl Pinyin {
         self.tone == 5
     }
 
-    // output: "zhong4"
-    pub fn to_string(&self) -> String {
-        format!("{}{}", self.pinyin, self.tone)
-    }
-
     pub fn format(&self, style: ToneStyle) -> String {
         match style {
             ToneStyle::Number => self.to_string(),
@@ -39,18 +35,33 @@ impl Pinyin {
             ToneStyle::None => self.pinyin.clone(),
         }
     }
+}
 
-    pub fn from_string(s: &str) -> Self {
-        // if s ends with a number, it's a tone pinyin, otherwise it's a toneless pinyin
+impl Display for Pinyin {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}{}", self.pinyin, self.tone)
+    }
+}
+
+impl FromStr for Pinyin {
+    type Err = PingyinError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut tone = 5;
         let mut end = s.len();
-        if s.chars().last().unwrap().is_numeric() {
-            tone = s.chars().last().unwrap().to_digit(10).unwrap() as u8;
+        let c = match s.chars().last() {
+            Some(c) => c,
+            None => {
+                return Err(PingyinError::ParseStrError(s.to_string()));
+            }
+        };
+        if c.is_numeric() {
+            tone = c.to_digit(10).unwrap() as u8;
             end -= 1;
         }
 
-        let pinyin = s.chars().take(end).collect::<String>();
-        Self { pinyin, tone }
+        let pinyin: String = s.chars().take(end).collect();
+        Ok(Self { pinyin, tone })
     }
 }
 
@@ -69,9 +80,10 @@ impl PinyinWord {
             pinyin,
         }
     }
+}
 
-    // output: "重:zhong4,chong2"
-    pub fn to_string(&self) -> String {
+impl Display for PinyinWord {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let pinyin = self
             .pinyin
             .iter()
@@ -79,28 +91,37 @@ impl PinyinWord {
             .collect::<Vec<_>>()
             .join(" ");
 
-        format!("{}:{}", self.word, pinyin)
+        write!(f, "{}:{}", self.word, pinyin)
     }
+}
+
+impl FromStr for PinyinWord {
+    type Err = PingyinError;
 
     // "重:zhong4 chong2" -> PinyinWord { word: "重", pinyin: [["zhong", 4], ["chong", 2]] }
-    pub fn from_string(s: &str) -> Self {
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut parts = s.split(":");
-        let word = parts.next().unwrap().to_string();
-        let pinyin = parts
+        let word = parts
             .next()
-            .unwrap()
+            .ok_or(PingyinError::ParseStrError(s.to_string()))?
+            .to_string();
+        let mut pinyin = vec![];
+        for p in parts
+            .next()
+            .ok_or(PingyinError::ParseStrError(s.to_string()))?
             .split(" ")
-            .map(|p| Pinyin::from_string(p))
-            .collect::<Vec<_>>();
+        {
+            pinyin.push(Pinyin::from_str(p)?);
+        }
 
-        Self { word, pinyin }
+        Ok(Self { word, pinyin })
     }
 }
 
 fn format_tone(pinyin: &str, tone: u8) -> String {
     // find the vowel to mark
     // if the vowel is 'i' or 'u' or 'ü', find the next vowel
-    let mut chars = pinyin.chars().collect::<Vec<char>>();
+    let mut chars: Vec<char> = pinyin.chars().collect();
     let mut last_vowel_idx = 0;
 
     for (idx, c) in chars.iter().enumerate() {
@@ -114,7 +135,7 @@ fn format_tone(pinyin: &str, tone: u8) -> String {
 
     let vowel = chars[last_vowel_idx];
     chars[last_vowel_idx] = mark_vowel(vowel, tone);
-    chars.into_iter().collect::<String>()
+    chars.into_iter().collect()
 }
 
 fn mark_vowel(vowel: char, tone: u8) -> char {
@@ -141,9 +162,8 @@ fn mark_vowel(vowel: char, tone: u8) -> char {
 
 #[cfg(test)]
 mod tests {
-    use crate::pinyin::mark_vowel;
-    use crate::pinyin::ToneStyle;
-    use crate::pinyin::{Pinyin, PinyinWord};
+    use super::{mark_vowel, Pinyin, PinyinWord, ToneStyle};
+    use std::str::FromStr;
 
     #[test]
     fn test_pinyin_new() {
@@ -184,11 +204,11 @@ mod tests {
 
     #[test]
     fn test_pinyin_from_string() {
-        let pinyin = Pinyin::from_string("zhong4");
+        let pinyin = Pinyin::from_str("zhong4").unwrap();
         assert_eq!(pinyin.pinyin, "zhong");
         assert_eq!(pinyin.tone, 4);
 
-        let pinyin = Pinyin::from_string("zhong");
+        let pinyin = Pinyin::from_str("zhong").unwrap();
         assert_eq!(pinyin.pinyin, "zhong");
         assert_eq!(pinyin.tone, 5);
     }
@@ -210,17 +230,17 @@ mod tests {
 
     #[test]
     fn test_pinyin_word_from_string() {
-        let pinyin_word = PinyinWord::from_string("重:zhong4 chong2");
+        let pinyin_word = PinyinWord::from_str("重:zhong4 chong2").unwrap();
         assert_eq!(pinyin_word.word, "重");
         assert_eq!(pinyin_word.pinyin.len(), 2);
         assert_eq!(pinyin_word.to_string(), "重:zhong4 chong2");
 
-        let pinyin_word = PinyinWord::from_string("重庆:chong2 qing4");
+        let pinyin_word = PinyinWord::from_str("重庆:chong2 qing4").unwrap();
         assert_eq!(pinyin_word.word, "重庆");
         assert_eq!(pinyin_word.pinyin.len(), 2);
         assert_eq!(pinyin_word.to_string(), "重庆:chong2 qing4");
 
-        let pinyin_word = PinyinWord::from_string("重庆口味:chong2 qing4 kou3 wei4");
+        let pinyin_word = PinyinWord::from_str("重庆口味:chong2 qing4 kou3 wei4").unwrap();
         assert_eq!(pinyin_word.word, "重庆口味");
         assert_eq!(pinyin_word.pinyin.len(), 4);
         assert_eq!(pinyin_word.to_string(), "重庆口味:chong2 qing4 kou3 wei4");

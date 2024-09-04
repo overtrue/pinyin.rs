@@ -13,11 +13,6 @@ fn sort_by_key_length_desc<'a>(map: HashMap<&'a str, &'a str>) -> Vec<(&'a str, 
 }
 
 pub fn match_word_pinyin(word: &str) -> Vec<(String, String)> {
-    // let words = vec![
-    //     ("中国", "zhong guo1"),
-    //     ("中国人", "zhong guo ren2"),
-    //     ("中国人民", "zhong guo ren min3"),
-    // ];
     let words = INCLUDE_WORDS;
     let pma = CharwiseDoubleArrayAhoCorasickBuilder::new()
         .match_kind(MatchKind::LeftmostLongest)
@@ -72,30 +67,27 @@ mod tests {
 
     #[test]
     fn it_works() {
+        println!("{:?}", super::INCLUDE_WORDS);
         assert_eq!(
             vec![
-                "zhong guo ren min3",
+                "zhōng guó rén mén",
                 "喜",
                 "欢",
                 "在",
-                "zhong guo1",
+                "zhōng guó",
                 "吃",
                 "饭",
                 "，",
-                "zhong guo ren2",
+                "zhōng guó rén",
                 "的",
                 "口",
                 "味",
                 "，",
-                "zhong guo1",
+                "zhōng guó",
                 "饭",
                 "好",
                 "吃"
             ],
-            convert("中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃")
-        );
-        print!(
-            "{:?}",
             convert("中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃")
         );
     }

@@ -1,14 +1,14 @@
+use anyhow::Error;
+use glob::glob;
 use std::env;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
-use anyhow::Error;
-use glob::glob;
 
 fn main() -> Result<(), Error> {
     let mut data = vec![];
 
-    for entey in glob("sources/*.txt")? {
+    for entey in glob("sources/**/*.txt")? {
         let path = entey?;
         let mut file = File::open(path)?;
         let mut contents = String::new();

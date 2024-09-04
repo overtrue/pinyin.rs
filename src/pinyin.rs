@@ -60,7 +60,7 @@ impl FromStr for Pinyin {
             end -= 1;
         }
 
-        let pinyin = s.chars().take(end).collect::<String>();
+        let pinyin: String = s.chars().take(end).collect();
         Ok(Self { pinyin, tone })
     }
 }
@@ -121,7 +121,7 @@ impl FromStr for PinyinWord {
 fn format_tone(pinyin: &str, tone: u8) -> String {
     // find the vowel to mark
     // if the vowel is 'i' or 'u' or 'ü', find the next vowel
-    let mut chars = pinyin.chars().collect::<Vec<char>>();
+    let mut chars: Vec<char> = pinyin.chars().collect();
     let mut last_vowel_idx = 0;
 
     for (idx, c) in chars.iter().enumerate() {
@@ -135,7 +135,7 @@ fn format_tone(pinyin: &str, tone: u8) -> String {
 
     let vowel = chars[last_vowel_idx];
     chars[last_vowel_idx] = mark_vowel(vowel, tone);
-    chars.into_iter().collect::<String>()
+    chars.into_iter().collect()
 }
 
 fn mark_vowel(vowel: char, tone: u8) -> char {

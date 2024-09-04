@@ -1,5 +1,5 @@
 use crate::error::PingyinError;
-use std::{cmp::PartialEq, str::FromStr};
+use std::{cmp::PartialEq, fmt::Display, str::FromStr};
 
 #[derive(Debug, PartialEq)]
 enum ToneStyle {
@@ -16,7 +16,7 @@ struct Pinyin {
 
 impl Pinyin {
     pub fn new(pinyin: &str, tone: u8) -> Self {
-        assert!(tone >= 1 && tone <= 5);
+        assert!((1..=5).contains(&tone));
 
         Self {
             pinyin: pinyin.to_string(),
@@ -37,9 +37,9 @@ impl Pinyin {
     }
 }
 
-impl ToString for Pinyin {
-    fn to_string(&self) -> String {
-        format!("{}{}", self.pinyin, self.tone)
+impl Display for Pinyin {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}{}", self.pinyin, self.tone)
     }
 }
 
@@ -82,9 +82,8 @@ impl PinyinWord {
     }
 }
 
-impl ToString for PinyinWord {
-    // output: "重:zhong4,chong2"
-    fn to_string(&self) -> String {
+impl Display for PinyinWord {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let pinyin = self
             .pinyin
             .iter()
@@ -92,7 +91,7 @@ impl ToString for PinyinWord {
             .collect::<Vec<_>>()
             .join(" ");
 
-        format!("{}:{}", self.word, pinyin)
+        write!(f, "{}:{}", self.word, pinyin)
     }
 }
 
@@ -156,11 +155,8 @@ fn mark_vowel(vowel: char, tone: u8) -> char {
 
 #[cfg(test)]
 mod tests {
+    use super::{mark_vowel, Pinyin, PinyinWord, ToneStyle};
     use std::str::FromStr;
-
-    use crate::pinyin::mark_vowel;
-    use crate::pinyin::ToneStyle;
-    use crate::pinyin::{Pinyin, PinyinWord};
 
     #[test]
     fn test_pinyin_new() {

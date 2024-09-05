@@ -3,6 +3,9 @@ mod pinyin;
 use daachorse::{CharwiseDoubleArrayAhoCorasickBuilder, MatchKind};
 use std::collections::HashMap;
 
+// import by compiler
+include!(concat!(env!("OUT_DIR"), "/__pinyin_words.rs"));
+
 fn sort_by_key_length_desc<'a>(map: HashMap<&'a str, &'a str>) -> Vec<(&'a str, &'a str)> {
     let mut entries: Vec<_> = map.into_iter().collect();
     entries.sort_by(|(k1, _), (k2, _)| k2.cmp(k1));
@@ -10,11 +13,7 @@ fn sort_by_key_length_desc<'a>(map: HashMap<&'a str, &'a str>) -> Vec<(&'a str, 
 }
 
 pub fn match_word_pinyin(word: &str) -> Vec<(&str, &str)> {
-    let words = vec![
-        ("中国", "zhong guo1"),
-        ("中国人", "zhong guo ren2"),
-        ("中国人民", "zhong guo ren min3"),
-    ];
+    let words = PINYIN_WORDS;
     let pma = CharwiseDoubleArrayAhoCorasickBuilder::new()
         .match_kind(MatchKind::LeftmostLongest)
         .build_with_values(words)
@@ -68,6 +67,28 @@ mod tests {
 
     #[test]
     fn it_works() {
+        assert_eq!(
+            vec![
+                "zhong guo ren min3",
+                "喜",
+                "欢",
+                "在",
+                "zhong guo1",
+                "吃",
+                "饭",
+                "，",
+                "zhong guo ren2",
+                "的",
+                "口",
+                "味",
+                "，",
+                "zhong guo1",
+                "饭",
+                "好",
+                "吃"
+            ],
+            convert("中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃")
+        );
         print!(
             "{:?}",
             convert("中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃")

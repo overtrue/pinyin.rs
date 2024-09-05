@@ -1,14 +1,27 @@
-use glob::glob;
 use std::env;
-use std::fs::File;
+use std::fs::{File, OpenOptions};
 use std::io::prelude::*;
 use std::path::Path;
 
+const PINYIN_WORDS_FILE: &str = "__pinyin_words.rs";
+
 fn main() {
+    init();
+    generate_words();
+}
+
+fn init() {
+    let out_dir = env::var("OUT_DIR").unwrap();
+    File::create(Path::new(&out_dir).join(PINYIN_WORDS_FILE)).unwrap();
+}
+
+fn generate_words() {
     let mut data = vec![];
 
-    for entey in glob("sources/**/*.txt").unwrap() {
-        let path = entey.unwrap();
+    for path in [
+        Path::new("sources/words.txt"),
+        Path::new("sources/pathes/words.txt"),
+    ] {
         let mut file = File::open(path).unwrap();
         let mut contents = String::new();
         file.read_to_string(&mut contents).unwrap();
@@ -20,10 +33,13 @@ fn main() {
 
     // 将结果写入文件
     let out_dir = env::var("OUT_DIR").unwrap();
-    let mut file = File::create(Path::new(&out_dir).join("__words.rs")).unwrap();
+    let mut file = OpenOptions::new()
+        .append(true)
+        .open(Path::new(&out_dir).join(PINYIN_WORDS_FILE))
+        .unwrap();
     writeln!(
         file,
-        "const INCLUDE_WORDS: [(&str, &str); {}] = {:#?};",
+        "const PINYIN_WORDS: [(&str, &str); {}] = {:#?};",
         data.len(),
         data
     )

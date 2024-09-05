@@ -3,13 +3,13 @@ mod pinyin;
 use daachorse::{CharwiseDoubleArrayAhoCorasickBuilder, MatchKind};
 use std::collections::HashMap;
 
-fn sort_by_key_length_desc(map: HashMap<String, String>) -> Vec<(String, String)> {
-    let mut entries = map.into_iter().collect::<Vec<_>>();
-    entries.sort_by(|(k1, _), (k2, _)| k2.len().cmp(&k1.len()));
+fn sort_by_key_length_desc<'a>(map: HashMap<&'a str, &'a str>) -> Vec<(&'a str, &'a str)> {
+    let mut entries: Vec<_> = map.into_iter().collect();
+    entries.sort_by(|(k1, _), (k2, _)| k2.cmp(k1));
     entries
 }
 
-pub fn match_word_pinyin(word: &str) -> Vec<(String, String)> {
+pub fn match_word_pinyin(word: &str) -> Vec<(&str, &str)> {
     let words = vec![
         ("中国", "zhong guo1"),
         ("中国人", "zhong guo ren2"),
@@ -19,14 +19,13 @@ pub fn match_word_pinyin(word: &str) -> Vec<(String, String)> {
         .match_kind(MatchKind::LeftmostLongest)
         .build_with_values(words)
         .unwrap();
-    let mut result = HashMap::new();
-
-    let it = pma.leftmost_find_iter(word);
-
-    for m in it {
-        let matched_word = &word[m.start()..m.end()];
-        result.insert(matched_word.to_string(), m.value().to_string());
-    }
+    let result = pma
+        .leftmost_find_iter(word)
+        .map(|m| {
+            let matched_word = &word[m.start()..m.end()];
+            (matched_word, m.value())
+        })
+        .collect();
 
     sort_by_key_length_desc(result)
 }
@@ -35,19 +34,19 @@ pub fn convert(input: &str) -> Vec<String> {
     // 先把整句话拿去匹配全部命中的词
     let input_len = input.chars().count();
     let matched_words = match_word_pinyin(input);
-    let input_chars = input.chars().collect::<Vec<_>>();
+    let input_chars: Vec<char> = input.chars().collect();
 
     let mut result = Vec::new();
     let mut i = 0;
 
     while i < input_len {
         let mut found = false;
-        for (word, pinyin) in &matched_words {
+        for (word, pinyin) in matched_words.iter() {
             let word_len = word.chars().count();
             if i + word_len <= input_len
                 && &input_chars[i..i + word_len] == word.chars().collect::<Vec<_>>().as_slice()
             {
-                result.push(pinyin.clone());
+                result.push(pinyin.to_string());
                 i += word_len;
                 found = true;
                 break;

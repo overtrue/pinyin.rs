@@ -1,0 +1,4150 @@
+〇: líng yuán xīng
+㐀: qiū
+㐁: tiàn
+㐄: kuà
+㐅: wǔ
+㐆: yǐn
+㐌: yí
+㐖: xié
+㐜: chóu
+㐡: nuò
+㐤: dān qiú
+㐨: xù
+㐩: xíng
+㐫: xiōng
+㐬: liú
+㐭: lǐn
+㐮: xiāng
+㐯: yōng
+㐰: xìn
+㐱: zhěn
+㐲: dài
+㐳: wù
+㐴: pān
+㐵: rú
+㐷: mǎ
+㐸: qiàn cì
+㐹: yì
+㐺: yín zhòng
+㐻: nèi
+㐼: chèng
+㐽: fēng
+㑁: zhuō
+㑂: fǎng
+㑃: ǎo
+㑄: wǔ
+㑅: zuò
+㑇: zhòu
+㑈: dòng
+㑉: sù
+㑊: yì
+㑋: qióng
+㑌: kuāng wāng
+㑍: lèi
+㑎: nǎo
+㑏: zhù
+㑐: shū
+㑔: xǔ
+㑗: shēn
+㑘: jiè
+㑙: dié
+㑚: nuó
+㑛: sù
+㑜: yì chì
+㑝: lòng
+㑞: yìng
+㑟: běng
+㑣: lán
+㑤: miáo
+㑥: yì
+㑦: lì
+㑧: jì
+㑨: yǔ
+㑩: luó
+㑪: chái
+㑮: hún
+㑯: xǔ
+㑰: huì
+㑱: rǎo
+㑳: zhòu zhū
+㑵: hàn
+㑶: xì
+㑷: tài
+㑸: yáo
+㑹: huì
+㑺: jùn
+㑻: mà
+㑼: lüè
+㑽: táng
+㑾: yáo
+㑿: zhào
+㒀: zhāi zhǎ
+㒁: yǔ
+㒂: zhuó
+㒃: èr
+㒄: rǎn
+㒅: qǐ
+㒆: chì
+㒇: wǔ
+㒈: hàn
+㒉: tǎng
+㒊: sè
+㒋: sī
+㒌: qióng
+㒍: léi
+㒎: sà
+㒑: kuǐ huì
+㒒: pú
+㒓: tà
+㒔: shú dú tù
+㒕: yāng
+㒖: ǒu
+㒗: tái
+㒙: mián
+㒚: yìn wěn
+㒛: diào
+㒜: yǔ
+㒝: miè wà
+㒞: jùn
+㒟: niǎo
+㒠: xiè
+㒡: yóu
+㒤: chè
+㒥: fēng
+㒦: lěi lèi
+㒧: lì
+㒩: luǒ
+㒫: jì
+㒰: quán
+㒲: cái
+㒳: liǎng
+㒴: gǔ
+㒵: mào
+㒷: guǎ
+㒸: suì
+㒻: mào
+㒼: mán
+㒽: quān
+㒾: shì
+㒿: lí
+㓁: wǎng
+㓂: kòu
+㓃: dù
+㓄: zhèn
+㓅: tīng
+㓈: bìng
+㓉: huò
+㓊: dòng
+㓋: gòng
+㓌: chēng
+㓎: qīn qìn qǐn
+㓏: jiǒng
+㓐: lù
+㓑: xìng
+㓓: nán
+㓔: xiè
+㓖: bì
+㓗: jié
+㓘: sù
+㓚: gōng
+㓜: yòu
+㓝: xíng
+㓞: qià
+㓟: pí
+㓠: diàn diǎn
+㓡: fǔ guā
+㓢: luò
+㓣: qià gē
+㓤: qià
+㓥: tāng
+㓦: bāi
+㓧: gān
+㓨: cí
+㓩: xuān jiē
+㓪: lǎng
+㓭: shé
+㓮: diāo
+㓯: lí
+㓰: huà
+㓱: tóu shū
+㓲: piān
+㓳: dī
+㓴: ruǎn
+㓵: è
+㓶: qiè
+㓷: yì
+㓸: zhuō dōu
+㓹: ruì cuì jì
+㓺: jiān qián
+㓼: chì
+㓽: chóng
+㓾: xī chí
+㔀: lüè
+㔁: dēng
+㔂: lín
+㔃: jué xuē
+㔄: sù
+㔅: xiào
+㔆: zàn
+㔉: zhǔ
+㔊: zhǎn dǎn
+㔋: jiān lán
+㔌: zòu cǒu
+㔍: chuā zhá
+㔎: xiè
+㔏: lì luǒ
+㔑: chì
+㔒: xí
+㔓: jiǎn
+㔕: jí
+㔗: fèi bèi fú
+㔘: chù
+㔙: bēng
+㔚: jié
+㔜: bá
+㔝: liǎng liáng
+㔞: kuài
+㔠: xiā hé
+㔡: biē
+㔢: jué xuē
+㔣: léi
+㔤: xìn
+㔥: bài pí
+㔦: yǎng
+㔧: lǜ
+㔨: bèi
+㔩: è
+㔪: lǔ
+㔭: chè
+㔮: nuó
+㔯: xuán suǎn
+㔰: héng
+㔱: yǔ
+㔳: guǐ
+㔴: yì
+㔵: xuǎn
+㔶: gòng gǎn
+㔷: lòu
+㔸: tī
+㔹: lè
+㔺: shì
+㔼: sǔn
+㔽: yào
+㔾: xiān jié
+㔿: zòu
+㕁: què
+㕂: yín qín
+㕃: xī
+㕄: zhǐ
+㕅: jiá
+㕆: hù
+㕇: lā
+㕈: yǐ
+㕉: kè
+㕊: fū
+㕋: qín
+㕌: ài
+㕎: kè
+㕏: chú
+㕐: xiě xiè
+㕑: chú
+㕒: wēi
+㕕: huàn
+㕖: sù
+㕗: yòu
+㕙: jùn
+㕚: zhǎo
+㕛: xù
+㕜: shǐ
+㕞: shuā
+㕟: kuì kuài
+㕠: shuāng
+㕡: hé
+㕢: gài hài
+㕣: yǎn
+㕤: qiú
+㕥: shēn
+㕦: huà
+㕧: xī
+㕨: fàn
+㕩: pàng
+㕪: dǎn
+㕫: fǎng fēng
+㕬: gōng sòng
+㕭: āo ào
+㕮: fǔ
+㕯: nè
+㕰: xuè ma
+㕱: yóu
+㕲: huá yíng
+㕴: chén
+㕵: guó
+㕶: ň ňg
+㕷: huà pā
+㕸: lì
+㕹: fá
+㕺: xiāo
+㕻: pǒu
+㕽: sì
+㖀: lè
+㖁: lìn
+㖂: yì
+㖃: hǒu hòu
+㖅: xù
+㖆: qú
+㖇: ér
+㖊: xún
+㖏: niè
+㖐: wěi
+㖑: xiè
+㖒: tí
+㖓: hóng
+㖔: tǔn
+㖕: niè xīn
+㖖: niè
+㖗: yín
+㖘: zhēn
+㖞: wāi
+㖟: shòu
+㖠: nuò
+㖡: yè
+㖢: qí
+㖣: tòu
+㖤: hán
+㖥: jùn
+㖦: dǒng
+㖧: hūn wěn
+㖨: lù
+㖩: jū sǒu
+㖪: huò guó xù
+㖫: líng
+㖭: tiǎn
+㖮: lún
+㖵: gé
+㖶: yān yè yīn
+㖷: shí tí
+㖸: xué niā
+㖹: pēn fèn
+㖺: chǔn
+㖻: niú ròu
+㖼: duǒ
+㖽: zé
+㖾: è
+㖿: xié yé
+㗀: yōu
+㗁: è
+㗂: shěng
+㗃: wěn hūn
+㗄: kū
+㗅: hú
+㗆: gé
+㗇: xiá ya
+㗈: màn
+㗉: lüè è
+㗊: jí léi
+㗋: hóu
+㗌: zhì
+㗏: wāi
+㗑: bai
+㗒: ài
+㗓: zhuī
+㗔: qiān
+㗕: gòu gōu
+㗖: dàn
+㗗: bēi
+㗘: bó
+㗙: chū nà zhōu
+㗚: lì
+㗛: xiào
+㗜: xiù
+㗢: hóng dòng hòng
+㗣: tì
+㗤: cù
+㗥: kuò guō
+㗦: láo
+㗧: zhì dié
+㗨: xiē ǎi
+㗩: xī
+㗫: qiè
+㗬: zhā
+㗭: xī
+㗰: cóng
+㗱: jí
+㗲: huò
+㗳: tǎ dā
+㗴: yán
+㗵: xù
+㗶: pō
+㗷: sǎi
+㗻: guō
+㗼: yè
+㗽: xiǎng
+㗾: xuē
+㗿: hé xià xiā
+㘀: zuò
+㘁: yì
+㘂: cí
+㘄: lēng
+㘅: xián
+㘆: tǎi
+㘇: róng
+㘈: yì nǐ
+㘉: zhì
+㘊: xī yì
+㘋: xián
+㘌: jù
+㘍: jí
+㘎: hǎn
+㘐: pào
+㘑: lì
+㘓: lán
+㘔: sǎi
+㘕: hǎn lán
+㘖: yán
+㘗: qū
+㘙: yán
+㘚: hǎn
+㘛: kān
+㘜: chǐ
+㘝: niè
+㘞: huò
+㘠: bì
+㘡: xiá
+㘢: wěng
+㘣: xuán yuán
+㘤: wān
+㘥: yóu
+㘦: qín
+㘧: xù
+㘨: niè
+㘩: bì
+㘪: hào
+㘫: jǐng
+㘬: ào wù
+㘭: ào
+㘰: zhēn
+㘱: tān
+㘲: jú
+㘴: zuò
+㘵: bù
+㘶: jié
+㘷: ài
+㘸: zàng zuò
+㘹: cí
+㘺: fá
+㘿: niè
+㙀: liù jiù
+㙁: méi mù
+㙂: duì wèng
+㙃: bāng
+㙄: bì
+㙅: bǎo
+㙇: chù
+㙈: xià
+㙉: tiǎn
+㙊: cháng zhàng
+㙍: duō
+㙎: wēi
+㙏: fù
+㙐: duǒ
+㙑: yǔ
+㙒: yě
+㙓: kuí
+㙔: wěi hán
+㙕: kuài
+㙗: wēi
+㙘: yāo
+㙙: lǒng
+㙚: xīng
+㙛: bǔ
+㙜: chí
+㙝: xié
+㙞: niè
+㙟: lǎng
+㙠: yī yì
+㙡: zōng
+㙢: mán
+㙣: zhàng
+㙤: xià
+㙥: gùn
+㙦: xié
+㙨: jì
+㙩: liáo
+㙪: yì
+㙫: jí
+㙬: yín
+㙮: dā da
+㙯: yì
+㙰: xiè
+㙱: hào
+㙲: yǒng
+㙳: kǎn hǎn
+㙴: chàn
+㙵: tái
+㙶: táng
+㙷: zhí zhé
+㙸: bào
+㙹: méng
+㙺: kuí guì
+㙻: chán
+㙼: lěi
+㙾: xì
+㚀: xī
+㚁: qiào
+㚂: nàng
+㚃: yūn
+㚅: lóng
+㚆: fù
+㚇: zōng
+㚉: gǔ
+㚊: kāi
+㚋: diāo
+㚌: huà
+㚍: kuǐ kuì
+㚏: gǎo
+㚐: tào
+㚒: shǎn
+㚓: lǎi
+㚔: niè xìng
+㚕: fú
+㚖: gǎo zé
+㚗: qié
+㚘: bàn hè fú
+㚙: jiā
+㚚: kōng kuāng
+㚛: xì
+㚜: yù xù
+㚝: zhuī
+㚞: shěn
+㚟: chuò
+㚠: xiāo
+㚡: jǐ
+㚢: nú wǔ
+㚣: xiáo
+㚤: yì
+㚥: yú
+㚦: yí
+㚧: yǎn
+㚨: shěn
+㚩: rǎn
+㚪: hào
+㚫: sà
+㚬: jūn
+㚭: yóu
+㚯: xín
+㚰: pēi bǐ
+㚱: qiū
+㚲: chān diǎn diàn
+㚴: bù
+㚵: dōng
+㚶: sì yí
+㚷: ěr
+㚹: mǎo liǔ
+㚺: yùn
+㚻: jī
+㚽: qiǎo
+㚾: xiōng
+㚿: páo
+㛀: chú
+㛁: pēng
+㛂: nuǒ
+㛃: jié
+㛄: yī
+㛅: èr
+㛆: duò duǒ
+㛊: duǒ
+㛍: qiè xiǎn xiá
+㛎: lǚ
+㛏: qiú
+㛐: sǒu
+㛑: càn
+㛒: dòu
+㛓: xī
+㛔: fēng péng
+㛕: yì è
+㛖: suō
+㛗: qiē zuō suō
+㛘: pò
+㛙: xīn qiè
+㛚: tǒng yǒng
+㛛: xìn
+㛜: yóu
+㛝: bèi
+㛞: lòng
+㛣: yún
+㛤: lí
+㛥: tà
+㛦: lǎn
+㛧: mǎn
+㛨: qiǎng
+㛩: zhóu
+㛪: yàn yān
+㛫: xī
+㛬: lù
+㛭: xī
+㛮: sǎo
+㛯: fàn miǎn zhuàn
+㛱: wěi wēi
+㛲: fà
+㛳: yì
+㛴: nǎo
+㛵: chēng
+㛶: tàn
+㛷: jī
+㛸: shù
+㛹: pián
+㛺: ān
+㛻: kuā
+㛼: chā shà
+㛾: xián
+㛿: zhì
+㜂: fēng
+㜃: liàn
+㜄: xún
+㜅: xù
+㜆: mì
+㜇: huì yè
+㜈: mù
+㜉: yōng
+㜊: zhǎn
+㜋: yì
+㜌: nǒu gòu kòu
+㜍: táng
+㜎: xī xì
+㜏: yún
+㜐: shù
+㜑: fú
+㜒: yì
+㜓: dá
+㜕: lián
+㜖: cáo
+㜗: cān sēn
+㜘: jù qù chá
+㜙: lù
+㜚: sù
+㜛: nèn
+㜜: ào
+㜝: ǎn yǎn
+㜞: qiàn cán
+㜠: cuī
+㜡: cōng
+㜣: rán rǎn
+㜤: niǎn tiǎn tán
+㜥: mái
+㜦: xín
+㜧: yuè
+㜨: nái
+㜩: ào
+㜪: shēn
+㜫: mà
+㜮: làn lán
+㜯: xī
+㜰: yuè
+㜱: zhì
+㜲: wěng
+㜳: huái
+㜴: mèng
+㜵: niǎo
+㜶: wǎn
+㜷: mí xiǎn
+㜸: niè
+㜹: qú
+㜺: zàn
+㜻: liàn
+㜼: zhí
+㜽: zǐ
+㜾: hái
+㜿: xù
+㝀: hào
+㝁: xuān qióng
+㝂: zhì zhè
+㝃: miǎn
+㝄: chún
+㝅: gòu
+㝇: chún
+㝈: luán
+㝉: zhù
+㝊: shǒu
+㝋: liǎo
+㝌: jiù
+㝍: xiě
+㝎: dìng
+㝏: jiè
+㝐: róng
+㝑: máng
+㝓: kè
+㝔: yǎo
+㝕: níng
+㝖: yí
+㝗: láng lǎng
+㝘: yóng
+㝙: yín
+㝚: yán
+㝛: sù
+㝝: lín
+㝞: yā yà
+㝟: máo
+㝠: míng
+㝡: zuì
+㝢: yǔ
+㝣: yì
+㝤: gòu
+㝥: mǐ
+㝦: jùn
+㝧: wěn
+㝩: kāng
+㝪: diàn
+㝫: lóng
+㝭: xǐng
+㝮: cuì
+㝯: qiáo
+㝰: mián
+㝱: mèng
+㝲: qǐn
+㝴: wán
+㝵: dé ài
+㝶: ài
+㝸: biàn
+㝹: nóu
+㝺: lián
+㝻: jǐn
+㝼: yū
+㝽: chuí
+㝾: zuǒ
+㝿: bǒ
+㞀: huī
+㞁: yào
+㞂: tuǐ tuì
+㞃: jì
+㞄: ān
+㞅: luò
+㞆: jǐ
+㞇: wěi
+㞈: bō
+㞉: zā
+㞊: xù
+㞋: niǎn jí
+㞌: yùn
+㞎: bǎ pā
+㞏: zhé jié
+㞐: jū
+㞑: wěi
+㞒: xiè xì
+㞓: qì jī
+㞔: yí
+㞕: xiè
+㞖: cí cì
+㞗: qiú
+㞘: dū
+㞙: niào
+㞚: qì zhǎ
+㞛: jǐ
+㞜: tuī
+㞞: sóng
+㞟: diàn dǐng
+㞠: láo
+㞡: zhǎn
+㞤: yín cén
+㞥: cén
+㞦: jǐ
+㞧: huì
+㞨: zǐ
+㞩: lán
+㞪: náo
+㞫: jù
+㞬: qìn
+㞭: dài
+㞯: jié
+㞰: xǔ
+㞱: cōng
+㞲: yòng
+㞳: dǒu
+㞴: chí mín
+㞶: mǐn
+㞷: huáng
+㞸: suì
+㞹: kě
+㞺: zú
+㞻: hào
+㞼: chéng
+㞽: xuè
+㞾: ní
+㞿: chì
+㟀: lián
+㟁: àn
+㟂: mǔ
+㟃: sī
+㟄: xiáng
+㟅: yáng
+㟆: huá
+㟇: cuò cuó
+㟈: qiú
+㟉: láo
+㟊: fú
+㟋: duì
+㟌: máng
+㟍: láng lǎng
+㟎: tuǒ tuǐ
+㟏: hán
+㟐: mǎng
+㟑: bó
+㟒: qūn
+㟓: qí
+㟔: hán
+㟖: lòng lóng
+㟗: bīn
+㟘: tiáo
+㟙: zé
+㟚: qí
+㟛: zàn
+㟜: mí
+㟝: péi
+㟞: zhàn
+㟟: xiàng
+㟠: gǎng
+㟢: qí
+㟤: lù
+㟦: yùn
+㟧: è
+㟨: duān
+㟩: mín
+㟪: wēi wěi
+㟫: quán
+㟬: sǒu
+㟭: mín
+㟮: tū
+㟰: mǐng
+㟱: yǎo
+㟲: jué
+㟳: lì
+㟴: kuài
+㟵: gǎng
+㟶: yuán
+㟷: da
+㟹: láo
+㟺: lóu
+㟻: qiàn zhǎn
+㟼: áo
+㟽: biǎo biāo
+㟾: yōng
+㟿: mǎng máng
+㠀: dǎo
+㠂: áo
+㠄: xí
+㠅: fú fù
+㠆: dān
+㠇: jiù
+㠈: rùn
+㠉: tóng
+㠊: qū
+㠋: è
+㠌: qī
+㠍: jí
+㠎: jí jié
+㠏: huá
+㠐: jiào
+㠑: zuì
+㠒: biǎo
+㠓: méng
+㠔: bài
+㠕: wěi
+㠖: yǐ
+㠗: ào
+㠘: yǔ
+㠙: háo
+㠚: duì
+㠛: wò
+㠜: nì
+㠝: cuán
+㠟: lí
+㠠: lú
+㠡: niǎo
+㠢: huái
+㠣: lì
+㠥: lǜ léi lěi
+㠦: fēng
+㠧: mǐ
+㠨: yù
+㠪: jù
+㠭: zhǎn
+㠮: pēng gāng
+㠯: yǐ
+㠱: jì qǐ
+㠲: bǐ
+㠴: rèn
+㠵: huāng
+㠶: fán
+㠷: gé
+㠸: kù
+㠹: jiè
+㠺: shā miáo
+㠼: sī
+㠽: tóng
+㠾: yuān
+㠿: zī cǐ
+㡀: bì
+㡁: kuǎ
+㡂: lì
+㡃: huāng
+㡄: xún
+㡅: nuǒ
+㡇: zhé jiē
+㡈: wèn mén miǎn
+㡉: xián
+㡊: qià
+㡋: yé ān
+㡌: mào
+㡏: shù xū tóu shū
+㡑: qiāo jiǎo
+㡒: zhūn
+㡓: kūn
+㡔: wù
+㡕: yīng
+㡖: chuáng
+㡗: tí
+㡘: lián lín
+㡙: bī
+㡚: gōu
+㡛: máng
+㡜: xiè xuě
+㡝: fèng
+㡞: lóu lǚ
+㡟: zāo
+㡠: zhèng
+㡡: chú
+㡢: màn
+㡣: lóng
+㡥: yìn
+㡦: pīn
+㡧: zhèng
+㡨: jiān qiān
+㡩: luán
+㡪: nié
+㡫: yì
+㡭: jì
+㡮: jí
+㡯: zhái dù duó
+㡰: yǔ
+㡱: jiǔ
+㡲: huán
+㡳: zhǐ
+㡴: lā
+㡵: líng
+㡶: zhǐ
+㡷: běn
+㡸: zhà zhǎ chá
+㡹: jū
+㡺: dàn
+㡻: liào
+㡼: yì
+㡽: zhào
+㡾: xiàn
+㡿: chì
+㢀: cì
+㢁: chǐ shǐ
+㢂: yǎn tuí duī
+㢃: láng
+㢄: dòu
+㢅: lòng
+㢆: chán
+㢈: tuí duī
+㢉: chá
+㢊: ǎi yǐ
+㢋: chǐ
+㢍: yǐng
+㢎: zhé
+㢏: tóu yǔ yú
+㢑: tuí
+㢒: chá
+㢓: yǎo
+㢔: zǒng
+㢖: pān bān
+㢗: qiào
+㢘: lián
+㢙: qín
+㢚: lǔ
+㢛: yàn qiān
+㢜: kāng kàng
+㢝: sū
+㢞: yì
+㢟: chān
+㢠: jiǒng
+㢡: jiǎng
+㢣: jìng
+㢥: dòng
+㢧: juàn
+㢨: hàn
+㢩: dì
+㢬: hóng
+㢮: chí
+㢯: diāo mín
+㢰: bì
+㢲: xùn
+㢳: lú
+㢵: xié shè
+㢶: bì
+㢸: bì
+㢺: xián
+㢻: ruì
+㢼: biè
+㢽: ěr
+㢾: juàn
+㣀: zhèn
+㣁: bèi
+㣂: è
+㣃: yǔ
+㣄: qú
+㣅: zàn
+㣆: mí
+㣇: yì
+㣈: sì
+㣌: shàn
+㣍: tái
+㣎: mù
+㣏: jìng
+㣐: biàn
+㣑: róng
+㣒: cèng
+㣓: càn
+㣔: dīng
+㣙: dí zhòu
+㣚: tǒng tóng dòng
+㣛: tà huì
+㣜: xíng
+㣝: sōng
+㣞: duó
+㣟: xì
+㣠: tāo tóng
+㣢: tí
+㣣: shàn
+㣤: jiàn
+㣥: zhì
+㣦: wēi
+㣧: yìn
+㣪: huǎn
+㣫: zhǒng dòng
+㣬: qì
+㣭: zōng
+㣯: xiè
+㣰: xiè
+㣱: zé
+㣲: wéi
+㣵: tà
+㣶: zhān
+㣷: nìng
+㣺: xīn
+㣻: yì
+㣼: rěn
+㣽: shù nù
+㣾: chà
+㣿: zhuó diǎo
+㤁: miǎn
+㤂: jí
+㤃: fáng
+㤄: pèi
+㤅: ài xì jì
+㤆: fàn
+㤇: ǎo
+㤈: qìn
+㤉: qiā yà
+㤊: xiào
+㤋: fēn
+㤌: gān
+㤍: qiāo qiǎo
+㤎: gē
+㤏: tóng
+㤐: chān
+㤑: yòu
+㤒: gāo
+㤓: bèn
+㤔: fù
+㤕: chù pò
+㤖: zhù
+㤘: zhòu
+㤚: háng
+㤛: nín
+㤜: jué
+㤝: chōng
+㤞: chà duó zé
+㤟: kǒng
+㤠: liè
+㤡: lì liè
+㤢: yù
+㤤: yú
+㤥: hài
+㤦: lì
+㤧: hóu
+㤨: gǒng
+㤩: kè
+㤪: yuàn
+㤫: dé
+㤬: huì
+㤮: guàng
+㤯: jiǒng
+㤰: zuò
+㤱: fù dòu
+㤲: qiè
+㤳: běi
+㤴: chè shè dié
+㤵: cí
+㤶: máng màng
+㤷: hān
+㤸: xì
+㤹: qiú jiù
+㤺: huǎng
+㤽: chóu
+㤾: sàn tàn
+㤿: yān
+㥀: zhí dé
+㥁: dé
+㥂: tè
+㥃: mèn
+㥄: líng
+㥅: shòu
+㥆: tuì
+㥇: cán
+㥈: dié
+㥉: chè
+㥊: péng pēng
+㥋: yī
+㥌: jú
+㥍: jì
+㥎: lái
+㥏: tiǎn
+㥐: yuàn
+㥒: cǎi cāi
+㥓: qī
+㥔: yù
+㥕: lián
+㥖: cōng
+㥚: yú yǔ
+㥛: jí kè
+㥜: wèi
+㥝: mǐ
+㥞: suì
+㥟: xié
+㥠: xū
+㥡: chì
+㥢: qiú jiū
+㥣: huì
+㥥: yú
+㥦: qiè
+㥧: shùn
+㥨: shuì wěi
+㥩: duǒ
+㥪: lóu
+㥬: páng
+㥭: tài
+㥮: zhòu chǎo
+㥯: yǐn
+㥰: sāo
+㥱: fěi
+㥲: chēn shèn
+㥳: yuán
+㥴: yí tí
+㥵: hùn
+㥶: sè qiān
+㥷: yè
+㥸: mǐn
+㥹: fěn
+㥺: hé
+㥼: yìn yān
+㥽: cè zé
+㥾: nì
+㥿: ào
+㦀: féng
+㦁: lián liǎn
+㦂: cháng
+㦃: chǎn
+㦄: má
+㦅: diē dì chài
+㦆: hū xiā
+㦇: lù
+㦉: yì
+㦊: huá
+㦋: zhā
+㦌: hū xù
+㦍: è
+㦎: huò
+㦏: sǔn xuàn
+㦐: nì
+㦑: xiàn hān
+㦒: lí
+㦓: xiàn rǎn
+㦔: yàn
+㦕: lóng
+㦖: mèn
+㦗: jīn jìn
+㦘: jī
+㦚: biǎn
+㦛: yǔ yú
+㦜: huò xuè
+㦝: miǎo
+㦞: chóu
+㦟: mái
+㦡: lè
+㦢: jié
+㦣: wèi
+㦤: yì
+㦥: xuān xiǎn
+㦦: xì
+㦧: cǎn
+㦨: lán
+㦩: yǐn
+㦪: xiè
+㦫: zā
+㦬: luǒ
+㦭: líng
+㦮: qián
+㦯: huò
+㦰: jiān
+㦱: wǒ
+㦴: gé
+㦵: zhū
+㦶: dié yǒng
+㦷: yǒng
+㦸: jǐ
+㦹: yáng
+㦺: rù
+㦻: xí
+㦼: shuàng
+㦽: yù
+㦾: yí
+㦿: qiǎn hù
+㧀: jí
+㧁: qù hé
+㧂: tián
+㧃: shōu jiū
+㧄: qiǎn
+㧅: mù dāo
+㧆: jīn
+㧇: mǎo
+㧈: yǐn
+㧉: gài hài yè
+㧊: pō bá
+㧋: xuǎn
+㧌: mào
+㧍: fǎng bēng
+㧎: yá yà qiā
+㧏: gāng
+㧐: sǒng
+㧑: huī
+㧒: yù
+㧓: guā
+㧔: guài
+㧕: liǔ
+㧖: è
+㧗: zǐ jǐ zhǐ
+㧘: zì
+㧙: bì bié
+㧚: wǎ
+㧜: liè
+㧟: kuǎi
+㧡: hài wèi
+㧢: yīn
+㧣: zhū
+㧤: chòng
+㧥: xiǎn
+㧦: xuàn hōng
+㧨: qiú
+㧩: pèi
+㧪: guǐ wěi
+㧫: ér ruán ruí
+㧬: gǒng
+㧭: qióng
+㧮: hū
+㧯: lǎo
+㧰: lì
+㧱: chèn
+㧲: sǎn
+㧳: zhuò bāi
+㧴: wǒ é
+㧵: póu
+㧶: kēng
+㧷: tùn
+㧸: pēng
+㧹: tè
+㧺: tà
+㧻: zhuó zú dū
+㧼: biào
+㧽: gù
+㧾: hū
+㨀: bǐng
+㨁: zhì zhí
+㨂: dǒng
+㨃: duǐ chéng
+㨄: zhōu zhào tiáo
+㨅: nèi ruì
+㨆: lǐn
+㨇: pó
+㨈: jǐ
+㨉: mín wěn
+㨊: wěi tuǒ duò
+㨋: chě
+㨌: gòu
+㨍: bāng
+㨎: rú
+㨏: tān
+㨐: bǔ
+㨑: zōng
+㨒: kuī
+㨓: láo
+㨔: hàn
+㨕: yíng
+㨖: zhì
+㨗: jié
+㨘: xǐng
+㨙: xié xì
+㨚: xún sǔn
+㨛: shǎn shàn
+㨜: qián
+㨝: xiē
+㨞: sù
+㨟: hāi
+㨠: mì
+㨡: hún
+㨢: pī
+㨤: huì
+㨥: nà
+㨦: sǒng
+㨧: bèn
+㨨: chōu liù
+㨩: jié
+㨪: huàng huǎng
+㨫: lǎn
+㨭: hù
+㨮: dōu
+㨯: huò
+㨰: gǔn
+㨱: yáo
+㨲: cè
+㨳: guǐ jì
+㨴: jiàn
+㨵: jiǎn
+㨶: dǎo
+㨷: jìn
+㨸: mà
+㨹: huì xuě
+㨺: miǎn mén
+㨻: cán shǎn zàn chàn
+㨼: lüè
+㨽: pì
+㨾: yàng
+㨿: jù
+㩀: jù
+㩁: què
+㩃: qiān
+㩄: shāi
+㩆: jiù zú
+㩇: huò zuó huá
+㩈: yǔn
+㩉: dá lā xī xié
+㩊: xuān
+㩋: xiāo sù
+㩌: fèi
+㩍: cè
+㩎: yè
+㩐: dèn
+㩒: qín
+㩓: huǐ
+㩔: tún
+㩖: qiáng
+㩗: xí
+㩘: nǐ
+㩙: sāi
+㩚: méng
+㩛: tuán
+㩜: lǎn
+㩝: háo
+㩞: cì
+㩟: zhài
+㩠: āo piǎo póu
+㩡: luǒ
+㩢: miè mì
+㩤: fū
+㩦: xié xī
+㩧: bó
+㩨: huì
+㩩: qǐng
+㩪: xié
+㩭: bó
+㩮: qián
+㩯: pó
+㩰: jiǎo
+㩱: jué
+㩲: kǔn
+㩳: sǒng
+㩴: jú qú
+㩵: è
+㩶: niè
+㩷: qiān
+㩸: dié
+㩹: dié
+㩻: qī guì guǐ
+㩼: zhī
+㩽: qí chì è
+㩾: zhuì qí
+㩿: kū
+㪀: yú
+㪁: qín kān qiàn qián
+㪂: kū
+㪃: hé
+㪄: fú
+㪅: gèng gēng
+㪆: dǐ
+㪇: xiàn
+㪈: guì
+㪉: hé
+㪊: qún
+㪋: hàn hě
+㪌: tǒng
+㪍: bó bèi
+㪎: shǎn nà
+㪏: bǐ
+㪐: lù
+㪑: yè
+㪒: ní
+㪓: chuái
+㪔: sàn
+㪕: diào chuò
+㪖: lù
+㪗: tǒu
+㪘: liǎn
+㪙: kě
+㪚: sàn
+㪛: zhěn
+㪜: chuǎi duǒ
+㪝: liàn
+㪞: mào
+㪠: qiān qiàn jiān
+㪡: kài kě
+㪢: shǎo
+㪣: xiāo qiāo
+㪤: bì
+㪥: zhā
+㪦: yìn
+㪧: xī
+㪨: shàn
+㪩: sù
+㪪: sà
+㪫: ruì
+㪬: chuō zhuó
+㪭: lú
+㪮: líng
+㪯: chá
+㪱: huàn
+㪴: jiá
+㪵: bàn
+㪶: hú
+㪷: dǒu
+㪹: lǒu
+㪺: jū
+㪻: juàn
+㪼: kě
+㪽: suǒ
+㪾: luò gé
+㪿: zhé
+㫀: dǐng
+㫁: duàn
+㫂: zhù
+㫃: yǎn
+㫄: páng
+㫅: chá
+㫊: yǐ ě
+㫍: yóu yǎo
+㫎: huī gǔn
+㫏: yǎo
+㫐: yǎo
+㫑: zhǐ shí
+㫒: gǒng
+㫓: qǐ
+㫔: gèn
+㫗: hòu
+㫘: mì
+㫙: fú
+㫚: hū
+㫛: guàng
+㫜: tǎn
+㫝: dī
+㫟: yán
+㫢: qù
+㫤: chǎng
+㫥: mǐng
+㫦: tāo
+㫧: bào
+㫨: ān
+㫫: xiǎn
+㫯: mào
+㫰: làng lǎng
+㫱: nǎn nàn
+㫲: bèi
+㫳: chén
+㫵: fēi
+㫶: zhǒu
+㫷: jī
+㫸: jiē
+㫹: shù
+㫻: kùn
+㫼: dié
+㫽: lù
+㬂: yú
+㬃: tái
+㬄: chàn
+㬅: màn
+㬆: mǐn
+㬇: huàn
+㬈: wēn
+㬉: nuǎn
+㬊: huàn huǎn
+㬋: hóu
+㬌: jìng
+㬍: bó
+㬎: xiǎn
+㬏: lì
+㬐: jìn zī
+㬒: mǎng
+㬓: piào
+㬔: háo
+㬕: yáng
+㬗: xiàn
+㬘: sù
+㬙: wěi
+㬚: chè
+㬛: xī
+㬜: jìn
+㬝: céng sōng
+㬞: hè
+㬟: fēn
+㬠: shài shà
+㬡: líng
+㬣: duì
+㬤: qī
+㬥: pù bó
+㬦: yuè
+㬧: bó
+㬩: huì
+㬪: dié
+㬫: yàn
+㬬: jù
+㬭: jiào
+㬮: nàn
+㬯: liè
+㬰: yú
+㬱: tì
+㬲: tiān
+㬳: wǔ
+㬴: hǒng
+㬵: xiáo
+㬶: hào
+㬸: tiāo
+㬹: zhēng
+㬻: huāng hāng huǎng
+㬼: fù
+㬿: tūn
+㭁: réng
+㭂: jiǎo
+㭄: xìn
+㭇: yuàn
+㭈: jué
+㭉: huá
+㭋: bàng
+㭌: móu
+㭎: gāng
+㭏: wěi
+㭑: mèi
+㭒: sì
+㭓: biàn
+㭔: lú
+㭕: qū
+㭘: gé hé
+㭙: zhé
+㭚: lǚ
+㭛: pài bà
+㭜: róng
+㭝: qiú òu
+㭞: liè
+㭟: gǒng
+㭠: xiǎn
+㭡: xì xìn
+㭢: xīn
+㭤: niǎo
+㭨: xié
+㭩: liè
+㭪: fū
+㭫: cuó cuán
+㭬: zhuó
+㭭: bā bèi biē
+㭮: zuò zǎn
+㭯: zhé dié
+㭰: zuī zuǐ
+㭱: hé
+㭲: jí
+㭴: jiān
+㭸: tú
+㭹: xián
+㭺: yǎn yàn ān
+㭻: táng
+㭼: tà
+㭽: dǐ
+㭾: jué
+㭿: áng
+㮀: hán
+㮁: xiáo
+㮂: jú
+㮃: wēi ruí
+㮄: bǎng
+㮅: zhuī
+㮆: niè
+㮇: tiàn
+㮈: nài
+㮋: yǒu
+㮌: mián
+㮏: nài nì nà
+㮐: shěng sì
+㮑: chā qì
+㮒: yān yīn
+㮓: gèn
+㮔: chòng tóng
+㮕: ruǎn
+㮖: jiá
+㮗: qín
+㮘: máo
+㮙: è
+㮚: lì
+㮛: chí yí
+㮜: zāng
+㮝: hé
+㮞: jié
+㮟: niǎn kā
+㮡: guàn
+㮢: hóu
+㮣: gài
+㮥: bèn fàn
+㮦: suǒ sè
+㮧: wū wēn
+㮨: jì
+㮩: xī
+㮪: qióng
+㮫: hé xiá qià
+㮬: wēng
+㮭: xián
+㮮: jié
+㮯: hún huá
+㮰: pí
+㮱: shēn
+㮲: chōu
+㮳: zhèn
+㮵: zhān
+㮶: shuò
+㮷: jī
+㮸: sòng
+㮹: zhǐ
+㮺: běn
+㮾: lǎng
+㮿: bì
+㯀: xuàn
+㯁: péi
+㯂: dài
+㯃: qī
+㯄: zhī
+㯅: pí bī
+㯆: chǎn shàn
+㯇: bì
+㯈: sù
+㯉: huò
+㯊: hén
+㯋: jiǒng yǐng
+㯌: chuán
+㯍: jiǎng
+㯎: nèn
+㯏: gǔ
+㯐: fǎng
+㯓: tà dá
+㯔: cuì
+㯕: xī
+㯖: dé
+㯗: xián
+㯘: kuǎn
+㯙: zhé
+㯚: tā
+㯛: hú
+㯜: cuì
+㯝: lù
+㯞: juàn
+㯟: lù
+㯠: qiàn
+㯡: pào páo
+㯢: zhèn
+㯤: lì
+㯥: cáo zāo
+㯦: qí
+㯩: tì
+㯪: líng
+㯫: qú
+㯬: liǎn
+㯭: lǔ
+㯮: shú
+㯯: gòng dǎn jù
+㯰: zhé
+㯱: pāo
+㯲: jìn
+㯳: qíng
+㯶: zōng
+㯷: pú
+㯸: jǐn
+㯹: biǎo
+㯺: jiàn
+㯻: gǔn
+㯽: bīn
+㯾: zāo
+㯿: liè là
+㰀: lí
+㰁: luǒ
+㰂: shěn
+㰃: mián miàn
+㰄: jiàn
+㰅: dí zhé
+㰆: bèi
+㰈: liǎn
+㰊: xián
+㰋: pín
+㰌: què
+㰍: lóng
+㰎: zuì
+㰐: jué
+㰑: shān
+㰒: xué
+㰔: xiè
+㰖: lǎn
+㰗: qí
+㰘: yí
+㰙: nuó
+㰚: lí
+㰛: yuè
+㰝: yǐ
+㰞: chī
+㰟: jì qì
+㰠: hāng
+㰡: xiè
+㰢: kēng
+㰣: zī
+㰤: hē qiè
+㰥: xì huì
+㰦: qù
+㰧: hāi
+㰨: xiā
+㰩: hāi
+㰪: guī
+㰫: chān
+㰬: xún
+㰭: xū
+㰮: shèn
+㰯: kòu tòu tǒu hòu
+㰰: xiā qiè hē
+㰱: shà
+㰲: yū xù
+㰳: yà yā
+㰴: pǒu
+㰵: zú
+㰶: yǒu ǒu
+㰷: zì
+㰸: liǎn
+㰹: xiān xiàn hǎn
+㰺: xià xiá
+㰻: yǐ xī hòu
+㰼: shà qiè
+㰽: yàn
+㰾: jiào
+㰿: xī
+㱀: chǐ
+㱁: shì kuǎn
+㱂: kāng
+㱃: yǐn
+㱄: hēi mò
+㱅: yì
+㱆: xī
+㱇: sè xì
+㱈: jìn
+㱉: yè
+㱊: yōu
+㱋: què
+㱌: yé chè
+㱍: luán
+㱎: kūn
+㱏: zhèng
+㱔: xiē
+㱖: cuì
+㱗: xiū
+㱘: àn
+㱙: xiǔ guǎ
+㱚: cán
+㱛: chuǎn bù
+㱜: zhá
+㱞: yì lā
+㱟: pī pǐ
+㱠: kū gū
+㱡: shēng
+㱢: láng
+㱣: tuǐ
+㱤: xī
+㱥: líng lèng
+㱦: qī
+㱧: wò yuǎn
+㱨: liàn
+㱩: dú
+㱪: mèn
+㱫: làn
+㱬: wěi
+㱭: duàn
+㱮: kuài
+㱯: ái
+㱰: zǎi
+㱱: huì
+㱲: yì
+㱳: mò
+㱴: zì
+㱵: fèn
+㱶: péng bēng
+㱸: bì
+㱹: lì
+㱺: lú
+㱻: luò
+㱼: hāi
+㱽: zhěn qín
+㱾: gāi kāi
+㱿: què hù qiǎng
+㲀: zhēn chēn
+㲁: kōng zhōng
+㲂: chéng
+㲃: jiù
+㲄: jué kū
+㲅: jì
+㲆: líng
+㲈: sháo táo
+㲉: què
+㲊: ruì
+㲋: chuò
+㲌: nèng
+㲍: zhī
+㲎: lóu
+㲏: pāo
+㲒: bào qú
+㲓: róng shù
+㲔: xiān
+㲕: lèi
+㲖: xiāo
+㲗: fū
+㲘: qú
+㲚: shā
+㲛: zhǐ
+㲜: tán
+㲝: rǒng
+㲞: sū zú
+㲟: yǐng
+㲠: máo
+㲡: nài
+㲢: biàn
+㲤: shuāi
+㲥: táng
+㲦: hàn
+㲧: sào
+㲨: róng
+㲪: dēng
+㲫: pú
+㲬: jiāo
+㲭: tǎn
+㲯: rán
+㲰: níng
+㲱: liè
+㲲: dié
+㲳: dié zhì
+㲴: zhòng
+㲶: lǜ
+㲷: dàn
+㲸: xī
+㲹: guǐ
+㲺: jí
+㲻: nì
+㲼: yì chà
+㲽: niàn rěn
+㲾: yǔ
+㲿: wǎng
+㳀: guò
+㳁: zè
+㳂: yán yàn
+㳃: cuì
+㳄: xián
+㳅: jiǎo
+㳆: tǒu
+㳇: fù
+㳈: pèi
+㳊: yōu zhōng
+㳋: qiū
+㳌: yā
+㳍: bù
+㳎: biàn
+㳏: shì
+㳐: zhá
+㳑: yì
+㳒: biàn
+㳔: duì
+㳕: lán
+㳖: yī
+㳗: chài chà
+㳘: chōng
+㳙: xuàn
+㳚: xù
+㳛: yú yóu
+㳜: xiū
+㳠: tà
+㳡: guō
+㳥: lòng
+㳦: xiè
+㳧: chè rè
+㳨: jiǎn
+㳩: tān
+㳪: pì
+㳫: zǎn
+㳬: xuán
+㳭: xián
+㳮: niào
+㳴: mì
+㳵: jì
+㳶: nǒu rǔ
+㳷: hū mǐn wěn tuì
+㳸: huā
+㳹: wǎng wāng
+㳺: yóu
+㳻: zé
+㳼: bì yù
+㳽: mǐ
+㳾: qiāng
+㳿: xiè
+㴀: fàn fān
+㴁: yì
+㴂: tān
+㴃: lèi
+㴄: yǒng
+㴆: jìn
+㴇: shè máng
+㴈: yìn
+㴉: jǐ
+㴋: sù
+㴎: nài
+㴏: wǎng
+㴐: miàn miǎn
+㴑: sù
+㴒: yì
+㴓: shāi
+㴔: xī jí yì sè
+㴕: jí
+㴖: luò
+㴗: yōu
+㴘: mào
+㴙: zhǎ zhá
+㴚: suì
+㴛: zhì
+㴜: biàn
+㴝: lí
+㴥: qiào
+㴦: guàn
+㴧: xī
+㴨: zhèn
+㴩: yōng
+㴪: niè
+㴫: jùn yá
+㴬: xiè
+㴭: yǎo
+㴮: xiè
+㴯: zhī
+㴰: néng
+㴲: sī
+㴳: lǒng
+㴴: chén
+㴵: mì
+㴶: què hú
+㴷: dān
+㴸: shǎn
+㴼: sù
+㴽: xiè
+㴾: bó
+㴿: dǐng
+㵀: zú
+㵂: shù
+㵃: shé
+㵄: hàn yù
+㵅: tān tàn
+㵆: gǎo
+㵊: nà
+㵋: mì
+㵌: xún
+㵍: mèn
+㵎: jiàn
+㵏: cuǐ
+㵐: jué
+㵑: hè
+㵒: fèi pài bì
+㵓: shí
+㵔: chě
+㵕: shèn
+㵖: nǜ
+㵗: píng
+㵘: màn
+㵝: yì
+㵞: chóu
+㵠: kū
+㵡: báo
+㵢: léi
+㵣: kě
+㵤: shà
+㵥: bì
+㵦: suí
+㵧: gé yì
+㵨: pì bó
+㵩: yì
+㵪: xián yàn yán
+㵫: nì
+㵬: yíng
+㵭: zhǔ
+㵮: chún
+㵯: féng
+㵰: xù
+㵱: piǎo
+㵲: wǔ
+㵳: liáo
+㵴: cáng
+㵵: zòu jù
+㵶: zuō
+㵷: biàn
+㵸: yào
+㵹: huán mò
+㵺: pài
+㵻: xiū
+㵽: lěi
+㵾: qìng jìng
+㵿: xiào
+㶀: jiāo
+㶁: guó huò
+㶄: yán
+㶅: xué
+㶆: zhū chú
+㶇: héng
+㶈: yíng
+㶉: xī
+㶌: lián
+㶍: xiǎn
+㶎: huán
+㶏: yīn
+㶑: liàn
+㶒: shǎn shěn tàn
+㶓: cáng
+㶔: bèi
+㶕: jiǎn
+㶖: shù
+㶗: fàn fán
+㶘: diàn
+㶚: bà
+㶛: yú
+㶞: nǎng
+㶟: lěi
+㶠: yì
+㶡: dài huǒ
+㶣: chán yín
+㶤: chǎo
+㶥: gān
+㶦: jìn
+㶧: nèn
+㶫: liǎo
+㶬: mò
+㶭: yǒu
+㶯: liù
+㶰: hán
+㶲: yòng
+㶳: jìn
+㶴: chǐ
+㶵: rèn
+㶶: nóng
+㶹: hòng
+㶺: tiàn
+㶼: āi xī
+㶽: guā
+㶾: biāo
+㶿: bó
+㷀: qióng
+㷂: shù
+㷃: chuǐ
+㷄: huǐ
+㷅: chǎo
+㷆: fù
+㷇: huī guài
+㷈: è
+㷉: wèi
+㷊: fén
+㷋: tán
+㷍: lún
+㷎: hè
+㷏: yǒng
+㷐: huǐ
+㷒: yú
+㷓: zǒng
+㷔: yàn
+㷕: qiú
+㷖: zhào
+㷗: jiǒng
+㷘: tái
+㷟: tuì
+㷠: lín
+㷡: jiǒng
+㷢: zhǎ
+㷣: xīng
+㷤: hù xuè
+㷦: xù
+㷪: cuì
+㷫: qǐng
+㷬: mò
+㷮: zāo
+㷯: bèng
+㷰: chī lí
+㷳: yàn
+㷴: gé
+㷵: mò
+㷶: bèi
+㷷: juǎn
+㷸: dié
+㷹: zhào shào
+㷻: wú
+㷼: yàn
+㷾: jué
+㷿: xiān
+㸀: tái
+㸁: hǎn
+㸃: diǎn
+㸄: jì
+㸅: jié jí
+㸆: kào
+㸇: zuǎn
+㸉: xiè
+㸊: lài là
+㸋: fán
+㸌: huò
+㸍: xì
+㸎: niè
+㸏: mí
+㸐: rán
+㸑: cuàn
+㸒: yín jīng
+㸓: mì
+㸕: jué
+㸖: qū
+㸗: tóng
+㸘: wàn
+㸙: zhē
+㸚: lǐ lì
+㸛: sháo
+㸜: kòng
+㸝: xiān kǎn
+㸞: zhé
+㸟: zhī
+㸠: tiǎo
+㸡: shū
+㸢: bèi
+㸣: yè
+㸤: piàn
+㸥: chàn
+㸦: hù jià
+㸧: kèn
+㸨: jiū
+㸩: ān
+㸪: chún
+㸫: qián
+㸬: bèi
+㸭: bā
+㸮: fén
+㸯: kē
+㸰: tuó
+㸱: tuó
+㸲: zuó
+㸳: líng
+㸵: guǐ
+㸶: yān
+㸷: shì
+㸸: hǒu ǒu kǒu
+㸹: liè luō
+㸺: shā
+㸻: sì
+㸽: bèi
+㸾: rèn
+㸿: dú
+㹀: bó
+㹁: liáng
+㹂: qiǎn
+㹃: fèi
+㹄: jì
+㹅: zǒng
+㹆: huī
+㹇: hé jiān
+㹈: lí
+㹉: yuán wán
+㹊: yuè
+㹋: xiū
+㹌: chǎn shèng
+㹍: dí
+㹎: léi
+㹏: jǐn
+㹐: chóng
+㹑: sì
+㹒: pǔ
+㹓: yǎo
+㹔: jiāng
+㹕: huān
+㹖: huàn
+㹗: tāo
+㹘: rù
+㹙: wěng
+㹚: yíng
+㹛: ráo
+㹜: yín
+㹝: shì
+㹞: yín yǐn yá
+㹟: jué kuài
+㹠: tún
+㹡: xuán
+㹢: jiā gā
+㹣: zhōng
+㹤: qiè
+㹥: zhù
+㹦: diāo
+㹨: yòu
+㹫: yí
+㹬: shǐ
+㹭: yì
+㹮: mò
+㹱: què
+㹲: xiāo xiào
+㹳: wú
+㹴: gēng
+㹵: yǐng
+㹶: tíng
+㹷: shǐ
+㹸: ní
+㹹: gēng
+㹺: tà
+㹻: wō wēi
+㹼: jú
+㹽: chǎn
+㹾: piǎo jiào
+㹿: zhuó zhào
+㺀: hū náo
+㺁: nǎo
+㺂: yán gǎn
+㺃: gǒu
+㺄: yǔ yú
+㺅: hóu
+㺇: sī
+㺈: chī
+㺉: hù
+㺊: yàng
+㺋: wēng
+㺌: xiàn
+㺍: pín
+㺎: róng
+㺏: lóu
+㺐: lǎo sāo
+㺑: shān shàn sāo shǎn
+㺒: xiāo nǎo qiāo xiào
+㺓: zé
+㺔: hài huī
+㺕: fán biàn
+㺖: hǎn
+㺗: chān
+㺘: zhàn
+㺚: tǎ
+㺛: zhù
+㺜: nóng
+㺝: hàn
+㺞: yú
+㺟: zhuó
+㺠: yòu
+㺡: lì
+㺢: huò huō
+㺣: xī
+㺤: xiān
+㺥: chán
+㺦: lián
+㺨: sī
+㺩: jiù qiú
+㺪: pú
+㺫: qiú
+㺬: gǒng
+㺭: zǐ
+㺮: yú
+㺱: réng
+㺲: niǔ
+㺳: méi
+㺴: bā
+㺵: jiú
+㺷: xù
+㺸: píng
+㺹: biàn
+㺺: mào
+㺿: yí
+㻀: yú
+㻂: píng
+㻃: qū
+㻄: bǎo
+㻅: huì
+㻉: bù
+㻊: máng
+㻋: là
+㻌: tú
+㻍: wú
+㻎: lì
+㻏: líng
+㻑: jì
+㻒: jùn
+㻓: zōu
+㻔: duǒ
+㻕: jué
+㻖: dài
+㻗: bèi
+㻝: là
+㻞: bīn bān
+㻟: suí
+㻠: tú
+㻡: xuē dié
+㻧: duò
+㻪: suì
+㻫: bì
+㻬: tū
+㻭: sè
+㻮: càn
+㻯: tú
+㻰: miǎn
+㻱: jīn
+㻲: lǚ
+㻵: zhàn
+㻶: bǐ
+㻷: jí
+㻸: zēn
+㻹: xuān
+㻺: lì
+㻽: suì xuán
+㻾: yōng
+㻿: shǔ
+㼂: é
+㼇: qióng
+㼈: luó
+㼉: zhèn
+㼊: tún
+㼋: gū rǔ
+㼌: yǔ
+㼍: lěi
+㼎: bó
+㼏: něi
+㼐: pián
+㼑: liàn
+㼒: tǎng
+㼓: lián
+㼔: wēn
+㼕: dāng
+㼖: lì
+㼗: tíng
+㼘: wǎ
+㼙: zhòu
+㼚: gāng
+㼛: xíng
+㼜: àng
+㼝: fàn
+㼞: pèng bèng
+㼟: bó
+㼠: tuó
+㼡: shū
+㼢: yí
+㼣: bó
+㼤: qiè
+㼥: tǒu kǎo
+㼦: gǒng
+㼧: tóng
+㼨: hán
+㼩: chéng shèng
+㼪: jié
+㼫: huàn huà
+㼬: xìng
+㼭: diàn
+㼮: chāi qì
+㼯: dòng
+㼰: pí
+㼱: ruǎn jùn
+㼲: liè
+㼳: shěng
+㼴: ǒu
+㼵: dì
+㼶: yú
+㼷: chuán zhuān
+㼸: róng
+㼹: kāng huāng
+㼺: táng
+㼻: cóng
+㼼: piáo
+㼽: chuǎng shuǎng
+㼾: lù
+㼿: tóng zhòng
+㽀: zhèng
+㽁: lì
+㽂: sà
+㽃: pān
+㽄: sī
+㽆: dāng
+㽇: hú
+㽈: yì
+㽉: xiàn
+㽊: xiè
+㽋: luó
+㽌: liù
+㽎: tán xīn
+㽏: gàn
+㽑: tán
+㽕: yóu
+㽖: nán
+㽘: gǎng
+㽙: jùn
+㽚: chì
+㽛: gōu qú
+㽜: wǎn
+㽝: lì
+㽞: liú
+㽟: liè
+㽠: xiá
+㽡: bēi
+㽢: ǎn
+㽣: yù
+㽤: jú
+㽥: róu
+㽦: xún
+㽧: zī
+㽨: cuó
+㽩: càn
+㽪: zěng
+㽫: yōng
+㽬: fù pì
+㽭: ruǎn
+㽯: xí
+㽰: shù
+㽱: jiǎo jiū niú
+㽲: jiǎo xiǔ
+㽳: xū
+㽴: zhàng
+㽷: shuì
+㽸: chén
+㽹: fǎn fàn
+㽺: jí
+㽻: zhī
+㽽: gù
+㽾: wù
+㾀: qiè qǔ
+㾁: shù
+㾂: hāi
+㾃: tuó
+㾄: dú chóu
+㾅: zǐ
+㾆: rán
+㾇: mù
+㾈: fù
+㾉: líng
+㾊: jí cì sè
+㾋: xiū xiù
+㾌: xuǎn
+㾍: nái
+㾎: yā xiā
+㾏: jiè yá
+㾐: lì
+㾑: dá hè da
+㾒: rú rù
+㾓: yuān
+㾔: lǚ
+㾕: shěn
+㾖: lǐ
+㾗: liàng
+㾘: gěng
+㾙: xìn xì
+㾚: xiē
+㾛: qǐn
+㾜: qiè
+㾝: chè
+㾞: yóu
+㾟: bù
+㾠: kuáng
+㾡: què
+㾢: ài
+㾣: qīn
+㾤: qiāng
+㾥: chù
+㾦: pèi pēi
+㾧: kuò luǒ
+㾨: yī qǐ ǎi
+㾩: guāi
+㾪: shěng
+㾫: piān
+㾭: zhòu
+㾮: huáng
+㾯: huī tuí
+㾰: hú
+㾱: bèi
+㾴: zhā
+㾵: jì
+㾶: gǔ
+㾷: xī
+㾸: gǎo
+㾹: chái zhài chí
+㾺: mà
+㾻: zhù chú
+㾼: tuǐ
+㾽: zhuì tuí
+㾾: xiān lián
+㾿: láng
+㿃: zhì dài
+㿄: ài
+㿅: xiǎn
+㿆: guō
+㿇: xí xì
+㿉: tuǐ
+㿊: cǎn
+㿋: sào
+㿌: xiān
+㿍: jiè
+㿎: fèn fén
+㿏: qún
+㿑: yào
+㿒: dǎo zhòu chóu
+㿓: jiá
+㿔: lěi
+㿕: yán
+㿖: lú lù
+㿗: tuí
+㿘: yíng
+㿙: pì
+㿚: luò
+㿛: lì
+㿜: biě
+㿞: mào
+㿟: bái
+㿠: huàng
+㿢: yào
+㿣: hē
+㿤: chǔn
+㿥: hé
+㿦: nìng
+㿧: chóu
+㿨: lì
+㿩: tǎng
+㿪: huán
+㿫: bì
+㿬: bā
+㿭: chè lè
+㿮: yàng
+㿯: dá
+㿰: áo bì
+㿱: xué
+㿳: zī
+㿴: dā
+㿵: rǎn
+㿶: bāng
+㿷: cuó cāo
+㿸: wǎn mán
+㿹: tà
+㿺: báo
+㿻: gān
+㿼: yán
+㿽: xī
+㿾: zhù
+㿿: yǎ
+䀀: fàn
+䀁: yòu
+䀂: ān
+䀃: tuí
+䀄: méng
+䀅: shè
+䀆: jìn
+䀇: gǔ
+䀈: jì
+䀉: qiáo
+䀊: jiǎo
+䀋: yán
+䀌: xì
+䀍: kàn
+䀎: miǎn
+䀏: xuàn xún
+䀐: shān
+䀑: wò
+䀒: qiān
+䀓: huàn
+䀔: rèn
+䀕: zhèn
+䀖: tiān
+䀗: jué xuè
+䀘: xié jī
+䀙: qì
+䀚: áng
+䀛: mèi wù mà
+䀜: gǔ
+䀞: tāo
+䀟: fán
+䀠: jù
+䀡: chàn diān tàn
+䀢: shùn
+䀣: bì mà
+䀤: mào
+䀥: shuò
+䀦: gǔ
+䀧: hǒng
+䀨: huà guā
+䀩: luò
+䀪: háng
+䀫: jiá tǔn
+䀬: quán
+䀭: gāi
+䀮: huāng
+䀯: bǔ
+䀰: gǔ
+䀱: fēng
+䀲: mù
+䀳: ài
+䀴: yǐng yà kēng
+䀵: shùn
+䀶: liàng lǎng
+䀷: jié
+䀸: chì
+䀹: jié zhǎ shè jiá yà
+䀺: chōu tāo
+䀻: pìng
+䀼: chēn rèn
+䀽: yán
+䀾: dǔ
+䀿: dì
+䁁: liàng
+䁂: xiàn
+䁃: biāo
+䁄: xìng
+䁅: měng mèng
+䁆: yè
+䁇: mì
+䁈: qì
+䁉: qì
+䁊: wò
+䁋: xiè zhé
+䁌: yù
+䁍: qià kān
+䁎: chéng tíng chēng
+䁏: yǎo
+䁐: yīng yìng
+䁑: yáng
+䁒: jí zí
+䁓: zōng zǒng jiè
+䁔: xuān hàn
+䁕: mín
+䁖: lōu
+䁗: kǎi
+䁘: yǎo
+䁙: yǎn
+䁚: sǔn qióng
+䁛: guì
+䁜: huàng huǎng
+䁝: yíng yǐng
+䁞: shěng
+䁟: chá
+䁠: lián
+䁢: xuán
+䁣: chuán
+䁤: chè zhé huǐ
+䁥: nì
+䁦: qù
+䁧: miáo
+䁨: huò
+䁩: yú
+䁪: zhǎn
+䁫: hú méng
+䁬: céng
+䁭: biāo
+䁮: qián
+䁯: xī xié
+䁰: jiǎng
+䁱: kōu
+䁲: mái
+䁳: mǎng
+䁴: zhǎn shǎn
+䁵: biǎn huán
+䁶: jī jiǎo
+䁷: jué wù
+䁸: náng nǒng
+䁹: bì
+䁺: shì yì
+䁻: shuò lì
+䁼: mò
+䁽: liè
+䁾: miè
+䁿: mò
+䂀: xī
+䂁: chán
+䂂: qú
+䂃: jiào
+䂄: huò
+䂅: xiān
+䂆: xù
+䂇: niǔ
+䂈: tóng
+䂉: hóu
+䂊: yù
+䂌: chōng
+䂍: bó
+䂎: zuǎn cuān
+䂏: diāo
+䂐: zhuō
+䂑: jī
+䂒: qià
+䂔: xìng
+䂕: huì
+䂖: shí
+䂗: kū
+䂙: duī
+䂚: yáo
+䂛: yú
+䂜: bàng
+䂝: jié
+䂞: zhè
+䂟: jiā
+䂠: shǐ
+䂡: dǐ
+䂢: dǒng
+䂣: cí
+䂤: fù
+䂥: mín
+䂦: zhēn zhěn
+䂧: zhěn
+䂩: yàn qìng
+䂪: qiǎo diào
+䂫: hāng hóng
+䂬: gǒng
+䂭: qiāo
+䂮: lüè
+䂯: guài
+䂰: là
+䂱: ruì
+䂲: fǎ
+䂳: cuǒ chǎ
+䂴: yán
+䂵: gōng
+䂶: jié
+䂷: guāi
+䂸: guó
+䂹: suǒ
+䂺: wǒ kē
+䂻: zhèng
+䂼: niè
+䂽: diào
+䂾: lǎi
+䂿: tà
+䃀: cuì
+䃁: yā
+䃂: gǔn
+䃅: dī
+䃇: mián
+䃈: jiē
+䃉: mín
+䃊: jǔ
+䃋: yú
+䃌: zhēn yīn
+䃍: zhào
+䃎: zhà zhǎ
+䃏: xīng
+䃑: bān pán
+䃒: hé
+䃓: gòu gōu
+䃔: hóng qióng
+䃕: láo luò
+䃖: wù
+䃗: bō zhuó
+䃘: kēng
+䃙: lù
+䃚: cù zú
+䃛: lián
+䃜: yī
+䃝: qiào
+䃞: shú
+䃠: xuàn
+䃡: jīn qín
+䃢: qīn
+䃣: huǐ
+䃤: sù
+䃥: chuáng
+䃦: dūn
+䃧: lóng
+䃩: náo
+䃪: tán
+䃫: dǎn
+䃬: wěi kuǐ lěi
+䃭: gǎn
+䃮: dá
+䃯: lì
+䃰: cā
+䃱: xiàn
+䃲: pán
+䃳: là liè
+䃴: zhū
+䃵: niǎo
+䃶: huái guī guài
+䃷: yíng
+䃸: xiàn jīn
+䃹: làn
+䃺: mó
+䃻: bà
+䃽: guǐ zhī fú
+䃾: bǐ
+䃿: fū
+䄀: huò
+䄁: yì
+䄂: liù
+䄃: yāng
+䄄: yīn
+䄅: juàn
+䄆: huó huàn
+䄇: chéng
+䄈: dòu xiáng
+䄉: é
+䄋: yǎn yàn
+䄌: zhuì chuò
+䄍: zhà
+䄎: qǐ
+䄏: yú
+䄐: quàn
+䄑: huó
+䄒: niè
+䄓: huáng
+䄔: jǔ
+䄕: shè
+䄘: péng
+䄙: míng
+䄚: cáo
+䄛: lóu
+䄜: lí chī
+䄝: chuāng
+䄟: cuī
+䄠: shàn
+䄡: dān
+䄢: qí
+䄤: lài lǎn
+䄥: líng
+䄦: liǎo
+䄧: réng
+䄨: yú
+䄩: yì
+䄪: diǎo
+䄫: qǐ
+䄬: yí
+䄭: nián
+䄮: fū
+䄯: jiǎn
+䄰: yá
+䄱: fāng
+䄲: ruì
+䄳: xiān
+䄶: bì bó
+䄷: shí
+䄸: pò
+䄹: nián
+䄺: zhì tí
+䄻: táo cháo tiāo
+䄼: tiǎn
+䄽: tiǎn
+䄾: rù rǒng
+䄿: yì
+䅀: liè
+䅁: àn
+䅂: hé
+䅃: qióng jiòng
+䅄: lì
+䅅: guī wā
+䅆: zì
+䅇: sù
+䅈: yuàn
+䅉: yà
+䅊: chá
+䅋: wǎn
+䅌: juān
+䅍: tǐng
+䅎: yǒu
+䅏: huì
+䅐: jiǎn
+䅑: ruí
+䅒: máng
+䅓: jǔ
+䅔: zī
+䅕: jū
+䅖: ān ǎn yān yǎn yè
+䅗: suì
+䅘: lái
+䅙: hùn
+䅚: quǎn
+䅛: chāng
+䅜: duò chuí tuǒ
+䅝: kōng
+䅞: nè
+䅟: cǎn
+䅠: tí
+䅡: xǔ
+䅢: jiù
+䅣: huáng
+䅤: qì
+䅥: jié gé
+䅦: máo
+䅧: yān yìn
+䅩: zhǐ qí
+䅪: tuí
+䅬: ài
+䅭: páng
+䅮: càng
+䅯: táng
+䅰: ěn
+䅱: hùn
+䅲: qí
+䅳: chú zōu
+䅴: suǒ
+䅵: zhuó
+䅶: nòu
+䅷: tú chú
+䅸: shēn zú
+䅹: lǒu
+䅺: biāo miǎo
+䅻: lí
+䅼: mán màn
+䅽: xīn gǔ
+䅾: cén qián
+䅿: huá huáng
+䆀: měi
+䆁: gāo
+䆂: lián
+䆃: dào
+䆄: zhǎn
+䆅: zī
+䆈: zhì
+䆉: bà
+䆊: cuì mèi
+䆋: qiū
+䆍: lóng
+䆎: xiān
+䆏: fèi fèn
+䆐: guó
+䆑: chéng
+䆒: jiù
+䆓: è ruǎn
+䆔: chōng
+䆕: yuè
+䆖: hóng
+䆗: yǎo
+䆘: yā zā
+䆙: yáo
+䆚: tóng dòng
+䆛: zhà
+䆜: yòu
+䆝: xuè zhú
+䆞: yǎo
+䆟: kè āo
+䆠: huàn
+䆡: láng
+䆢: yuè
+䆣: chén
+䆦: shèn
+䆨: níng
+䆩: míng
+䆪: hōng
+䆫: chuāng
+䆬: yǔn
+䆭: xuān
+䆮: jìn
+䆯: zhuó
+䆰: yū
+䆱: tān
+䆲: kāng
+䆳: qióng
+䆵: chéng
+䆶: jiū
+䆷: xuè
+䆸: zhēng
+䆹: chōng tǒng
+䆺: pān
+䆻: qiào
+䆽: qú
+䆾: lán làn
+䆿: yì
+䇀: róng
+䇁: sī
+䇂: qiān
+䇃: sì
+䇅: fá
+䇇: méng
+䇈: huà
+䇋: hài
+䇌: qiào
+䇍: chù qì
+䇎: què
+䇏: duì
+䇐: lì
+䇑: bà pī
+䇒: jiè
+䇓: xū
+䇔: luò nuò
+䇖: yǔn
+䇗: zhōng
+䇘: hù
+䇙: yǐn
+䇛: zhǐ
+䇜: qiǎn qiàn
+䇞: gān gǎn
+䇟: jiàn
+䇠: zhù
+䇡: zhù
+䇢: kǔ gù
+䇣: niè
+䇤: ruì
+䇥: zé
+䇦: ǎng yīng
+䇧: zhì jī
+䇨: gòng xiáng
+䇩: yì yè
+䇪: chī
+䇫: jī
+䇬: zhū shū chuǎng
+䇭: lǎo
+䇮: rèn
+䇯: róng
+䇰: zhēng
+䇱: nà
+䇲: cè jiā
+䇵: yí
+䇶: jué wò
+䇷: bié
+䇸: chéng tīng
+䇹: jùn
+䇺: dòu
+䇻: wěi
+䇼: yì
+䇽: zhé zhì
+䇾: yán
+䈀: sān
+䈁: lún
+䈂: píng
+䈃: zhǎo
+䈄: hán
+䈅: yù
+䈆: dài
+䈇: zhào
+䈈: féi bā
+䈉: shà qiè
+䈊: líng
+䈋: tà
+䈌: qū
+䈍: máng méng
+䈎: yè
+䈏: báo fú
+䈐: guì
+䈑: guǎ
+䈒: nǎn lǎn
+䈓: gé qià
+䈕: shí tí jī yí
+䈖: kē
+䈗: suǒ
+䈘: cí
+䈙: zhòu
+䈚: tái
+䈛: kuài
+䈜: qìn
+䈝: xū
+䈞: dǔ
+䈟: cè zhá
+䈠: huǎn yuàn
+䈡: cōng sōng
+䈢: sǎi xǐ
+䈣: zhèng
+䈤: qián
+䈥: jīn
+䈦: zōng
+䈧: wěi
+䈪: xì
+䈫: nà
+䈬: pú
+䈭: sōu huái
+䈮: jù
+䈯: zhēn
+䈰: shāo
+䈱: tāo
+䈲: bān pán
+䈳: tà
+䈴: qiàn
+䈵: wēng
+䈶: róng
+䈷: luò
+䈸: hú
+䈹: sǒu
+䈺: zhōng
+䈻: pú
+䈼: miè mì
+䈽: jīn
+䈾: shāo shuò
+䈿: mì
+䉀: shù
+䉁: líng
+䉂: lěi
+䉃: jiǎng
+䉄: léng
+䉅: zhì
+䉆: diǎo
+䉈: sǎn
+䉉: gū hú
+䉊: fàn
+䉋: mèi
+䉌: suì
+䉍: jiǎn
+䉎: táng
+䉏: xiè
+䉐: kū
+䉑: wú
+䉒: fán
+䉓: luò
+䉔: cān
+䉕: céng
+䉖: líng
+䉗: yī
+䉘: cóng
+䉙: yún
+䉚: méng
+䉛: yù ǎo
+䉜: zhì
+䉝: yǐ
+䉞: dǎn
+䉟: huò
+䉠: wéi
+䉡: tán
+䉢: sè
+䉣: xiè
+䉤: sǒu
+䉥: sǒng
+䉦: qiān
+䉧: liú liǔ
+䉨: yì
+䉪: lèi
+䉫: lí
+䉬: fèi
+䉭: liè
+䉮: lìn
+䉯: xiàn
+䉰: xiào jiǎo
+䉱: ōu
+䉲: mí
+䉳: xiān xiǎn
+䉴: ráng
+䉵: zhuàn zuǎn
+䉶: shuāng
+䉷: yán
+䉸: biàn
+䉹: líng
+䉺: hóng
+䉻: qí
+䉼: liào
+䉽: bǎn
+䉾: bì
+䉿: hú
+䊀: hú
+䊂: cè sè
+䊃: pèi
+䊄: qióng
+䊅: míng
+䊆: jiù qiǔ
+䊇: bù
+䊈: méi
+䊉: sǎn
+䊊: wèi
+䊍: lí
+䊎: quǎn qún
+䊐: hún
+䊑: xiǎng
+䊓: shì
+䊔: yíng
+䊖: nǎn
+䊗: huáng
+䊘: jiù
+䊙: yān
+䊛: sà
+䊜: tuán
+䊝: xiè
+䊞: zhé chè
+䊟: mén
+䊠: xì
+䊡: mán
+䊣: huáng
+䊤: tán dàn
+䊥: xiào
+䊦: yè
+䊧: bì
+䊨: luó
+䊩: fán
+䊪: lì
+䊫: cuǐ
+䊬: chuā
+䊭: dào chóu
+䊮: dí
+䊯: kuàng
+䊰: chú
+䊱: xiān
+䊲: chàn chǎn
+䊳: mí mó
+䊴: qiàn
+䊵: qiú
+䊶: zhèn
+䊺: hù
+䊻: gān
+䊼: chǐ
+䊽: guài jué
+䊾: mù
+䊿: bó
+䋀: huà
+䋁: gěng
+䋂: yáo
+䋃: mào
+䋄: wǎng
+䋈: rú nǎ
+䋉: xué
+䋊: zhēng
+䋋: mín
+䋌: jiǎng
+䋎: zhàn
+䋏: zuó zhà
+䋐: yuè
+䋑: liè
+䋓: zhòu
+䋔: bì
+䋕: rèn
+䋖: yù
+䋘: chuò
+䋙: ěr
+䋚: yì
+䋛: mǐ
+䋜: qìng
+䋞: wǎng
+䋟: jì
+䋠: bǔ
+䋢: biē
+䋣: fán pó
+䋤: yuè
+䋥: lí
+䋦: fán
+䋧: qú
+䋨: fǔ
+䋩: ér
+䋪: ē
+䋫: zhēng
+䋬: tiān
+䋭: yù
+䋮: jìn
+䋯: qǐ
+䋰: jú
+䋱: lái
+䋲: chě
+䋳: běi
+䋴: niù
+䋵: yì yè
+䋶: xǔ xié
+䋷: móu
+䋸: xún
+䋹: fú
+䋻: nín
+䋼: tīng yíng
+䋽: běng
+䋾: zhǎ nà
+䋿: wēi
+䌀: kē
+䌁: yāo
+䌂: òu
+䌃: xiāo shuò
+䌄: gěng
+䌅: táng
+䌆: guì
+䌇: huì
+䌈: tā tà
+䌊: yáo
+䌋: dā
+䌌: qì
+䌍: jǐn
+䌎: lüè
+䌏: mì
+䌐: mì
+䌑: jiān
+䌒: lù
+䌓: fán
+䌔: ōu
+䌕: mí
+䌖: jié
+䌗: fǔ
+䌘: biè bì
+䌙: huàng
+䌚: sū
+䌛: yáo
+䌜: niè
+䌝: jīn jìn
+䌞: liǎn
+䌟: bó bì
+䌠: jiān
+䌡: tǐ
+䌢: líng
+䌣: zuǎn
+䌤: shī zhǐ
+䌥: yǐn
+䌦: dào
+䌧: chóu
+䌨: cā cài
+䌩: miè
+䌪: yǎn
+䌫: lǎn
+䌬: chóng
+䌭: jiāo
+䌮: shuāng
+䌯: quān quán guàn
+䌰: niè
+䌱: luò
+䌳: shī
+䌴: luò
+䌵: zhú
+䌷: chōu chóu
+䌸: juàn
+䌹: jiǒng
+䌺: ěr
+䌻: yì
+䌼: ruì
+䌽: cǎi
+䌾: rén
+䌿: fú
+䍀: lán
+䍁: suì
+䍂: yú
+䍃: yóu
+䍄: diǎn
+䍅: líng
+䍆: zhù
+䍇: tà
+䍈: píng
+䍉: zhǎi
+䍊: jiāo
+䍋: chuí
+䍌: bù
+䍍: kòu
+䍎: cùn xiǎn
+䍐: hǎn
+䍑: hǎn
+䍒: mǒu
+䍓: hù
+䍔: gōng
+䍕: dī dǐ
+䍖: fú
+䍗: xuàn
+䍘: mí
+䍙: méi mǒu
+䍚: làng
+䍛: gù
+䍜: zhào
+䍝: tà
+䍞: yù
+䍟: zòng
+䍠: lí
+䍡: lù
+䍢: wú
+䍣: léi
+䍤: jǐ
+䍥: lì
+䍦: lí
+䍨: pō fèi
+䍩: yǎng
+䍪: wà
+䍫: tuó
+䍬: pēng
+䍮: zhào
+䍯: guǐ
+䍱: xú
+䍲: nái
+䍳: què jué chuò
+䍴: wěi
+䍵: zhēng
+䍶: dōng
+䍷: wěi
+䍸: bó
+䍺: huàn
+䍻: xuàn
+䍼: zān cán
+䍽: lì
+䍾: yǎn
+䍿: huáng
+䎀: xuè
+䎁: hú
+䎂: bǎo
+䎃: rǎn
+䎄: xiāo tiáo
+䎅: pò
+䎆: liào
+䎇: zhōu
+䎈: yì
+䎉: xù
+䎊: luò pò
+䎋: kào
+䎌: chù
+䎎: nà
+䎏: hán
+䎐: chǎo
+䎑: lù
+䎒: zhǎn
+䎓: tà
+䎔: fū
+䎕: hōng
+䎖: zēng
+䎗: qiáo
+䎘: sù
+䎙: pīn
+䎚: guàn
+䎜: hūn
+䎝: chú
+䎟: ér
+䎠: ér nuò
+䎡: ruǎn
+䎢: qǐ
+䎣: sì
+䎤: jú
+䎦: yǎn
+䎧: bàng póu
+䎨: yè àn
+䎩: zī
+䎪: nè
+䎫: chuàng
+䎬: bà
+䎭: cāo
+䎮: tì
+䎯: hàn hǎn
+䎰: zuó
+䎱: bà bēi
+䎲: zhé
+䎳: wà
+䎴: gēng shèng
+䎵: bì
+䎶: èr
+䎷: zhù
+䎸: wù
+䎹: wén
+䎺: zhì
+䎻: zhòu
+䎼: lù
+䎽: wén
+䎾: gǔn
+䎿: qiú
+䏀: là
+䏁: zǎi
+䏂: sǒu
+䏃: mián míng
+䏄: dǐ zhì
+䏅: qì
+䏆: cáo
+䏇: piào
+䏈: lián luán
+䏉: shī
+䏊: lóng
+䏋: sù
+䏌: qì yì
+䏍: yuàn yuān
+䏎: féng
+䏏: xū
+䏐: jué
+䏑: dì
+䏒: piàn pàn
+䏓: guǎn
+䏔: niǔ zhǒu ròu nǜ
+䏕: rèn
+䏖: zhèn yǐn
+䏗: gài
+䏘: pì
+䏙: tǎn dàn zhuàn
+䏚: chǎo miǎo
+䏛: chǔn
+䏜: hē
+䏝: zhuān
+䏞: mò
+䏟: bié bì
+䏠: qì lā
+䏡: shì
+䏢: bǐ
+䏣: jué
+䏤: sì
+䏦: guā tián
+䏧: nà ná chǐ
+䏨: huǐ duī
+䏩: xī
+䏪: èr
+䏫: xiū
+䏬: móu
+䏮: xí
+䏯: zhì
+䏰: rùn
+䏱: jú
+䏲: dié tī
+䏳: zhè
+䏴: shào
+䏵: měng mǎng máng
+䏶: bì
+䏷: hàn
+䏸: yú
+䏹: xiàn chēn
+䏺: pāng
+䏻: néng
+䏼: cán zhàn
+䏽: bù péi
+䏿: qǐ
+䐀: jì
+䐁: zhuó dū
+䐂: lù
+䐃: jùn zhūn
+䐄: xiàn hàn
+䐅: xī
+䐆: cǎi
+䐇: wěn chún
+䐈: zhí
+䐉: zì nǎo
+䐊: kūn hún hùn
+䐋: cōng
+䐌: tiǎn
+䐍: chù
+䐎: dī
+䐏: chǔn shǔn
+䐐: qiū
+䐑: zhé
+䐒: zhā
+䐓: róu
+䐔: bǐn biàn
+䐕: jí
+䐖: xī
+䐗: zhū dǔ
+䐘: jué
+䐙: gé
+䐚: jī
+䐛: dā
+䐜: chēn
+䐝: suò
+䐞: ruò
+䐟: xiǎng gōu
+䐠: huǎng
+䐡: qí
+䐢: zhù zhòu chù
+䐣: sǔn
+䐤: chāi cuó
+䐥: wěng
+䐦: kē
+䐧: kào hè
+䐨: gǔ què
+䐩: gāi guī kǎi
+䐪: fàn
+䐫: cōng
+䐬: cáo
+䐭: zhì dì
+䐮: chǎn
+䐯: léi lěi
+䐰: xiū
+䐱: zhài
+䐲: zhé
+䐳: yú
+䐴: guì
+䐵: gōng huáng
+䐶: zān jǐn qián
+䐷: dān
+䐸: huò guó
+䐹: sōu sào xiào
+䐺: tàn tán
+䐻: gū
+䐼: xì
+䐽: mán
+䐾: duó
+䐿: ào ǎo
+䑀: pì pǐ
+䑁: wù
+䑂: ǎi
+䑃: méng
+䑄: pì yì
+䑅: méng
+䑆: yǎng
+䑇: zhì
+䑈: bó
+䑉: yíng
+䑊: wéi wèi
+䑋: rǎng
+䑌: lán làn
+䑍: yān yàn yǐng
+䑎: chǎn
+䑏: quán huān
+䑐: zhěn
+䑑: pú
+䑓: tái
+䑔: fèi
+䑕: shǔ
+䑗: dàng
+䑘: cuó
+䑙: tān rán tiàn
+䑚: tián
+䑛: chǐ
+䑜: tà tiè
+䑝: jiǎ
+䑞: shùn
+䑟: huáng
+䑠: liǎo
+䑣: chēn
+䑤: jìn
+䑥: è sà
+䑦: gōu
+䑧: fú
+䑨: duò
+䑪: è
+䑫: bēng
+䑬: tāo yào tiāo
+䑭: dì
+䑯: dì
+䑰: bù
+䑱: wǎn
+䑲: zhào
+䑳: lún
+䑴: qí
+䑵: mù
+䑶: qiàn
+䑸: zōng
+䑹: sōu sāo
+䑻: yóu
+䑼: zhōu
+䑽: tà
+䑿: sù
+䒀: bù
+䒁: xí
+䒂: jiǎng
+䒃: cào
+䒄: fù
+䒅: téng
+䒆: chè
+䒇: fù
+䒈: fèi
+䒉: wǔ
+䒊: xī
+䒋: yǎng
+䒌: mìng
+䒍: pǎng
+䒎: mǎng
+䒏: sēng
+䒐: méng mèng
+䒑: cǎo
+䒒: tiáo
+䒓: kǎi
+䒔: bài
+䒕: xiǎo
+䒖: xìn
+䒗: qì
+䒚: shǎo
+䒛: huàn
+䒜: niú
+䒝: xiáo
+䒞: chén yín
+䒟: dān
+䒠: fēng xiá
+䒡: yǐn
+䒢: áng
+䒣: rǎn
+䒤: rì
+䒥: mán
+䒦: fàn
+䒧: qū qù
+䒨: shǐ sì
+䒩: hé
+䒪: biàn
+䒫: dài
+䒬: mò
+䒭: děng
+䒰: kuāng
+䒲: chà
+䒳: duǒ
+䒴: yǒu
+䒵: hào
+䒷: guā
+䒸: xuè
+䒹: lèi
+䒺: jǐn
+䒻: qǐ
+䒼: qū
+䒽: wǎng
+䒾: yī
+䒿: liáo
+䓂: yán
+䓃: yì
+䓄: yín
+䓅: qí
+䓆: zhé
+䓇: xì hè kè
+䓈: yì
+䓉: yé yē
+䓊: wú yú
+䓋: zhī
+䓌: zhì
+䓍: hǎn
+䓎: chuò
+䓏: fū
+䓐: chún
+䓑: píng
+䓒: kuǎi
+䓓: chóu
+䓕: tuǒ
+䓖: qióng
+䓗: cōng
+䓘: gāo jiù
+䓙: kuā guāi
+䓚: qū cú
+䓛: qū
+䓜: zhī
+䓝: mèng
+䓞: lì
+䓟: zhōu liè
+䓠: tà
+䓡: zhī
+䓢: gù
+䓣: liǎng
+䓤: hū
+䓥: là
+䓦: diǎn
+䓧: cì
+䓨: yīng
+䓫: qí
+䓬: zhuó
+䓭: chà
+䓮: mào
+䓯: dú
+䓰: yīn
+䓱: chái zuī
+䓲: ruì
+䓳: hěn xié
+䓴: ruǎn
+䓵: fū
+䓶: lài
+䓷: xìng
+䓸: jiān
+䓹: yì
+䓺: měi
+䓼: máng hè
+䓽: jì
+䓾: suō
+䓿: hàn
+䔁: lì
+䔂: zǐ zǎi
+䔃: zǔ
+䔄: yáo yào
+䔅: gē
+䔆: lí
+䔇: qǐ ái
+䔈: gòng
+䔉: lì suàn
+䔊: bīng
+䔋: suō
+䔎: sù
+䔏: chòu
+䔐: jiān
+䔑: xié yé tú
+䔒: bèi
+䔓: xǔ
+䔔: jìng
+䔕: pú
+䔖: líng
+䔗: xiáng
+䔘: zuò
+䔙: diào
+䔚: chún
+䔛: qǐng
+䔜: nán
+䔝: zhāi
+䔞: lǜ
+䔟: yí
+䔠: shǎo shāo shuò
+䔡: yú
+䔢: huá
+䔣: lí
+䔤: pā
+䔧: lí
+䔪: shuǎng
+䔬: yì
+䔭: nìng
+䔮: sī
+䔯: kù
+䔰: fù
+䔱: yī
+䔲: dēng chéng
+䔳: rán
+䔴: cè cuì chuà
+䔶: tí tái
+䔷: qín
+䔸: biǎo biāo
+䔹: suì
+䔺: wéi wěi
+䔻: dūn duī
+䔼: sè zé
+䔽: ài
+䔾: qì è
+䔿: zǔn
+䕀: kuǎn
+䕁: fěi
+䕃: yìn
+䕅: sǎo
+䕆: dòu
+䕇: huì
+䕈: xiè
+䕉: zé
+䕊: tán
+䕋: táng
+䕌: zhì
+䕍: yì
+䕎: fú
+䕏: é
+䕑: jùn
+䕒: jiā
+䕓: chá chuì
+䕔: xián
+䕕: màn
+䕗: bì
+䕘: líng lǐng
+䕙: jié
+䕚: kuì
+䕛: jiá
+䕝: chēng
+䕞: làng
+䕟: xīng
+䕠: fèi
+䕡: lǘ
+䕢: zhǎ
+䕣: hé
+䕤: jī
+䕥: nǐ
+䕦: yíng
+䕧: xiào jiǎo
+䕨: téng
+䕩: lǎo
+䕪: zé
+䕫: kuí
+䕭: qián xián
+䕮: jú qū
+䕯: piáo
+䕰: fán
+䕱: tóu
+䕲: lǐn
+䕳: mí
+䕴: zhuó
+䕵: xié
+䕶: hù
+䕷: mí
+䕸: jiē
+䕹: zá
+䕺: cóng
+䕻: lì
+䕼: rán
+䕽: zhú
+䕾: yín yán
+䕿: hàn
+䖁: yì
+䖂: luán
+䖃: yuè lǎ
+䖄: rán
+䖅: líng
+䖆: niàng
+䖇: yù
+䖈: nüè
+䖊: yì
+䖋: nüè
+䖌: yì
+䖍: qián
+䖎: xiá
+䖏: chǔ chù
+䖐: yín
+䖑: mì
+䖒: xī
+䖓: nà
+䖔: kǎn hàn
+䖕: zǔ
+䖖: xiá
+䖗: yán
+䖘: tú
+䖙: tī
+䖚: wū
+䖛: suǒ
+䖜: yín
+䖝: chóng
+䖞: zhǒu
+䖟: mǎng
+䖠: yuán
+䖡: nǜ
+䖢: miáo
+䖣: zǎo
+䖤: wǎn
+䖥: lí
+䖦: qū zhuō
+䖧: nà
+䖨: shí zhì
+䖩: bì
+䖪: zī cī
+䖫: bàng
+䖭: juàn juān
+䖮: xiǎng
+䖯: kuí wā
+䖰: pài
+䖱: kuāng
+䖲: xún zōng
+䖳: zhà zhé
+䖴: yáo
+䖵: kūn
+䖶: huī
+䖷: xī
+䖸: é
+䖹: yáng mǐ
+䖺: tiáo
+䖻: yóu
+䖼: jué
+䖽: lí
+䖿: lí
+䗀: chēng
+䗁: jì qī
+䗂: hǔ
+䗃: zhàn
+䗄: fǔ
+䗅: cháng
+䗆: guǎn guān
+䗇: jú qū
+䗈: méng
+䗉: chāng
+䗊: tàn
+䗋: móu
+䗌: xīng
+䗍: lǐ luó
+䗎: yān
+䗏: sōu
+䗐: shī
+䗑: yì
+䗒: bìng
+䗓: cōng
+䗔: hóu hòu
+䗕: wǎn
+䗖: dì
+䗗: jī
+䗘: gé
+䗙: hán
+䗚: bó
+䗛: xiū
+䗜: liú
+䗝: cán
+䗞: cán
+䗟: yì
+䗠: xuán
+䗡: yán yān
+䗢: zǎo
+䗣: hàn
+䗤: yóng
+䗥: zōng
+䗧: kāng
+䗨: yú
+䗩: qī
+䗪: zhè
+䗫: má
+䗮: shuǎng
+䗯: jìn
+䗰: guàn
+䗱: pú pù pǔ
+䗲: lìn
+䗴: tíng
+䗵: jiāng
+䗶: là
+䗷: yì
+䗸: yōng
+䗹: cì
+䗺: yǎn dàn
+䗻: jié
+䗼: xūn
+䗽: wèi
+䗾: xiǎn
+䗿: níng nǐng
+䘀: fù
+䘁: gé
+䘃: mò
+䘄: zhù
+䘅: nái
+䘆: xiǎn
+䘇: wén
+䘈: lì
+䘉: cán
+䘊: miè
+䘋: jiān
+䘌: nì
+䘍: chài
+䘎: wān
+䘏: xù
+䘐: nǜ
+䘑: mài
+䘒: zuī
+䘓: kàn
+䘔: kā
+䘕: háng
+䘘: yù sù
+䘙: wèi
+䘚: zhú
+䘝: yì
+䘟: diāo
+䘠: fú
+䘡: bǐ
+䘢: zhǔ
+䘣: zǐ zhì
+䘤: shù
+䘥: xiá jiá
+䘦: ní nǐ
+䘨: jiǎo
+䘩: xún xuàn
+䘪: chōng
+䘫: nòu
+䘬: róng
+䘭: zhì
+䘮: sāng sàng
+䘰: shān
+䘱: yù
+䘳: jīn
+䘵: lù
+䘶: hān hàn
+䘷: biē
+䘸: yì
+䘹: zuì cuì
+䘺: zhàn
+䘻: yù
+䘼: wǎn
+䘽: ní
+䘾: guǎn guàn
+䘿: jué
+䙀: běng
+䙁: cán
+䙃: duò
+䙄: qì zhǎ
+䙅: yāo yào
+䙆: kuì
+䙇: ruán nuǎn
+䙈: hóu
+䙉: xún
+䙊: xiè
+䙌: kuì
+䙎: xié xì
+䙏: bó
+䙐: kè
+䙑: cuī
+䙒: xù
+䙓: bǎi
+䙔: ōu
+䙕: zǒng
+䙗: tì
+䙘: chǔ zú
+䙙: chí
+䙚: niǎo
+䙛: guàn
+䙜: féng
+䙝: xiè
+䙞: dēng
+䙟: wéi
+䙠: jué
+䙡: kuì huì
+䙢: zèng
+䙣: sà
+䙤: duǒ
+䙥: líng
+䙦: méng
+䙨: guǒ
+䙩: méng
+䙪: lóng
+䙬: yìng
+䙮: guàn
+䙯: cù
+䙰: lí
+䙱: dú
+䙳: biāo è
+䙴: qiān
+䙵: xī
+䙷: dé
+䙸: dé
+䙹: xiàn
+䙺: lián
+䙼: shào jiāo
+䙽: xié
+䙾: shī
+䙿: wèi
+䚂: hè
+䚃: yóu
+䚄: lù
+䚅: lài lái
+䚆: yǐng
+䚇: shěng
+䚈: juàn
+䚉: qì
+䚊: jiǎn
+䚋: yùn
+䚍: qì
+䚏: lìn
+䚐: jí
+䚑: mái
+䚒: chuáng zhuàng
+䚓: niǎn
+䚔: bīn
+䚕: lì
+䚖: líng
+䚗: gāng
+䚘: chéng
+䚙: xuān xī
+䚚: xiǎn
+䚛: hú
+䚜: bī bēi
+䚝: zú
+䚞: dǎi
+䚟: dǎi
+䚠: hùn hún
+䚡: sāi
+䚢: chè
+䚣: tí
+䚥: nuò ruò
+䚦: zhì
+䚧: liú
+䚨: fèi
+䚩: jiǎo jiào qiáo
+䚪: guān
+䚫: xí áo
+䚬: lín
+䚭: xuān
+䚮: réng
+䚯: tǎo xuān
+䚰: pǐ é
+䚱: xìn
+䚲: shàn
+䚳: zhì
+䚴: wà
+䚵: tǒu
+䚶: tiān
+䚷: yī yǐ xì
+䚸: xiè
+䚹: pǐ
+䚺: yáo
+䚻: yáo yóu
+䚼: nǜ
+䚽: hào
+䚾: rén nín
+䚿: yìn xī
+䛀: fǎn fàn bàn
+䛁: nán
+䛂: yāo
+䛃: wàn
+䛄: yuǎn
+䛅: xiá
+䛆: zhòu
+䛇: yuǎn
+䛈: shì
+䛉: miàn
+䛊: xī zhī
+䛋: jì

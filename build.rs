@@ -1,18 +1,17 @@
-use anyhow::Error;
 use glob::glob;
 use std::env;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 
-fn main() -> Result<(), Error> {
+fn main() {
     let mut data = vec![];
 
-    for entey in glob("sources/**/*.txt")? {
-        let path = entey?;
-        let mut file = File::open(path)?;
+    for entey in glob("sources/**/*.txt").unwrap() {
+        let path = entey.unwrap();
+        let mut file = File::open(path).unwrap();
         let mut contents = String::new();
-        file.read_to_string(&mut contents)?;
+        file.read_to_string(&mut contents).unwrap();
 
         for line in contents.lines() {
             parse_line(line, &mut data);
@@ -29,8 +28,6 @@ fn main() -> Result<(), Error> {
         data
     )
     .unwrap();
-
-    Ok(())
 }
 
 fn parse_line(line: &str, data: &mut Vec<(String, String)>) {

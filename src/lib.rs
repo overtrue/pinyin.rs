@@ -1,32 +1,41 @@
 mod error;
+mod loader;
+mod matcher;
 mod pinyin;
-use daachorse::{CharwiseDoubleArrayAhoCorasickBuilder, MatchKind};
-use std::collections::HashMap;
+use loader::{CharsLoader, SurnamesLoader, WordsLoader};
+use matcher::Matcher;
+use once_cell::sync::OnceCell;
+use rayon::iter::*;
 
-// import by compiler
-include!(concat!(env!("OUT_DIR"), "/__pinyin_words.rs"));
+// 已经线程安全
+static WORDS_LOADER: OnceCell<WordsLoader> = OnceCell::new();
+static SURNAMES_LOADER: OnceCell<SurnamesLoader> = OnceCell::new();
+static CHARS_LOADER: OnceCell<CharsLoader> = OnceCell::new();
+static MATCHERS: OnceCell<Vec<Matcher>> = OnceCell::new();
 
-fn sort_by_key_length_desc<'a>(map: HashMap<&'a str, &'a str>) -> Vec<(&'a str, &'a str)> {
-    let mut entries: Vec<_> = map.into_iter().collect();
-    entries.sort_by(|(k1, _), (k2, _)| k2.cmp(k1));
-    entries
-}
+pub fn match_word_pinyin(word: &str) -> Vec<(String, String)> {
+    let matchers = MATCHERS.get_or_init(|| {
+        Vec::from([
+            Matcher::new(WORDS_LOADER.get_or_init(WordsLoader::new)),
+            Matcher::new(SURNAMES_LOADER.get_or_init(SurnamesLoader::new)),
+            Matcher::new(CHARS_LOADER.get_or_init(CharsLoader::new)),
+        ])
+    });
 
-pub fn match_word_pinyin(word: &str) -> Vec<(&str, &str)> {
-    let words = PINYIN_WORDS;
-    let pma = CharwiseDoubleArrayAhoCorasickBuilder::new()
-        .match_kind(MatchKind::LeftmostLongest)
-        .build_with_values(words)
-        .unwrap();
-    let result = pma
-        .leftmost_find_iter(word)
-        .map(|m| {
-            let matched_word = &word[m.start()..m.end()];
-            (matched_word, m.value())
-        })
+    #[cfg(test)]
+    let start = std::time::Instant::now();
+
+    let mut results: Vec<_> = matchers
+        .par_iter()
+        .flat_map(|matcher| matcher.match_word_pinyin(word, false))
+        .map(|(k, v)| (k.to_string(), v.to_string()))
         .collect();
+    results.sort_by(|(k1, _), (k2, _)| k2.cmp(k1));
 
-    sort_by_key_length_desc(result)
+    #[cfg(test)]
+    println!("match used: {}ms", start.elapsed().as_millis());
+
+    results
 }
 
 pub fn convert(input: &str) -> Vec<String> {
@@ -63,35 +72,58 @@ pub fn convert(input: &str) -> Vec<String> {
 
 #[cfg(test)]
 mod tests {
-    use crate::convert;
+    use crate::{convert, loader::WordsLoader, matcher::Matcher};
 
     #[test]
-    fn it_works() {
-        assert_eq!(
-            vec![
-                "zhong guo ren min3",
-                "喜",
-                "欢",
-                "在",
-                "zhong guo1",
-                "吃",
-                "饭",
-                "，",
-                "zhong guo ren2",
-                "的",
-                "口",
-                "味",
-                "，",
-                "zhong guo1",
-                "饭",
-                "好",
-                "吃"
-            ],
-            convert("中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃")
+    fn test_convert() {
+        let cases = vec![
+            (
+                "中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃",
+                vec![
+                    "zhōng guó rén",
+                    "mín",
+                    "xǐ huan",
+                    "zài",
+                    "zhōng guó",
+                    "chī fàn",
+                    "，",
+                    "zhōng guó rén",
+                    "de dī dí dì",
+                    "kǒu wèi",
+                    "，",
+                    "zhōng guó",
+                    "fàn",
+                    "hǎo chī",
+                ],
+            ),
+            (
+                "中国人喜欢中国吃饭",
+                vec!["zhōng guó rén", "xǐ huan", "zhōng guó", "chī fàn"],
+            ),
+            ("四五六七", vec!["sì", "wǔ", "liù lù", "qī qí"]),
+            (
+                "尉迟恭大战单于丹",
+                vec!["yù chí gōng", "dà zhàn", "chán yú", "dān"],
+            ),
+        ];
+        for (input, want) in cases {
+            assert_eq!(want, convert(input));
+        }
+    }
+
+    #[test]
+    fn test_matcher() {
+        let start = std::time::Instant::now();
+        let loader = WordsLoader::new();
+        println!(
+            "'DefaultLoader::new' used: {}ms",
+            start.elapsed().as_millis()
         );
-        print!(
-            "{:?}",
-            convert("中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃")
-        );
+
+        let matcher = Matcher::new(&loader);
+
+        let start = std::time::Instant::now();
+        assert_eq!(vec!["nǐ hǎo", "，", "pì tī"], matcher.convert("你好，䴙䴘"));
+        println!("'matcher.convert' used: {}ms", start.elapsed().as_millis());
     }
 }

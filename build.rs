@@ -1,14 +1,10 @@
 use std::collections::HashMap;
-use std::env;
-use std::fs::{write, File, OpenOptions};
+use std::fs::{File, OpenOptions};
 use std::io::prelude::*;
 use std::path::Path;
 use std::string::ToString;
 
 const DATA_PATH: &str = "data";
-const PINYIN_SURNAMES_FILE: &str = "surnames.txt";
-const PINYIN_HETERONYMS_FILE: &str = "heteronyms.txt";
-
 fn main() {
     cleanup();
     generate_chars();
@@ -28,7 +24,7 @@ fn generate_chars() {
     for path in [
         Path::new("sources/chars.txt"),
         Path::new("sources/pathes/chars.txt"),
-    ]  {
+    ] {
         let mut file = File::open(path).unwrap();
         let mut contents = String::new();
         file.read_to_string(&mut contents).unwrap();
@@ -42,29 +38,20 @@ fn generate_chars() {
 
     let chunk_size = data.len().div_ceil(10);
 
-    let mut count = 0;
-    for (unicode, pinyin) in data.iter() {
+    for (count, (unicode, pinyin)) in data.iter().enumerate() {
         // unicode: "U+4E00"
         let code_point = u32::from_str_radix(&unicode[2..], 16).unwrap();
 
         let chunk_file_name = format!("chars_{}.txt", count / chunk_size);
         let mut file = OpenOptions::new()
             .create(true)
-            .write(true)
             .append(true)
             .open(Path::new(DATA_PATH).join(chunk_file_name))
             .unwrap();
 
         if let Some(chinese) = char::from_u32(code_point) {
-            writeln!(
-                file,
-                "{}: {}",
-                chinese,
-                pinyin
-            ).expect("Failed to write chars to file");
+            writeln!(file, "{}: {}", chinese, pinyin).expect("Failed to write chars to file");
         }
-
-        count += 1;
     }
 }
 
@@ -81,33 +68,22 @@ fn generate_words() {
 
         for line in contents.lines() {
             if let Some((chinese, pinyin)) = parse_line(line) {
-                if !data.contains_key(&chinese) {
-                    data.insert(chinese, pinyin);
-                }
+                data.entry(chinese).or_insert(pinyin);
             }
         }
     }
 
     let chunk_size = data.len().div_ceil(10);
-    let mut count = 0;
 
-    for (chinese, pinyin) in hashmap_to_sorted_vec(data).iter() {
+    for (count, (chinese, pinyin)) in hashmap_to_sorted_vec(data).iter().enumerate() {
         let chunk_file_name = format!("words_{}.txt", count / chunk_size);
         let mut file = OpenOptions::new()
             .create(true)
-            .write(true)
             .append(true)
             .open(Path::new(DATA_PATH).join(chunk_file_name))
             .unwrap();
 
-        writeln!(
-            file,
-            "{}: {}",
-            chinese,
-            pinyin
-        ).expect("Failed to write words to file");
-
-        count += 1;
+        writeln!(file, "{}: {}", chinese, pinyin).expect("Failed to write words to file");
     }
 }
 
@@ -133,12 +109,7 @@ fn generate_surnames() {
         .unwrap();
 
     for (chinese, pinyin) in data.iter() {
-        writeln!(
-            file,
-            "{}: {}",
-            chinese,
-            pinyin
-        ).expect("Failed to write surnames to file");
+        writeln!(file, "{}: {}", chinese, pinyin).expect("Failed to write surnames to file");
     }
 }
 
@@ -159,11 +130,7 @@ fn generate_heteronyms() {
         .unwrap();
 
     data.join("\n").lines().for_each(|line| {
-        writeln!(
-            file,
-            "{}",
-            line
-        ).expect("Failed to write heteronyms to file");
+        writeln!(file, "{}", line).expect("Failed to write heteronyms to file");
     });
 }
 
@@ -180,14 +147,15 @@ fn parse_line(line: &str) -> Option<(String, String)> {
     // 燕: yān
     if parts.len() == 2 && !parts[0].starts_with("#") {
         let chinese = parts[0].trim().to_string();
-        let mut pinyin = parts[1]
+        let pinyin = parts[1]
             .split_whitespace()
             .take_while(|s| !s.starts_with("#"))
-            .collect::<Vec<&str>>().join(" ");
+            .collect::<Vec<&str>>()
+            .join(" ");
 
-        assert!(chinese.len() >= 1 && pinyin.len() >= 1);
+        assert!(!chinese.is_empty() && !pinyin.is_empty());
 
-        return Some((chinese, pinyin.trim().parse().unwrap()))
+        return Some((chinese, pinyin.trim().parse().unwrap()));
     }
 
     None

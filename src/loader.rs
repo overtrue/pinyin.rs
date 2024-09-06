@@ -138,7 +138,7 @@ impl Loader for SurnamesLoader {
 impl SurnamesLoader {
     pub fn new() -> Self {
         let mut list = vec![];
-        for line in include_str!("../data/chars_0.txt").lines() {
+        for line in include_str!("../data/surnames.txt").lines() {
             let parts: Vec<&str> = line.split(':').map(|s| s.trim()).collect();
             if parts.len() == 2 {
                 let chinese = parts[0].to_string();

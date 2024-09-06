@@ -23,7 +23,7 @@ fn generate_chars() {
 
     for path in [
         Path::new("sources/chars.txt"),
-        Path::new("sources/pathes/chars.txt"),
+        Path::new("sources/patches/chars.txt"),
     ] {
         let mut file = File::open(path).unwrap();
         let mut contents = String::new();
@@ -60,7 +60,7 @@ fn generate_words() {
 
     for path in [
         Path::new("sources/words.txt"),
-        Path::new("sources/pathes/words.txt"),
+        Path::new("sources/patches/words.txt"),
     ] {
         let mut file = File::open(path).unwrap();
         let mut contents = String::new();
@@ -145,11 +145,11 @@ fn parse_line(line: &str) -> Option<(String, String)> {
     // U+41F8: chéng tīng  # 䇸
     // 顶证: dǐng zhèng
     // 燕: yān
-    if parts.len() == 2 && !parts[0].starts_with("#") {
+    if parts.len() == 2 && !parts[0].starts_with('#') {
         let chinese = parts[0].trim().to_string();
         let pinyin = parts[1]
             .split_whitespace()
-            .take_while(|s| !s.starts_with("#"))
+            .take_while(|s| !s.starts_with('#'))
             .collect::<Vec<&str>>()
             .join(" ");
 

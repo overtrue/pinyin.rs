@@ -4,14 +4,14 @@ mod matcher;
 mod pinyin;
 use loader::{CharsLoader, SurnamesLoader, WordsLoader};
 use matcher::Matcher;
-use once_cell::sync::OnceCell;
 use rayon::iter::*;
+use std::sync::OnceLock;
 
 // 已经线程安全
-static WORDS_LOADER: OnceCell<WordsLoader> = OnceCell::new();
-static SURNAMES_LOADER: OnceCell<SurnamesLoader> = OnceCell::new();
-static CHARS_LOADER: OnceCell<CharsLoader> = OnceCell::new();
-static MATCHERS: OnceCell<Vec<Matcher>> = OnceCell::new();
+static WORDS_LOADER: OnceLock<WordsLoader> = OnceLock::new();
+static SURNAMES_LOADER: OnceLock<SurnamesLoader> = OnceLock::new();
+static CHARS_LOADER: OnceLock<CharsLoader> = OnceLock::new();
+static MATCHERS: OnceLock<Vec<Matcher>> = OnceLock::new();
 
 pub fn match_word_pinyin(word: &str) -> Vec<(String, String)> {
     let matchers = MATCHERS.get_or_init(|| {

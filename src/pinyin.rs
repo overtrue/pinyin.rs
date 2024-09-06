@@ -195,10 +195,10 @@ mod tests {
     #[test]
     fn test_pinyin_is_toneless() {
         let pinyin = Pinyin::new("zhong", 4);
-        assert_eq!(pinyin.is_toneless(), false);
+        assert!(!pinyin.is_toneless());
 
         let pinyin = Pinyin::new("zhong", 5);
-        assert_eq!(pinyin.is_toneless(), true);
+        assert!(pinyin.is_toneless());
     }
 
     #[test]

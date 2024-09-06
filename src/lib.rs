@@ -72,10 +72,10 @@ pub fn convert(input: &str) -> Vec<String> {
 
 #[cfg(test)]
 mod tests {
-    use crate::convert;
+    use crate::{convert, loader::WordsLoader, matcher::Matcher};
 
     #[test]
-    fn it_works() {
+    fn test_convert() {
         let cases = vec![
             (
                 "中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃",
@@ -109,5 +109,21 @@ mod tests {
         for (input, want) in cases {
             assert_eq!(want, convert(input));
         }
+    }
+
+    #[test]
+    fn test_matcher() {
+        let start = std::time::Instant::now();
+        let loader = WordsLoader::new();
+        println!(
+            "'DefaultLoader::new' used: {}ms",
+            start.elapsed().as_millis()
+        );
+
+        let matcher = Matcher::new(&loader);
+
+        let start = std::time::Instant::now();
+        assert_eq!(vec!["nǐ hǎo", "，", "pì tī"], matcher.convert("你好，䴙䴘"));
+        println!("'matcher.convert' used: {}ms", start.elapsed().as_millis());
     }
 }

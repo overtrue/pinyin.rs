@@ -52,6 +52,7 @@ impl<'a> Matcher<'a> {
         iter.collect()
     }
 
+    #[allow(dead_code)]
     pub fn convert(&self, input: &str) -> Vec<String> {
         // 先把整句话拿去匹配全部命中的词
         let input_len = input.chars().count();
@@ -91,26 +92,4 @@ fn sort_by_key_length_desc<'a>(map: HashMap<&'a str, &'a str>) -> Vec<(&'a str, 
     let mut entries: Vec<_> = map.into_iter().collect();
     entries.sort_by(|(k1, _), (k2, _)| k2.cmp(k1));
     entries
-}
-
-#[cfg(test)]
-mod tests {
-    use super::Matcher;
-    use crate::loader::WordsLoader;
-
-    #[test]
-    fn test_matcher() {
-        let start = std::time::Instant::now();
-        let loader = WordsLoader::new();
-        println!(
-            "'DefaultLoader::new' used: {}ms",
-            start.elapsed().as_millis()
-        );
-
-        let matcher = Matcher::new(&loader);
-
-        let start = std::time::Instant::now();
-        assert_eq!(vec!["nǐ hǎo", "，", "pì tī"], matcher.convert("你好，䴙䴘"));
-        println!("'matcher.convert' used: {}ms", start.elapsed().as_millis());
-    }
 }

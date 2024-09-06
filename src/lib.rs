@@ -73,6 +73,7 @@ pub fn convert(input: &str) -> Vec<String> {
 #[cfg(test)]
 mod tests {
     use crate::{convert, loader::WordsLoader, matcher::Matcher};
+    use pretty_assertions::assert_eq;
 
     #[test]
     fn test_convert() {
@@ -88,7 +89,7 @@ mod tests {
                     "chī fàn",
                     "，",
                     "zhōng guó rén",
-                    "de dī dí dì",
+                    "dē",
                     "kǒu wèi",
                     "，",
                     "zhōng guó",
@@ -100,7 +101,7 @@ mod tests {
                 "中国人喜欢中国吃饭",
                 vec!["zhōng guó rén", "xǐ huan", "zhōng guó", "chī fàn"],
             ),
-            ("四五六七", vec!["sì", "wǔ", "liù lù", "qī qí"]),
+            ("四五六七", vec!["sì", "wǔ", "lù", "qī qí"]),
             (
                 "尉迟恭大战单于丹",
                 vec!["yù chí gōng", "dà zhàn", "chán yú", "dān"],

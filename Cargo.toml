@@ -8,6 +8,9 @@ daachorse = "1.0.0"
 thiserror = "1.0"
 rayon = "1.6"
 
+[dev-dependencies]
+pretty_assertions = "0.6"
+
 [build]
 script = "build.rs"
 

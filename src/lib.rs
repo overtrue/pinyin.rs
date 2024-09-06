@@ -2,17 +2,40 @@ mod error;
 mod loader;
 mod matcher;
 mod pinyin;
-use loader::WordsLoader;
+use loader::{CharsLoader, SurnamesLoader, WordsLoader};
 use matcher::Matcher;
+use once_cell::sync::OnceCell;
+use rayon::iter::*;
+
+// 已经线程安全
+static WORDS_LOADER: OnceCell<WordsLoader> = OnceCell::new();
+static SURNAMES_LOADER: OnceCell<SurnamesLoader> = OnceCell::new();
+static CHARS_LOADER: OnceCell<CharsLoader> = OnceCell::new();
+static MATCHERS: OnceCell<Vec<Matcher>> = OnceCell::new();
 
 pub fn match_word_pinyin(word: &str) -> Vec<(String, String)> {
-    let loader = WordsLoader::new();
-    let matcher = Matcher::new(&loader);
-    matcher
-        .match_word_pinyin(word)
-        .iter()
+    let matchers = MATCHERS.get_or_init(|| {
+        Vec::from([
+            Matcher::new(WORDS_LOADER.get_or_init(WordsLoader::new)),
+            Matcher::new(SURNAMES_LOADER.get_or_init(SurnamesLoader::new)),
+            Matcher::new(CHARS_LOADER.get_or_init(CharsLoader::new)),
+        ])
+    });
+
+    #[cfg(test)]
+    let start = std::time::Instant::now();
+
+    let mut results: Vec<_> = matchers
+        .par_iter()
+        .flat_map(|matcher| matcher.match_word_pinyin(word, false))
         .map(|(k, v)| (k.to_string(), v.to_string()))
-        .collect()
+        .collect();
+    results.sort_by(|(k1, _), (k2, _)| k2.cmp(k1));
+
+    #[cfg(test)]
+    println!("match used: {}ms", start.elapsed().as_millis());
+
+    results
 }
 
 pub fn convert(input: &str) -> Vec<String> {
@@ -53,24 +76,38 @@ mod tests {
 
     #[test]
     fn it_works() {
-        assert_eq!(
-            vec![
-                "zhōng guó rén",
-                "民",
-                "xǐ huan",
-                "在",
-                "zhōng guó",
-                "chī fàn",
-                "，",
-                "zhōng guó rén",
-                "的",
-                "kǒu wèi",
-                "，",
-                "zhōng guó",
-                "饭",
-                "hǎo chī"
-            ],
-            convert("中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃")
-        );
+        let cases = vec![
+            (
+                "中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃",
+                vec![
+                    "zhōng guó rén",
+                    "mín",
+                    "xǐ huan",
+                    "zài",
+                    "zhōng guó",
+                    "chī fàn",
+                    "，",
+                    "zhōng guó rén",
+                    "de dī dí dì",
+                    "kǒu wèi",
+                    "，",
+                    "zhōng guó",
+                    "fàn",
+                    "hǎo chī",
+                ],
+            ),
+            (
+                "中国人喜欢中国吃饭",
+                vec!["zhōng guó rén", "xǐ huan", "zhōng guó", "chī fàn"],
+            ),
+            ("四五六七", vec!["sì", "wǔ", "liù lù", "qī qí"]),
+            (
+                "尉迟恭大战单于丹",
+                vec!["yù chí gōng", "dà zhàn", "chán yú", "dān"],
+            ),
+        ];
+        for (input, want) in cases {
+            assert_eq!(want, convert(input));
+        }
     }
 }

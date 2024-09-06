@@ -13,7 +13,7 @@ impl<'a> Matcher<'a> {
         #[cfg(test)]
         let start = std::time::Instant::now();
 
-        let words = loader.get_chunk_words(11);
+        let words = loader.get_chunks(11);
         #[cfg(test)]
         println!("'get_chunk_words' used: {}ms", start.elapsed().as_millis());
 
@@ -36,29 +36,27 @@ impl<'a> Matcher<'a> {
         Matcher { handlers }
     }
 
-    pub fn match_word_pinyin(&self, word: &'a str) -> Vec<(&'a str, &'a str)> {
-        let results = self
-            .handlers
-            .iter()
-            .flat_map(|handler| {
-                handler
-                    .leftmost_find_iter(word)
-                    .map(|m| {
-                        let matched_word = &word[m.start()..m.end()];
-                        (matched_word, m.value())
-                    })
-                    .collect::<HashMap<&'a str, &'a str>>()
-            })
-            .collect();
-
-        sort_by_key_length_desc(results)
+    pub fn match_word_pinyin(&self, word: &'a str, desc_by_key: bool) -> Vec<(&'a str, &'a str)> {
+        let iter = self.handlers.iter().flat_map(|handler| {
+            handler
+                .leftmost_find_iter(word)
+                .map(|m| {
+                    let matched_word = &word[m.start()..m.end()];
+                    (matched_word, m.value())
+                })
+                .collect::<HashMap<&'a str, &'a str>>()
+        });
+        if desc_by_key {
+            return sort_by_key_length_desc(iter.collect());
+        }
+        iter.collect()
     }
 
     pub fn convert(&self, input: &str) -> Vec<String> {
         // 先把整句话拿去匹配全部命中的词
         let input_len = input.chars().count();
 
-        let matched_words = self.match_word_pinyin(input);
+        let matched_words = self.match_word_pinyin(input, true);
 
         let input_chars: Vec<char> = input.chars().collect();
 

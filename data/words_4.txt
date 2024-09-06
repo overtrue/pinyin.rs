@@ -1,3 +1,5 @@
+抗敌: kàng dí
+抗斗: kàng dòu
 抗旌: kàng jīng
 抗旍: kàng jīng
 抗日: kàng rì
@@ -28611,6 +28613,7 @@
 曾外祖母: zēng wài zǔ mǔ
 曾外祖父: zēng wài zǔ fù
 曾大父: zēng dà fù
+曾姓: zēng xìng
 曾子: zēng zǐ
 曾孙: zēng sūn
 曾孙女: zēng sūn nǚ
@@ -30786,7 +30789,6 @@
 朝闼: cháo tà
 朝阙: cháo quē
 朝阳: zhāo yáng
-朝阳: cháo yáng
 朝阳丹凤: cháo yáng dān fèng
 朝阳产业: zhāo yáng chǎn yè
 朝阳凤: zhāo yáng fèng
@@ -37793,5 +37795,3 @@
 枭呼: xiāo hū
 枭处: xiāo chǔ
 枭夷: xiāo yí
-枭将: xiāo jiāng
-枭帅: xiāo shuài

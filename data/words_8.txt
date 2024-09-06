@@ -1,3 +1,6 @@
+蝤蛴: qiú qí
+蝤蛴项: qiú qí xiàng
+蝤蛴领: qiú qí lǐng
 蝤蛴颈: qiú qí jǐng
 蝤蝥: yóu móu
 蝤蠓: yóu měng
@@ -37792,6 +37795,3 @@
 远缘: yuǎn yuán
 远罪: yuǎn zuì
 远翔: yuǎn xiáng
-远翰: yuǎn hàn
-远耗: yuǎn hào
-远胄: yuǎn zhòu

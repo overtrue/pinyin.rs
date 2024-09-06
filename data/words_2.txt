@@ -12665,6 +12665,7 @@
 塑钢: sù gāng
 塓墀: mì chí
 塔什干: tǎ shí gàn
+塔什库尔干: tǎ shí kù ěr gān
 塔什库尔干乡: tǎ shí kù ěr gān xiāng
 塔什库尔干塔吉克自治县: tǎ shí kù ěr gān tǎ jí kè zì zhì xiàn
 塔什库尔干自治县: tǎ shí kù ěr gān zì zhì xiàn
@@ -24132,6 +24133,7 @@
 姓字: xìng zì
 姓干: xìng gān
 姓族: xìng zú
+姓曾: xìng zēng
 姓望: xìng wàng
 姓氏: xìng shì
 姓甚名谁: xìng shèn míng shuí
@@ -37793,5 +37795,3 @@
 小校: xiǎo xiào
 小样: xiǎo yàng
 小样云: xiǎo yàng yún
-小格: xiǎo gé
-小格式: xiǎo gé shì

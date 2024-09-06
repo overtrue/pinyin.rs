@@ -1,32 +1,18 @@
 mod error;
+mod loader;
+mod matcher;
 mod pinyin;
-use daachorse::{CharwiseDoubleArrayAhoCorasickBuilder, MatchKind};
-use std::collections::HashMap;
+use loader::WordsLoader;
+use matcher::Matcher;
 
-// import by compiler
-include!(concat!(env!("OUT_DIR"), "/__pinyin_words.rs"));
-
-fn sort_by_key_length_desc<'a>(map: HashMap<&'a str, &'a str>) -> Vec<(&'a str, &'a str)> {
-    let mut entries: Vec<_> = map.into_iter().collect();
-    entries.sort_by(|(k1, _), (k2, _)| k2.cmp(k1));
-    entries
-}
-
-pub fn match_word_pinyin(word: &str) -> Vec<(&str, &str)> {
-    let words = PINYIN_WORDS;
-    let pma = CharwiseDoubleArrayAhoCorasickBuilder::new()
-        .match_kind(MatchKind::LeftmostLongest)
-        .build_with_values(words)
-        .unwrap();
-    let result = pma
-        .leftmost_find_iter(word)
-        .map(|m| {
-            let matched_word = &word[m.start()..m.end()];
-            (matched_word, m.value())
-        })
-        .collect();
-
-    sort_by_key_length_desc(result)
+pub fn match_word_pinyin(word: &str) -> Vec<(String, String)> {
+    let loader = WordsLoader::new();
+    let matcher = Matcher::new(&loader);
+    matcher
+        .match_word_pinyin(word)
+        .iter()
+        .map(|(k, v)| (k.to_string(), v.to_string()))
+        .collect()
 }
 
 pub fn convert(input: &str) -> Vec<String> {
@@ -69,28 +55,21 @@ mod tests {
     fn it_works() {
         assert_eq!(
             vec![
-                "zhong guo ren min3",
-                "喜",
-                "欢",
+                "zhōng guó rén",
+                "民",
+                "xǐ huan",
                 "在",
-                "zhong guo1",
-                "吃",
-                "饭",
+                "zhōng guó",
+                "chī fàn",
                 "，",
-                "zhong guo ren2",
+                "zhōng guó rén",
                 "的",
-                "口",
-                "味",
+                "kǒu wèi",
                 "，",
-                "zhong guo1",
+                "zhōng guó",
                 "饭",
-                "好",
-                "吃"
+                "hǎo chī"
             ],
-            convert("中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃")
-        );
-        print!(
-            "{:?}",
             convert("中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃")
         );
     }

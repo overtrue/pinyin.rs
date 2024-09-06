@@ -1,3 +1,6 @@
+远翰: yuǎn hàn
+远耗: yuǎn hào
+远胄: yuǎn zhòu
 远背: yuǎn bèi
 远胡: yuǎn hú
 远臣: yuǎn chén
@@ -9119,7 +9122,6 @@
 那么着: nà me zhāo
 那也好: nà yě hǎo
 那些: nà xiē
-那些: nèi xiē
 那些个: nèi xiē gè
 那们: nà men
 那会儿: nà huì er
@@ -37790,8 +37792,4 @@
 顷常: qǐng cháng
 顷年: qǐng nián
 顷心: qǐng xīn
-仆区: pú ōu
 首都: shǒu dū
-姓曾: xìng zēng
-曾姓: zēng xìng
-朝阳区: cháo yáng qū

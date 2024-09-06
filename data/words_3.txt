@@ -1,3 +1,5 @@
+小格: xiǎo gé
+小格式: xiǎo gé shì
 小桀: xiǎo jié
 小桃: xiǎo táo
 小桡: xiǎo ráo
@@ -37793,5 +37795,3 @@
 抗拒: kàng jù
 抗拟: kàng nǐ
 抗捐: kàng juān
-抗敌: kàng dí
-抗斗: kàng dòu

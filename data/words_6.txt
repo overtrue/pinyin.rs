@@ -1,3 +1,5 @@
+牛牛: niú niú
+牛牢: niú láo
 牛牲: niú shēng
 牛犂: niú lí
 牛犊: niú dú
@@ -9539,6 +9541,7 @@
 甄奇録异: zhēn qí lù yì
 甄奬: zhēn jiǎng
 甄女: zhēn nǚ
+甄嬛传: zhēn huán zhuàn
 甄官井: zhēn guān jǐng
 甄审: zhēn shěn
 甄察: zhēn chá
@@ -37792,6 +37795,3 @@
 窝火: wō huǒ
 窝火憋气: wō huǒ biē qì
 窝点: wō diǎn
-窝玉: wō yù
-窝瓜: wō guā
-窝留: wō liú

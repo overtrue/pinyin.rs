@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::env;
 use std::fs::{write, File, OpenOptions};
 use std::io::prelude::*;
@@ -33,11 +34,13 @@ fn generate_chars() {
         file.read_to_string(&mut contents).unwrap();
 
         for line in contents.lines() {
-            parse_line(line, &mut data);
+            if let Some(item) = parse_line(line) {
+                data.push(item);
+            }
         }
     }
 
-    let chunk_size = data.len() / 10;
+    let chunk_size = data.len().div_ceil(10);
 
     let mut count = 0;
     for (unicode, pinyin) in data.iter() {
@@ -66,7 +69,7 @@ fn generate_chars() {
 }
 
 fn generate_words() {
-    let mut data = vec![];
+    let mut data = HashMap::new();
 
     for path in [
         Path::new("sources/words.txt"),
@@ -77,14 +80,18 @@ fn generate_words() {
         file.read_to_string(&mut contents).unwrap();
 
         for line in contents.lines() {
-            parse_line(line, &mut data);
+            if let Some((chinese, pinyin)) = parse_line(line) {
+                if !data.contains_key(&chinese) {
+                    data.insert(chinese, pinyin);
+                }
+            }
         }
     }
 
-    let chunk_size = data.len() / 10;
+    let chunk_size = data.len().div_ceil(10);
     let mut count = 0;
 
-    for (chinese, pinyin) in data.iter() {
+    for (chinese, pinyin) in hashmap_to_sorted_vec(data).iter() {
         let chunk_file_name = format!("words_{}.txt", count / chunk_size);
         let mut file = OpenOptions::new()
             .create(true)
@@ -112,7 +119,9 @@ fn generate_surnames() {
     file.read_to_string(&mut contents).unwrap();
 
     for line in contents.lines() {
-        parse_line(line, &mut data);
+        if let Some(item) = parse_line(line) {
+            data.push(item);
+        }
     }
 
     // 将结果写入文件
@@ -120,7 +129,7 @@ fn generate_surnames() {
         .create(true)
         .write(true)
         .truncate(true)
-        .open(Path::new(DATA_PATH).join("surname.txt"))
+        .open(Path::new(DATA_PATH).join("surnames.txt"))
         .unwrap();
 
     for (chinese, pinyin) in data.iter() {
@@ -158,8 +167,13 @@ fn generate_heteronyms() {
     });
 }
 
+fn hashmap_to_sorted_vec(map: HashMap<String, String>) -> Vec<(String, String)> {
+    let mut vec: Vec<(String, String)> = map.iter().map(|(k, v)| (k.clone(), v.clone())).collect();
+    vec.sort_by(|a, b| a.0.cmp(&b.0));
+    vec
+}
 
-fn parse_line(line: &str, data: &mut Vec<(String, String)>) {
+fn parse_line(line: &str) -> Option<(String, String)> {
     let parts: Vec<&str> = line.split(':').map(|s| s.trim()).collect();
     // U+41F8: chéng tīng  # 䇸
     // 顶证: dǐng zhèng
@@ -173,6 +187,8 @@ fn parse_line(line: &str, data: &mut Vec<(String, String)>) {
 
         assert!(chinese.len() >= 1 && pinyin.len() >= 1);
 
-        data.push((chinese, pinyin.trim().parse().unwrap()))
+        return Some((chinese, pinyin.trim().parse().unwrap()))
     }
+
+    None
 }

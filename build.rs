@@ -36,7 +36,7 @@ fn generate_chars() {
         }
     }
 
-    let chunk_size = data.len().div_ceil(10);
+    let chunk_size = div_ceil(data.len(), 10);
 
     for (count, (unicode, pinyin)) in data.iter().enumerate() {
         // unicode: "U+4E00"
@@ -73,7 +73,7 @@ fn generate_words() {
         }
     }
 
-    let chunk_size = data.len().div_ceil(10);
+    let chunk_size = div_ceil(data.len(), 10);
 
     for (count, (chinese, pinyin)) in hashmap_to_sorted_vec(data).iter().enumerate() {
         let chunk_file_name = format!("words_{}.txt", count / chunk_size);
@@ -159,4 +159,10 @@ fn parse_line(line: &str) -> Option<(String, String)> {
     }
 
     None
+}
+
+fn div_ceil(num: usize, denom: usize) -> usize {
+    assert!(denom > 0);
+
+    (num + denom - 1) / denom
 }

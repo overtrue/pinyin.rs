@@ -50,6 +50,12 @@ impl Display for Pinyin {
     }
 }
 
+impl PartialEq for Pinyin {
+    fn eq(&self, other: &Self) -> bool {
+        self.pinyin == other.pinyin && self.tone == other.tone
+    }
+}
+
 impl FromStr for Pinyin {
     type Err = PingyinError;
 
@@ -100,6 +106,12 @@ impl Display for PinyinWord {
             .join(" ");
 
         write!(f, "{}:{}", self.word, pinyin)
+    }
+}
+
+impl PartialEq for PinyinWord {
+    fn eq(&self, other: &Self) -> bool {
+        self.word == other.word && self.pinyin == other.pinyin
     }
 }
 
@@ -392,10 +404,14 @@ mod tests {
         );
 
         let matcher = Matcher::new(&loader);
-
         let start = std::time::Instant::now();
-        assert_eq!(vec!["nǐ hǎo", "，", "pì tī"], matcher.convert("你好，䴙䴘"));
-        println!("'matcher.convert' used: {}ms", start.elapsed().as_millis());
+
+        assert_eq!(vec![
+            PinyinWord::from_str("你好:nǐ hǎo").unwrap(),
+            PinyinWord::from_str("，").unwrap(),
+            PinyinWord::from_str("䴙䴘:pì tī").unwrap()
+        ], matcher.convert("你好，䴙䴘"));
+        println!("'matcher.convert' used: {}.ms", start.elapsed().as_millis());
     }
 
     #[test]

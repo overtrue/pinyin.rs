@@ -2,6 +2,8 @@ use crate::loader::Loader;
 use daachorse::{CharwiseDoubleArrayAhoCorasick, CharwiseDoubleArrayAhoCorasickBuilder, MatchKind};
 use rayon::iter::*;
 use std::collections::HashMap;
+use std::str::FromStr;
+use crate::PinyinWord;
 
 #[derive(Clone)]
 pub struct Matcher<'a> {
@@ -53,12 +55,10 @@ impl<'a> Matcher<'a> {
     }
 
     #[allow(dead_code)]
-    pub fn convert(&self, input: &str) -> Vec<String> {
+    pub fn convert(&self, input: &str) -> Vec<PinyinWord> {
         // 先把整句话拿去匹配全部命中的词
         let input_len = input.chars().count();
-
         let matched_words = self.match_word_pinyin(input, true);
-
         let input_chars: Vec<char> = input.chars().collect();
 
         let mut result = Vec::new();
@@ -71,7 +71,7 @@ impl<'a> Matcher<'a> {
                 if i + word_len <= input_len
                     && &input_chars[i..i + word_len] == word.chars().collect::<Vec<_>>().as_slice()
                 {
-                    result.push(pinyin.to_string());
+                    result.push(PinyinWord::from_str(&format!("{}:{}", word, pinyin)).unwrap());
                     i += word_len;
                     found = true;
                     break;
@@ -79,7 +79,7 @@ impl<'a> Matcher<'a> {
             }
 
             if !found {
-                result.push(input_chars[i].to_string());
+                result.push(PinyinWord::from_str(&format!("{}:{}", &input_chars[i].to_string(), "unknown5")).unwrap());
                 i += 1;
             }
         }

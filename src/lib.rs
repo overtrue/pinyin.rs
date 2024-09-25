@@ -4,6 +4,7 @@ mod matcher;
 mod pinyin;
 mod converter;
 
+use std::collections::HashMap;
 use std::fmt::Display;
 use std::str::FromStr;
 use loader::{CharsLoader, SurnamesLoader, WordsLoader};
@@ -11,6 +12,7 @@ use matcher::Matcher;
 use rayon::iter::*;
 use std::sync::OnceLock;
 use crate::error::PingyinError;
+use crate::matcher::match_word_pinyin;
 
 #[derive(Debug)]
 pub struct Pinyin {
@@ -38,7 +40,7 @@ impl Pinyin {
     pub fn format(&self, style: ToneStyle) -> String {
         match style {
             ToneStyle::Number => self.to_string(),
-            ToneStyle::Mark => format_tone(&self.pinyin, self.tone),
+            ToneStyle::Mark => format_to_mark(&self.pinyin, self.tone),
             ToneStyle::None => self.pinyin.clone(),
         }
     }
@@ -166,38 +168,7 @@ enum YuFormat {
     V,
 }
 
-// 已经线程安全
-static WORDS_LOADER: OnceLock<WordsLoader> = OnceLock::new();
-static SURNAMES_LOADER: OnceLock<SurnamesLoader> = OnceLock::new();
-static CHARS_LOADER: OnceLock<CharsLoader> = OnceLock::new();
-static MATCHERS: OnceLock<Vec<Matcher>> = OnceLock::new();
-
-pub fn match_word_pinyin(word: &str) -> Vec<(String, String)> {
-    let matchers = MATCHERS.get_or_init(|| {
-        Vec::from([
-            Matcher::new(WORDS_LOADER.get_or_init(WordsLoader::new)),
-            Matcher::new(SURNAMES_LOADER.get_or_init(SurnamesLoader::new)),
-            Matcher::new(CHARS_LOADER.get_or_init(CharsLoader::new)),
-        ])
-    });
-
-    #[cfg(test)]
-    let start = std::time::Instant::now();
-
-    let mut results: Vec<_> = matchers
-        .par_iter()
-        .flat_map(|matcher| matcher.match_word_pinyin(word, false))
-        .map(|(k, v)| (k.to_string(), v.to_string()))
-        .collect();
-    results.sort_by(|(k1, _), (k2, _)| k2.cmp(k1));
-
-    #[cfg(test)]
-    println!("match used: {}ms", start.elapsed().as_millis());
-
-    results
-}
-
-pub fn format_tone(pinyin: &str, tone: u8) -> String {
+pub fn format_to_mark(pinyin: &str, tone: u8) -> String {
     // find the vowel to mark
     // if the vowel is 'i' or 'u' or 'ü', find the next vowel
     let mut chars: Vec<char> = pinyin.chars().collect();
@@ -239,42 +210,36 @@ pub fn mark_vowel(vowel: char, tone: u8) -> char {
     tone_marks[index - 1]
 }
 
-pub fn convert(input: &str) -> Vec<String> {
-    // 先把整句话拿去匹配全部命中的词
-    let input_len = input.chars().count();
-    let matched_words = match_word_pinyin(input);
-    let input_chars: Vec<char> = input.chars().collect();
+// zhōng -> zhong1
+pub fn transform_mark_to_number(pinyin: &str) -> Pinyin {
+    let mut chars: Vec<char> = pinyin.chars().collect();
+    let mut tone = 5;
 
-    let mut result = Vec::new();
-    let mut i = 0;
+    let unmarked_vowels = ['a', 'e', 'i', 'o', 'u', 'ü'];
+    let tone_mapping = [
+        ("āēīōūǖ", 1),
+        ("áéíóúǘ", 2),
+        ("ǎěǐǒǔǚ", 3),
+        ("àèìòùǜ", 4),
+    ];
 
-    while i < input_len {
-        let mut found = false;
-        for (word, pinyin) in matched_words.iter() {
-            let word_len = word.chars().count();
-            if i + word_len <= input_len
-                && &input_chars[i..i + word_len] == word.chars().collect::<Vec<_>>().as_slice()
-            {
-                result.push(pinyin.to_string());
-                i += word_len;
-                found = true;
-                break;
-            }
-        }
-
-        if !found {
-            result.push(input_chars[i].to_string());
-            i += 1;
+    for (marked_vowels, t) in tone_mapping {
+        if let Some((idx, marked_vowel)) = chars.iter().enumerate().find(|(_, c)| marked_vowels.contains(**c)) {
+            let vowel_index = marked_vowels.chars().position(|c| c == *marked_vowel).unwrap();
+            let vowel = unmarked_vowels[vowel_index];
+            tone = t;
+            chars[idx] = vowel;
+            break;
         }
     }
 
-    result
+    Pinyin::new(&chars.into_iter().collect::<String>(), tone)
 }
 
 #[cfg(test)]
 mod tests {
     use std::str::FromStr;
-    use crate::{convert, loader::WordsLoader, mark_vowel, matcher::Matcher, Pinyin, PinyinWord};
+    use crate::{mark_vowel, transform_mark_to_number, Pinyin, PinyinWord};
 
     #[test]
     fn test_pinyin_new() {
@@ -358,63 +323,6 @@ mod tests {
     }
 
     #[test]
-    fn test_convert() {
-        let cases = vec![
-            (
-                "中国人民喜欢在中国吃饭，中国人的口味，中国饭好吃",
-                vec![
-                    "zhōng guó rén",
-                    "mín",
-                    "xǐ huan",
-                    "zài",
-                    "zhōng guó",
-                    "chī fàn",
-                    "，",
-                    "zhōng guó rén",
-                    "de dī dí dì",
-                    "kǒu wèi",
-                    "，",
-                    "zhōng guó",
-                    "fàn",
-                    "hǎo chī",
-                ],
-            ),
-            (
-                "中国人喜欢中国吃饭",
-                vec!["zhōng guó rén", "xǐ huan", "zhōng guó", "chī fàn"],
-            ),
-            ("四五六七", vec!["sì", "wǔ", "liù lù", "qī qí"]),
-            (
-                "尉迟恭大战单于丹",
-                vec!["yù chí gōng", "dà zhàn", "chán yú", "dān"],
-            ),
-        ];
-        for (input, want) in cases {
-            assert_eq!(want, convert(input));
-        }
-    }
-
-    #[test]
-    fn test_matcher() {
-        let start = std::time::Instant::now();
-        let loader = WordsLoader::new();
-        println!(
-            "'DefaultLoader::new' used: {}ms",
-            start.elapsed().as_millis()
-        );
-
-        let matcher = Matcher::new(&loader);
-        let start = std::time::Instant::now();
-
-        assert_eq!(vec![
-            PinyinWord::from_str("你好:nǐ hǎo").unwrap(),
-            PinyinWord::from_str("，").unwrap(),
-            PinyinWord::from_str("䴙䴘:pì tī").unwrap()
-        ], matcher.convert("你好，䴙䴘"));
-        println!("'matcher.convert' used: {}.ms", start.elapsed().as_millis());
-    }
-
-    #[test]
     fn test_mark_vowel() {
         assert_eq!(mark_vowel('a', 1), 'ā');
         assert_eq!(mark_vowel('a', 2), 'á');
@@ -473,5 +381,15 @@ mod tests {
     #[test]
     fn test_mark_vowel_with_toneless() {
         assert_eq!(mark_vowel('a', 5), 'a');
+    }
+
+    #[test]
+    fn test_transform_mark_to_number() {
+        assert_eq!(transform_mark_to_number("zhōng"), Pinyin::new("zhong", 1));
+        assert_eq!(transform_mark_to_number("zhóng"), Pinyin::new("zhong", 2));
+        assert_eq!(transform_mark_to_number("zhǒng"), Pinyin::new("zhong", 3));
+        assert_eq!(transform_mark_to_number("zhòng"), Pinyin::new("zhong", 4));
+        assert_eq!(transform_mark_to_number("zhong"), Pinyin::new("zhong", 5));
+        assert_eq!(transform_mark_to_number("en"), Pinyin::new("en", 5));
     }
 }

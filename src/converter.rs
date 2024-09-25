@@ -1,12 +1,13 @@
 use std::fmt::Display;
 use std::str::FromStr;
-use crate::error::PingyinError;
-use crate::{format_tone, match_word_pinyin, Pinyin, PinyinWord, ToneStyle, YuFormat};
+use crate::{Pinyin, PinyinWord, ToneStyle, YuFormat};
+use crate::matcher::{match_surname_pinyin, match_word_pinyin};
 
 pub struct Converter {
     pub input: String,
     tone_style: ToneStyle,
     yu_format: YuFormat,
+    surname_mode: bool,
 }
 
 impl Converter {
@@ -15,13 +16,18 @@ impl Converter {
             input: input.to_string(),
             tone_style: ToneStyle::None,
             yu_format: YuFormat::Yu,
+            surname_mode: false,
         }
     }
 
     fn convert(&self) -> Vec<PinyinWord> {
         let input_len = self.input.chars().count();
-        // todo: 支持选择 Matcher
-        let matched_words = match_word_pinyin(&self.input);
+        let matched_words = if self.surname_mode {
+            match_surname_pinyin(&self.input)
+        } else {
+            match_word_pinyin(&self.input)
+        };
+
         let input_chars: Vec<char> = self.input.chars().collect();
 
         let mut result = Vec::new();

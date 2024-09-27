@@ -2,7 +2,7 @@ use rayon::{iter::*, slice::ParallelSlice};
 use std::collections::HashMap;
 
 pub trait Loader {
-    fn get_chunks(&self, size: usize) -> Vec<HashMap<&str, &str>>;
+    fn load(&self) -> Vec<HashMap<&str, &str>>;
 }
 
 #[derive(Debug, Default)]
@@ -11,12 +11,13 @@ pub struct WordsLoader {
 }
 
 impl Loader for WordsLoader {
-    fn get_chunks(&self, size: usize) -> Vec<HashMap<&str, &str>> {
-        assert!(size > 0);
+    fn load(&self) -> Vec<HashMap<&str, &str>> {
+        const CHUNK_COUNT: usize = 10;
+
         self.words
             .par_iter()
             .collect::<Vec<_>>()
-            .par_chunks(self.words.len() / size)
+            .par_chunks(self.words.len() / CHUNK_COUNT)
             .map(|chunk| {
                 chunk
                     .par_iter()
@@ -68,12 +69,12 @@ pub struct CharsLoader {
 }
 
 impl Loader for CharsLoader {
-    fn get_chunks(&self, size: usize) -> Vec<HashMap<&str, &str>> {
-        assert!(size > 0);
+    fn load(&self) -> Vec<HashMap<&str, &str>> {
+        const CHUNK_COUNT: usize = 10;
         self.chars
             .par_iter()
             .collect::<Vec<_>>()
-            .par_chunks(self.chars.len() / size)
+            .par_chunks(self.chars.len() / CHUNK_COUNT)
             .map(|chunk| {
                 chunk
                     .par_iter()
@@ -125,7 +126,7 @@ pub struct SurnamesLoader {
 }
 
 impl Loader for SurnamesLoader {
-    fn get_chunks(&self, _: usize) -> Vec<HashMap<&str, &str>> {
+    fn load(&self) -> Vec<HashMap<&str, &str>> {
         let map = self
             .surnames
             .iter()

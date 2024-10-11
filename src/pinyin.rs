@@ -1,5 +1,3 @@
-use std::{cmp::PartialEq, fmt::Display, str::FromStr};
-
 #[cfg(test)]
 mod tests {
     use crate::{Pinyin, ToneStyle};

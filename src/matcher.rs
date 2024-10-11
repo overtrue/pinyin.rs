@@ -1,10 +1,9 @@
 use crate::loader::{CharsLoader, Loader, SurnamesLoader, WordsLoader};
+use crate::PinyinWord;
 use daachorse::{CharwiseDoubleArrayAhoCorasick, CharwiseDoubleArrayAhoCorasickBuilder, MatchKind};
 use rayon::iter::*;
 use std::collections::HashMap;
-use std::str::FromStr;
 use std::sync::OnceLock;
-use crate::PinyinWord;
 
 #[derive(Clone)]
 pub struct Matcher<'a> {
@@ -70,7 +69,6 @@ fn sort_by_key_length_desc<'a>(map: HashMap<&'a str, &'a str>) -> Vec<(&'a str, 
     entries
 }
 
-
 // 已经线程安全
 static WORDS_LOADER: OnceLock<WordsLoader> = OnceLock::new();
 static SURNAMES_LOADER: OnceLock<SurnamesLoader> = OnceLock::new();
@@ -106,7 +104,7 @@ pub fn match_word_pinyin(word: &str) -> Vec<(String, String)> {
     #[cfg(test)]
     let start = std::time::Instant::now();
 
-    let mut results: Vec<_> = matchers
+    let results: Vec<_> = matchers
         .par_iter()
         .flat_map(|matcher| matcher.match_to_pinyin(word, true))
         .map(|(k, v)| (k.to_string(), v.to_string()))
@@ -127,11 +125,15 @@ pub fn match_surname_pinyin(surname: &str) -> Vec<(String, String)> {
 
     let mut results: Vec<_> = matcher
         .match_to_pinyin(last_name, true)
-        .into_iter().map(|(k, v)| (k.to_string(), v.to_string()))
+        .into_iter()
+        .map(|(k, v)| (k.to_string(), v.to_string()))
         .collect();
 
     // 虽然取了两个字符，但是可能姓只有一个字，名有多个字，所以这里按结果长度截取
-    let first_name = &surname.chars().skip(results[0].0.chars().count()).collect::<String>();
+    let first_name = &surname
+        .chars()
+        .skip(results[0].0.chars().count())
+        .collect::<String>();
 
     // 名字部分用 match_word_pinyin 匹配
     if !first_name.is_empty() {
@@ -145,9 +147,10 @@ pub fn match_surname_pinyin(surname: &str) -> Vec<(String, String)> {
     results
 }
 
-
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
     fn test_match_word_pinyin() {
         let start = std::time::Instant::now();
@@ -157,28 +160,40 @@ mod tests {
         );
 
         let start = std::time::Instant::now();
-        let result = super::match_word_pinyin("你好");
-        println!("'match_word_pinyin' used: {}ms", start.elapsed().as_millis());
-        assert_eq!(vec![
-            ("你好".to_string(), "nǐ hǎo".to_string()),
-            ("好".to_string(), "hǎo hào".to_string()),
-            ("你".to_string(), "nǐ".to_string()),
-        ], result);
+        let result = match_word_pinyin("你好");
+        println!(
+            "'match_word_pinyin' used: {}ms",
+            start.elapsed().as_millis()
+        );
+        assert_eq!(
+            vec![
+                ("你好".to_string(), "nǐ hǎo".to_string()),
+                ("好".to_string(), "hǎo hào".to_string()),
+                ("你".to_string(), "nǐ".to_string()),
+            ],
+            result
+        );
     }
 
     #[test]
     fn test_match_world_with_symbol() {
         let start = std::time::Instant::now();
-        let result = super::match_word_pinyin("你好，世界！");
-        println!("'match_word_pinyin' used: {}ms", start.elapsed().as_millis());
-        assert_eq!(vec![
-            ("你好".to_string(), "nǐ hǎo".to_string()),
-            ("世界".to_string(), "shì jiè".to_string()),
-            ("界".to_string(), "jiè".to_string()),
-            ("好".to_string(), "hǎo hào".to_string()),
-            ("你".to_string(), "nǐ".to_string()),
-            ("世".to_string(), "shì".to_string()),
-        ], result);
+        let result = match_word_pinyin("你好，世界！");
+        println!(
+            "'match_word_pinyin' used: {}ms",
+            start.elapsed().as_millis()
+        );
+        assert_eq!(
+            vec![
+                ("你好".to_string(), "nǐ hǎo".to_string()),
+                ("世界".to_string(), "shì jiè".to_string()),
+                ("界".to_string(), "jiè".to_string()),
+                ("好".to_string(), "hǎo hào".to_string()),
+                ("你".to_string(), "nǐ".to_string()),
+                ("世".to_string(), "shì".to_string()),
+            ],
+            result
+        );
     }
 
     #[test]
@@ -190,16 +205,42 @@ mod tests {
         );
 
         let start = std::time::Instant::now();
-        let result = super::match_surname_pinyin("尉迟恭");
-        println!("'match_surnames_pinyin' used: {}ms", start.elapsed().as_millis());
-        assert_eq!(vec![("尉迟".to_string(), "yù chí".to_string()), ("恭".to_string(), "gōng".to_string())], result);
+        let result = match_surname_pinyin("尉迟恭");
+        println!(
+            "'match_surnames_pinyin' used: {}ms",
+            start.elapsed().as_millis()
+        );
+        assert_eq!(
+            vec![
+                ("尉迟".to_string(), "yù chí".to_string()),
+                ("恭".to_string(), "gōng".to_string())
+            ],
+            result
+        );
+
+        let result = match_surname_pinyin("单一单");
+        println!(
+            "'match_surnames_pinyin' used: {}ms",
+            start.elapsed().as_millis()
+        );
+        assert_eq!(
+            vec![
+                ("单".to_string(), "shàn".to_string()),
+                ("单".to_string(), "dān chán shàn".to_string()),
+                ("一".to_string(), "yī yí yì".to_string()),
+            ],
+            result
+        );
     }
 
     #[test]
     fn test_match_char_pinyin() {
         let start = std::time::Instant::now();
-        let result = super::match_char_pinyin('你');
-        println!("'match_char_pinyin' used: {}ms", start.elapsed().as_millis());
+        let result = match_char_pinyin('你');
+        println!(
+            "'match_char_pinyin' used: {}ms",
+            start.elapsed().as_millis()
+        );
         assert_eq!(vec![("你".to_string(), "nǐ".to_string())], result);
     }
 }

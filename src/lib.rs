@@ -1,18 +1,12 @@
+mod converter;
 mod error;
 mod loader;
 mod matcher;
 mod pinyin;
-mod converter;
 
-use std::collections::HashMap;
-use std::fmt::Display;
-use std::str::FromStr;
-use loader::{CharsLoader, SurnamesLoader, WordsLoader};
-use matcher::Matcher;
-use rayon::iter::*;
-use std::sync::OnceLock;
+use std::{fmt::Display, str::FromStr};
+
 use crate::error::PingyinError;
-use crate::matcher::match_word_pinyin;
 
 #[derive(Debug)]
 pub struct Pinyin {
@@ -42,6 +36,14 @@ impl Pinyin {
             ToneStyle::Number => self.to_string(),
             ToneStyle::Mark => format_to_mark(&self.pinyin, self.tone),
             ToneStyle::None => self.pinyin.clone(),
+        }
+    }
+
+    pub fn format_with_yu(&self, yu_format: YuFormat) -> String {
+        match yu_format {
+            YuFormat::Yu => self.pinyin.clone(),
+            YuFormat::U => self.pinyin.replace("ü", 'u'),
+            YuFormat::V => self.pinyin.replace("ü", "v"),
         }
     }
 }
@@ -91,10 +93,7 @@ pub struct PinyinWord {
 impl PinyinWord {
     #[allow(dead_code)]
     pub fn new(word: String, pinyin: Vec<Pinyin>) -> Self {
-        Self {
-            word,
-            pinyin,
-        }
+        Self { word, pinyin }
     }
 }
 
@@ -141,7 +140,7 @@ impl FromStr for PinyinWord {
 }
 
 #[allow(dead_code)]
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub enum ToneStyle {
     Number,
     Mark,
@@ -161,8 +160,8 @@ impl FromStr for ToneStyle {
     }
 }
 
-#[derive(Debug)]
-enum YuFormat {
+#[derive(Debug, PartialEq, Clone, Copy)]
+pub enum YuFormat {
     Yu,
     U,
     V,
@@ -172,19 +171,22 @@ pub fn format_to_mark(pinyin: &str, tone: u8) -> String {
     // find the vowel to mark
     // if the vowel is 'i' or 'u' or 'ü', find the next vowel
     let mut chars: Vec<char> = pinyin.chars().collect();
-    let mut last_vowel_idx = 0;
+    let mut last_vowel_idx: i8 = -1;
 
     for (idx, c) in chars.iter().enumerate() {
         if "aeiouü".contains(*c) {
-            last_vowel_idx = idx;
+            last_vowel_idx = idx as i8;
             if *c != 'i' || *c != 'u' || *c != 'ü' {
                 break;
             }
         }
     }
 
-    let vowel = chars[last_vowel_idx];
-    chars[last_vowel_idx] = mark_vowel(vowel, tone);
+    if last_vowel_idx > -1 {
+        let vowel = chars[last_vowel_idx as usize];
+        chars[last_vowel_idx as usize] = mark_vowel(vowel, tone);
+    }
+
     chars.into_iter().collect()
 }
 
@@ -204,7 +206,7 @@ pub fn mark_vowel(vowel: char, tone: u8) -> char {
         'o' => tone + 12,
         'u' => tone + 16,
         'ü' => tone + 20,
-        _ => panic!("Invalid vowel"),
+        _ => panic!("Invalid vowel {}", vowel),
     } as usize;
 
     tone_marks[index - 1]
@@ -216,16 +218,18 @@ pub fn transform_mark_to_number(pinyin: &str) -> Pinyin {
     let mut tone = 5;
 
     let unmarked_vowels = ['a', 'e', 'i', 'o', 'u', 'ü'];
-    let tone_mapping = [
-        ("āēīōūǖ", 1),
-        ("áéíóúǘ", 2),
-        ("ǎěǐǒǔǚ", 3),
-        ("àèìòùǜ", 4),
-    ];
+    let tone_mapping = [("āēīōūǖ", 1), ("áéíóúǘ", 2), ("ǎěǐǒǔǚ", 3), ("àèìòùǜ", 4)];
 
     for (marked_vowels, t) in tone_mapping {
-        if let Some((idx, marked_vowel)) = chars.iter().enumerate().find(|(_, c)| marked_vowels.contains(**c)) {
-            let vowel_index = marked_vowels.chars().position(|c| c == *marked_vowel).unwrap();
+        if let Some((idx, marked_vowel)) = chars
+            .iter()
+            .enumerate()
+            .find(|(_, c)| marked_vowels.contains(**c))
+        {
+            let vowel_index = marked_vowels
+                .chars()
+                .position(|c| c == *marked_vowel)
+                .unwrap();
             let vowel = unmarked_vowels[vowel_index];
             tone = t;
             chars[idx] = vowel;
@@ -238,8 +242,8 @@ pub fn transform_mark_to_number(pinyin: &str) -> Pinyin {
 
 #[cfg(test)]
 mod tests {
+    use crate::{mark_vowel, transform_mark_to_number, Pinyin, PinyinWord, ToneStyle, YuFormat};
     use std::str::FromStr;
-    use crate::{mark_vowel, transform_mark_to_number, Pinyin, PinyinWord};
 
     #[test]
     fn test_pinyin_new() {
@@ -276,6 +280,29 @@ mod tests {
     fn test_pinyin_to_string() {
         let pinyin = Pinyin::new("zhong", 4);
         assert_eq!(pinyin.to_string(), "zhong4");
+    }
+
+    #[test]
+    fn test_pinyin_format() {
+        let pinyin = Pinyin::new("zhong", 4);
+        assert_eq!(pinyin.format(ToneStyle::Number), "zhong4");
+        assert_eq!(pinyin.format(ToneStyle::Mark), "zhòng");
+        assert_eq!(pinyin.format(ToneStyle::None), "zhong");
+
+        let pinyin = Pinyin::new("a", 5);
+        assert_eq!(pinyin.format(ToneStyle::Number), "a5");
+        assert_eq!(pinyin.format(ToneStyle::Mark), "a");
+        assert_eq!(pinyin.format(ToneStyle::None), "a");
+    }
+
+    #[test]
+    fn test_pinyin_format_with_yu() {
+        let pinyin = Pinyin::new("lǚ xíng", 4);
+        assert_eq!(pinyin.format(ToneStyle::Mark), "lǚ xíng");
+        assert_eq!(pinyin.format(ToneStyle::None), "lv xing");
+        assert_eq!(pinyin.format_with_yu(YuFormat::Yu), "lyu xíng");
+        assert_eq!(pinyin.format_with_yu(YuFormat::U), "lu xíng");
+        assert_eq!(pinyin.format_with_yu(YuFormat::V), "lv xíng");
     }
 
     #[test]

@@ -96,6 +96,10 @@ impl FromStr for Pinyin {
             let tone = s.chars().last().unwrap().to_digit(10).unwrap() as u8;
             let pinyin = s.chars().take(s.len() - 1).collect::<String>();
 
+            if tone > 5 {
+                return Err(PingyinError::ParseStrError(s.to_string()));
+            }
+
             return Ok(Pinyin::new(&pinyin, tone));
         }
 
@@ -248,6 +252,8 @@ pub fn remove_tone(pinyin: &str) -> (String, u8) {
 }
 
 pub fn mark_vowel(vowel: char, tone: u8) -> char {
+    assert!((1..=5).contains(&tone));
+
     if tone == 0 || tone == 5 {
         return vowel;
     }
@@ -315,13 +321,13 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
+    #[should_panic(expected = "assertion failed: (1..=5).contains(&tone)")]
     fn test_pinyin_new_panic_with_invalid_tone() {
         let _pinyin = Pinyin::new("zhong", 6);
     }
 
     #[test]
-    #[should_panic]
+    #[should_panic(expected = "assertion failed: (1..=5).contains(&tone)")]
     fn test_pinyin_new_panic_with_zero_tone() {
         let _pinyin = Pinyin::new("zhong", 0);
     }
@@ -409,15 +415,16 @@ mod tests {
     }
 
     #[test]
-    #[should_panic]
     fn test_pinyin_from_str_panic_with_empty_str() {
-        let _pinyin = Pinyin::from_str("").unwrap();
+        let result = Pinyin::from_str("");
+
+        assert!(matches!(result, Err(_)));
     }
 
     #[test]
-    #[should_panic]
     fn test_pinyin_from_str_panic_with_invalid_pinyin() {
-        let _pinyin = Pinyin::from_str("zhong6").unwrap();
+        let result = Pinyin::from_str("zhong6");
+        assert!(matches!(result, Err(_)));
     }
 
     #[test]
@@ -504,21 +511,18 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
-    #[should_panic]
+    #[should_panic(expected = "Invalid vowel b")]
     fn test_mark_vowel_panic_with_invalid_vowel() {
         mark_vowel('b', 1);
     }
 
     #[test]
-    #[ignore]
-    #[should_panic]
+    #[should_panic(expected = "assertion failed: (1..=5).contains(&tone)")]
     fn test_mark_vowel_panic_with_invalid_tone() {
         mark_vowel('a', 6);
     }
 
     #[test]
-    #[ignore]
     #[should_panic]
     fn test_mark_vowel_panic_with_zero_tone() {
         mark_vowel('a', 0);

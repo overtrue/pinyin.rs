@@ -2,6 +2,14 @@
 name = "pinyin"
 version = "0.1.0"
 edition = "2021"
+authors = ["overtrue"]
+license = "MIT"
+description = "A Rust library for converting Chinese to pinyin."
+repository = "https://github.com/overtrue/pinyin.rs"
+readme = "README.md"
+keywords = ["pinyin", "chinese", "rust", "拼音", "汉字"]
+categories = ["text-processing", "internationalization", "chinese"]
+homepage = "https://github.com/overtrue/pinyin.rs"
 
 [dependencies]
 daachorse = "1.0.0"

@@ -12,7 +12,7 @@ pub struct Converter {
 }
 
 impl Converter {
-    fn new(input: &str) -> Self {
+    pub fn new(input: &str) -> Self {
         Self {
             input: input.to_string(),
             tone_style: ToneStyle::Mark,
@@ -23,7 +23,7 @@ impl Converter {
         }
     }
 
-    fn convert(&self) -> Vec<PinyinWord> {
+    pub fn convert(&self) -> Vec<PinyinWord> {
         let input_len = self.input.chars().count();
         let matched_words = if self.surname_mode {
             match_surname_pinyin(&self.input)
@@ -79,22 +79,23 @@ impl Converter {
                     input_chars[i].to_string(),
                     vec![Pinyin::new(&input_chars[i].to_string(), 5).into()],
                 ));
-                i += 1;
             }
+
+            i += 1;
         }
 
         result
     }
 
-    fn to_string(&self) -> String {
+    pub fn to_string(&self) -> String {
         self.to_string_with(" ")
     }
 
-    fn to_permalink(&self) -> String {
+    pub fn to_permalink(&self) -> String {
         self.to_string_with("-")
     }
 
-    fn to_string_with(&self, s: &str) -> String {
+    pub fn to_string_with(&self, s: &str) -> String {
         let mut result = String::new();
 
         for word in self.convert() {
@@ -115,44 +116,44 @@ impl Converter {
         result.trim_end().to_string()
     }
 
-    fn with_tone_style(&mut self, style: ToneStyle) -> &mut Self {
+    pub fn with_tone_style(&mut self, style: ToneStyle) -> &mut Self {
         self.tone_style = style;
         self
     }
 
-    fn without_tone(&mut self) -> &mut Self {
+    pub fn without_tone(&mut self) -> &mut Self {
         self.tone_style = ToneStyle::None;
         self
     }
 
-    fn yu_to_yu(&mut self) -> &mut Self {
+    pub fn yu_to_yu(&mut self) -> &mut Self {
         self.yu_format = YuFormat::Yu;
         self
     }
 
-    fn yu_to_u(&mut self) -> &mut Self {
+    pub fn yu_to_u(&mut self) -> &mut Self {
         self.yu_format = YuFormat::U;
         self
     }
 
-    fn yu_to_v(&mut self) -> &mut Self {
+    pub fn yu_to_v(&mut self) -> &mut Self {
         self.yu_format = YuFormat::V;
         self.tone_style = ToneStyle::None;
         self
     }
 
-    fn flatten(&mut self) -> &mut Self {
+    pub fn flatten(&mut self) -> &mut Self {
         self.flatten = true;
         self
     }
 
-    fn as_surnames(&mut self) -> &mut Self {
+    pub fn as_surnames(&mut self) -> &mut Self {
         self.surname_mode = true;
         self.flatten();
         self
     }
 
-    fn only_hans(&mut self) -> &mut Self {
+    pub fn only_hans(&mut self) -> &mut Self {
         self.only_hans = true;
         self
     }

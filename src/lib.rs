@@ -1,4 +1,4 @@
-mod converter;
+pub mod converter;
 mod error;
 mod loader;
 mod matcher;

@@ -8,8 +8,5 @@ daachorse = "1.0.0"
 thiserror = "1.0"
 rayon = "1.6"
 
-[build]
-script = "build.rs"
-
 [build-dependencies]
 anyhow = "1.0"

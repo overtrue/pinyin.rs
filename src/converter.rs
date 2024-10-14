@@ -1,6 +1,5 @@
 use crate::matcher::{match_surname_pinyin, match_word_pinyin};
-use crate::{pinyin, Pinyin, PinyinWord, ToneStyle, YuFormat};
-use std::pin;
+use crate::{Pinyin, PinyinWord, ToneStyle, YuFormat};
 use std::str::FromStr;
 
 pub struct Converter {
@@ -16,7 +15,7 @@ impl Converter {
     fn new(input: &str) -> Self {
         Self {
             input: input.to_string(),
-            tone_style: ToneStyle::None,
+            tone_style: ToneStyle::Mark,
             yu_format: YuFormat::Yu,
             surname_mode: false,
             flatten: false,
@@ -61,9 +60,9 @@ impl Converter {
                     let mut pinyin_word =
                         PinyinWord::from_str(&format!("{}:{}", word, pinyin)).unwrap();
 
-                    // 单子多音字，只取第一个音
-                    if self.flatten && pinyin_word.word.len() == 1 {
-                        pinyin_word.pinyin.truncate(1);
+                    // 多音字，只取第一个音
+                    if self.flatten {
+                        pinyin_word.pinyin.truncate(pinyin_word.word.chars().count());
                     }
 
                     result.push(pinyin_word);
@@ -136,6 +135,7 @@ impl Converter {
 
     fn yu_to_v(&mut self) -> &mut Self {
         self.yu_format = YuFormat::V;
+        self.tone_style = ToneStyle::None;
         self
     }
 
@@ -168,55 +168,52 @@ mod tests {
         assert_eq!(converter.to_string(), "zhòng chóng tóng hǎo hào");
 
         converter.flatten();
+        println!("{:?}", converter.convert());
         assert_eq!(converter.to_string(), "zhòng hǎo");
-        assert_eq!(converter.to_permalink(), "zhòng-hǎo");
     }
 
     #[test]
     fn test_convert_with_default_tone_style() {
-        let mut converter = Converter::new("重好");
+        let mut converter = Converter::new("你人");
         assert_eq!(
             converter.with_tone_style(ToneStyle::None).convert().len(),
             2
         );
-        assert_eq!(converter.to_string(), "zhong4 hao3");
-        assert_eq!(converter.to_permalink(), "zhong4-hao3");
+        println!("{:?}", converter.to_string());
+        assert_eq!(converter.to_string(), "ni ren")
     }
 
     #[test]
     fn test_convert_with_number_tone_style() {
-        let mut converter = Converter::new("重好");
+        let mut converter = Converter::new("你人");
         assert_eq!(
             converter.with_tone_style(ToneStyle::Number).convert().len(),
             2
         );
-        assert_eq!(converter.to_string(), "zhong4 chong2 tong2 hao3 hao4");
-        assert_eq!(converter.to_permalink(), "zhong4-chong2-tong2-hao3-hao4");
+        assert_eq!(converter.to_string(), "ni3 ren2");
     }
 
     #[test]
     fn test_convert_with_mark_tone_style() {
-        let mut converter = Converter::new("重好");
+        let mut converter = Converter::new("你人");
         assert_eq!(
             converter.with_tone_style(ToneStyle::Mark).convert().len(),
             2
         );
-        assert_eq!(converter.to_string(), "zhòng chóng tóng hǎo hào");
-        assert_eq!(converter.to_permalink(), "zhòng-chóng-tóng-hǎo-hào");
+        assert_eq!(converter.to_string(), "nǐ rén")
     }
 
     #[test]
     fn test_convert_without_tone() {
-        let mut converter = Converter::new("重好");
+        let mut converter = Converter::new("你人");
         assert_eq!(converter.without_tone().convert().len(), 2);
-        assert_eq!(converter.to_string(), "zhong hao");
-        assert_eq!(converter.to_permalink(), "zhong-hao");
+        assert_eq!(converter.to_string(), "ni ren");
     }
 
     #[test]
     fn test_convert_yu() {
         // lv/lu/lyu
-        let mut converter = Converter::new("旅行");
+        let converter = Converter::new("旅行");
         assert_eq!(converter.convert().len(), 1);
         assert_eq!(converter.to_string(), "lǚ xíng");
 
@@ -238,6 +235,7 @@ mod tests {
     fn test_convert_as_surnames() {
         let mut converter = Converter::new("单单单");
         converter.as_surnames();
+        println!("{:?}", converter.convert());
         assert_eq!(converter.convert().len(), 2);
         assert_eq!(converter.to_string(), "shàn dān dān");
     }

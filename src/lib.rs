@@ -35,14 +35,14 @@ impl Pinyin {
         match style {
             ToneStyle::Number => self.to_string(),
             ToneStyle::Mark => format_to_mark(&self.pinyin, self.tone),
-            ToneStyle::None => self.pinyin.clone(),
+            ToneStyle::None => format_to_no_tone(&self.pinyin),
         }
     }
 
     pub fn format_with_yu(&self, yu_format: YuFormat) -> String {
         match yu_format {
             YuFormat::Yu => self.pinyin.clone(),
-            YuFormat::U => self.pinyin.replace("ü", 'u'),
+            YuFormat::U => self.pinyin.replace("ü", "u"),
             YuFormat::V => self.pinyin.replace("ü", "v"),
         }
     }
@@ -190,6 +190,22 @@ pub fn format_to_mark(pinyin: &str, tone: u8) -> String {
     chars.into_iter().collect()
 }
 
+pub fn format_to_no_tone(pinyin: &str) -> String {
+    pinyin.chars().map(|c| unmark_vowel(c)).collect::<String>()
+}
+
+pub fn unmark_vowel(vowel: char) -> char {
+    match vowel {
+        'ā' | 'á' | 'ǎ' | 'à' => 'a',
+        'ē' | 'é' | 'ě' | 'è' => 'e',
+        'ī' | 'í' | 'ǐ' | 'ì' => 'i',
+        'ō' | 'ó' | 'ǒ' | 'ò' => 'o',
+        'ū' | 'ú' | 'ǔ' | 'ù' => 'u',
+        'ǖ' | 'ǘ' | 'ǚ' | 'ǜ' => 'ü',
+        _ => vowel,
+    }
+}
+
 pub fn mark_vowel(vowel: char, tone: u8) -> char {
     if tone == 0 || tone == 5 {
         return vowel;
@@ -293,6 +309,9 @@ mod tests {
         assert_eq!(pinyin.format(ToneStyle::Number), "a5");
         assert_eq!(pinyin.format(ToneStyle::Mark), "a");
         assert_eq!(pinyin.format(ToneStyle::None), "a");
+
+        let pinyin = Pinyin::from_str("rén").unwrap();
+        assert_eq!(pinyin.format(ToneStyle::None), "ren");
     }
 
     #[test]
@@ -389,7 +408,6 @@ mod tests {
         mark_vowel('b', 1);
     }
 
-    // TODO
     #[test]
     #[ignore]
     #[should_panic]
@@ -397,7 +415,6 @@ mod tests {
         mark_vowel('a', 6);
     }
 
-    // TODO
     #[test]
     #[ignore]
     #[should_panic]

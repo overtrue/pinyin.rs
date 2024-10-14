@@ -6,6 +6,18 @@ use std::string::ToString;
 
 const DATA_PATH: &str = "data";
 fn main() {
+    if !std::env::args().any(|arg: String| arg == "--force") {
+        // if path exists and is not empty
+        if Path::new(DATA_PATH).exists() && std::fs::read_dir(DATA_PATH).unwrap().next().is_some() {
+            println!("Please use `--force` to regenerate the data.");
+            return;
+        }
+
+        println!("Regenerating data...");
+    } else {
+        println!("Forcing regeneration of data...");
+    }
+
     cleanup();
     generate_chars();
     generate_words();
@@ -14,6 +26,7 @@ fn main() {
 }
 
 fn cleanup() {
+    println!("Cleaning up data directory...");
     std::fs::remove_dir_all(DATA_PATH).unwrap_or(());
     std::fs::create_dir(DATA_PATH).expect("Failed to create data directory");
 }
@@ -21,6 +34,7 @@ fn cleanup() {
 fn generate_chars() {
     let mut data = vec![];
 
+    println!("Generating chars data...");
     for path in [
         Path::new("sources/chars.txt"),
         Path::new("sources/patches/chars.txt"),
@@ -53,11 +67,14 @@ fn generate_chars() {
             writeln!(file, "{}: {}", chinese, pinyin).expect("Failed to write chars to file");
         }
     }
+
+    println!("Generated chars data.");
 }
 
 fn generate_words() {
     let mut data = HashMap::new();
 
+    println!("Generating words data...");
     for path in [
         Path::new("sources/words.txt"),
         Path::new("sources/patches/words.txt"),
@@ -85,11 +102,14 @@ fn generate_words() {
 
         writeln!(file, "{}: {}", chinese, pinyin).expect("Failed to write words to file");
     }
+
+    println!("Generated words data.");
 }
 
 fn generate_surnames() {
     let mut data = vec![];
 
+    println!("Generating surnames data...");
     let mut file = File::open(Path::new("sources/surnames.txt")).unwrap();
     let mut contents = String::new();
     file.read_to_string(&mut contents).unwrap();
@@ -111,9 +131,13 @@ fn generate_surnames() {
     for (chinese, pinyin) in data.iter() {
         writeln!(file, "{}: {}", chinese, pinyin).expect("Failed to write surnames to file");
     }
+
+    println!("Generated surnames data.");
 }
 
 fn generate_heteronyms() {
+    println!("Generating heteronyms data...");
+
     // contents: "重,好....."
     let mut file = File::open(Path::new("sources/heteronyms.txt")).unwrap();
     let mut contents = String::new();
@@ -132,6 +156,8 @@ fn generate_heteronyms() {
     data.join("\n").lines().for_each(|line| {
         writeln!(file, "{}", line).expect("Failed to write heteronyms to file");
     });
+
+    println!("Generated heteronyms data.");
 }
 
 fn hashmap_to_sorted_vec(map: HashMap<String, String>) -> Vec<(String, String)> {

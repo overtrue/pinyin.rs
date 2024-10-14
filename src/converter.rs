@@ -16,7 +16,7 @@ impl Converter {
         Self {
             input: input.to_string(),
             tone_style: ToneStyle::Mark,
-            yu_format: YuFormat::Yu,
+            yu_format: YuFormat::U,
             surname_mode: false,
             flatten: false,
             only_hans: false,
@@ -62,7 +62,9 @@ impl Converter {
 
                     // 多音字，只取第一个音
                     if self.flatten {
-                        pinyin_word.pinyin.truncate(pinyin_word.word.chars().count());
+                        pinyin_word
+                            .pinyin
+                            .truncate(pinyin_word.word.chars().count());
                     }
 
                     result.push(pinyin_word);
@@ -104,7 +106,7 @@ impl Converter {
                 &word
                     .pinyin
                     .iter()
-                    .map(|p| p.format(self.tone_style))
+                    .map(|p| p.format_with_yu(self.tone_style, self.yu_format))
                     .collect::<Vec<_>>()
                     .join(s),
             );
@@ -223,12 +225,21 @@ mod tests {
 
         let mut converter = Converter::new("旅行");
         converter.yu_to_v();
+        println!("{:?}", converter.convert());
         assert_eq!(converter.to_string(), "lv xing");
 
         // without tone same as yu_to_v
         let mut converter = Converter::new("旅行");
         converter.without_tone();
         assert_eq!(converter.to_string(), "lv xing");
+
+        // 护照模式需要注意：
+        // // lue/nue
+        // let pinyin = Pinyin::new("lüe", 4);
+        // assert_eq!(pinyin.format_with_yu(ToneStyle::Mark, YuFormat::Yu), "lue");
+
+        // let pinyin = Pinyin::new("nüe", 4);
+        // assert_eq!(pinyin.format_with_yu(ToneStyle::Mark, YuFormat::Yu), "nue");
     }
 
     #[test]

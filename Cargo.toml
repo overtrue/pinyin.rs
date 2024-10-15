@@ -16,5 +16,16 @@ daachorse = "1.0.0"
 thiserror = "1.0"
 rayon = "1.6"
 
+[dev-dependencies]
+criterion = "0.5.1"
+
 [build-dependencies]
 anyhow = "1.0"
+
+[[bench]]
+name = "loader_benchmark"
+harness = false
+
+[profile.release]
+debug = true
+opt-level = 3

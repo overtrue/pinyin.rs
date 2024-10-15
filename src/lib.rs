@@ -1,6 +1,6 @@
 pub mod converter;
 mod error;
-mod loader;
+pub mod loader;
 mod matcher;
 mod pinyin;
 

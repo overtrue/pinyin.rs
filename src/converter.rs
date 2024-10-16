@@ -52,8 +52,10 @@ impl Converter {
 
         while i < input_len {
             let mut found = false;
+
             for (word, pinyin) in matched_words.iter().skip(skip_matched_len) {
                 let word_len = word.chars().count();
+
                 if i + word_len <= input_len
                     && &input_chars[i..i + word_len] == word.chars().collect::<Vec<_>>().as_slice()
                 {
@@ -64,9 +66,8 @@ impl Converter {
                     if self.flatten {
                         pinyin_word
                             .pinyin
-                            .truncate(pinyin_word.word.chars().count());
+                            .truncate(word_len);
                     }
-
                     result.push(pinyin_word);
                     i += word_len;
                     found = true;
@@ -79,10 +80,12 @@ impl Converter {
                     input_chars[i].to_string(),
                     vec![Pinyin::new(&input_chars[i].to_string(), 5).into()],
                 ));
+                i += 1;
             }
-
-            i += 1;
         }
+
+        #[cfg(test)]
+        println!("match result: {:#?}", result);
 
         result
     }
@@ -167,6 +170,7 @@ mod tests {
     #[test]
     fn test_convert() {
         let mut converter = Converter::new("重好");
+        println!("{:#?}", converter.convert());
         assert_eq!(converter.convert().len(), 2); // ["重": ["zhòng", "chóng", "tóng"], "好": ["hǎo", "hào"]]
         assert_eq!(converter.to_string(), "zhòng chóng tóng hǎo hào");
 

@@ -1,5 +1,3 @@
-栕: zhēn
-栖: qī xī
 栗: lì liè
 栘: yí
 栙: xiáng
@@ -800,7 +798,6 @@
 欵: kuǎn
 欶: shuò sòu
 欷: xī
-欸: āi ǎi ê̄ ế ê̌ ề xiè éi ěi èi ēi
 欹: yī qī
 欺: qī
 欻: chuā xū
@@ -4148,3 +4145,6 @@
 硏: yán yàn
 硐: dòng tóng liú
 硑: pēng píng
+硒: xī
+硓: lǎo
+硔: hóng gǒng

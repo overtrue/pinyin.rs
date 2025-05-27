@@ -1,5 +1,3 @@
-域: yù
-埠: bù
 埡: yā è wǔ yà
 埢: quán juǎn
 埣: suì sù
@@ -4148,3 +4146,5 @@
 栒: xún sǔn
 栓: shuān shuàn quán
 栔: qì
+栕: zhēn
+栖: qī xī

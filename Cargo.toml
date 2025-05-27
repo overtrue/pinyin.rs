@@ -5,14 +5,19 @@ edition = "2021"
 
 [dependencies]
 daachorse = "1.0.0"
-thiserror = "1.0"
-rayon = "1.6"
+rayon = "1.10.0"
+thiserror = "1.0.63"
 
 [dev-dependencies]
-pretty_assertions = "0.6"
+pretty_assertions = "0.6.1"
+criterion = "0.5"
 
 [build]
 script = "build.rs"
 
 [build-dependencies]
-anyhow = "1.0"
+anyhow = "1.0.86"
+
+[[bench]]
+name = "benchmark"
+harness = false

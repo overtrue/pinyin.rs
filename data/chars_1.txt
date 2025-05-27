@@ -3257,7 +3257,6 @@
 呠: pěn
 呡: wěn mǐn
 呢: ne ní nǐ nī
-呣: ḿ m̀ móu
 呤: lìng líng
 呥: rán
 呦: yōu
@@ -3725,7 +3724,6 @@
 嘵: xiāo
 嘶: sī
 嘷: háo
-嘸: fǔ wǔ m̄ ḿ
 嘹: liáo liào
 嘺: qiáo qiào
 嘻: xī
@@ -4148,3 +4146,5 @@
 埜: yě
 埝: niàn diàn niè
 埞: dī
+域: yù
+埠: bù

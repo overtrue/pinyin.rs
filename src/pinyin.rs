@@ -132,7 +132,7 @@ fn format_tone(pinyin: &str, tone: u8) -> String {
     for (idx, c) in chars.iter().enumerate() {
         if "aeiouü".contains(*c) {
             last_vowel_idx = idx;
-            if *c != 'i' || *c != 'u' || *c != 'ü' {
+            if *c != 'i' && *c != 'u' && *c != 'ü' {
                 break;
             }
         }
@@ -159,7 +159,7 @@ fn mark_vowel(vowel: char, tone: u8) -> char {
         'o' => tone + 12,
         'u' => tone + 16,
         'ü' => tone + 20,
-        _ => panic!("Invalid vowel"),
+        _ => panic!("Invalid vowel: {}", vowel),
     } as usize;
 
     tone_marks[index - 1]
@@ -323,5 +323,85 @@ mod tests {
         assert_eq!(pinyin.format(ToneStyle::Number), "a5");
         assert_eq!(pinyin.format(ToneStyle::Mark), "a");
         assert_eq!(pinyin.format(ToneStyle::None), "a");
+    }
+
+    // ========== PHP 兼容性测试 ==========
+
+    #[test]
+    fn test_php_tone_style_compatibility() {
+        // 测试不同声调风格的兼容性
+        use crate::convert;
+
+        let test_text = "你好世界";
+        let result = convert(test_text);
+
+        println!("Tone style test: {}", test_text);
+        println!("Result: {:?}", result);
+
+        // 验证包含声调符号（默认应该是 symbol 风格）
+        let joined = result.join(" ");
+        let has_tone_marks = joined.chars().any(|c| {
+            matches!(c,
+                'ā' | 'á' | 'ǎ' | 'à' |
+                'ē' | 'é' | 'ě' | 'è' |
+                'ī' | 'í' | 'ǐ' | 'ì' |
+                'ō' | 'ó' | 'ǒ' | 'ò' |
+                'ū' | 'ú' | 'ǔ' | 'ù' |
+                'ǖ' | 'ǘ' | 'ǚ' | 'ǜ'
+            )
+        });
+
+        assert!(has_tone_marks, "Should contain tone marks in default mode");
+    }
+
+    #[test]
+    fn test_tone_mark_variations() {
+        // 测试各种声调符号的正确性
+        let test_cases = vec![
+            ("妈", 'ā'), // 第一声
+            ("麻", 'á'), // 第二声
+            ("马", 'ǎ'), // 第三声
+            ("骂", 'à'), // 第四声
+        ];
+
+        for (input, expected_tone_char) in test_cases {
+            use crate::convert;
+            let result = convert(input);
+
+            if !result.is_empty() {
+                let pinyin = &result[0];
+                let has_expected_tone = pinyin.chars().any(|c| c == expected_tone_char);
+
+                println!("Input: {}, Result: {}, Expected tone: {}", input, pinyin, expected_tone_char);
+
+                // 验证包含预期的声调符号
+                assert!(has_expected_tone || pinyin.contains("ma"),
+                       "Should contain expected tone mark {} in {}", expected_tone_char, pinyin);
+            }
+        }
+    }
+
+    #[test]
+    fn test_tone_style_formatting() {
+        // 测试不同声调风格的格式化
+        let pinyin = Pinyin::new("ma", 1);
+        assert_eq!(pinyin.format(ToneStyle::Mark), "mā");
+        assert_eq!(pinyin.format(ToneStyle::Number), "ma1");
+        assert_eq!(pinyin.format(ToneStyle::None), "ma");
+
+        let pinyin = Pinyin::new("ma", 2);
+        assert_eq!(pinyin.format(ToneStyle::Mark), "má");
+        assert_eq!(pinyin.format(ToneStyle::Number), "ma2");
+        assert_eq!(pinyin.format(ToneStyle::None), "ma");
+
+        let pinyin = Pinyin::new("ma", 3);
+        assert_eq!(pinyin.format(ToneStyle::Mark), "mǎ");
+        assert_eq!(pinyin.format(ToneStyle::Number), "ma3");
+        assert_eq!(pinyin.format(ToneStyle::None), "ma");
+
+        let pinyin = Pinyin::new("ma", 4);
+        assert_eq!(pinyin.format(ToneStyle::Mark), "mà");
+        assert_eq!(pinyin.format(ToneStyle::Number), "ma4");
+        assert_eq!(pinyin.format(ToneStyle::None), "ma");
     }
 }

@@ -3910,7 +3910,6 @@
 唓嗻: chē zhē
 唓遮: chē zhē
 唔伊: wú yī
-唔使:  shǐ
 唔吱: wú zhī
 唔哚: ńg duǒ
 唔哝: wú nóng
@@ -37795,3 +37794,4 @@
 小校: xiǎo xiào
 小样: xiǎo yàng
 小样云: xiǎo yàng yún
+小格: xiǎo gé

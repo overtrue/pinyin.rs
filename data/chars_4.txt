@@ -1,6 +1,3 @@
-硒: xī
-硓: lǎo
-硔: hóng gǒng
 硕: shuò
 硖: xiá
 硗: qiāo
@@ -4148,3 +4145,6 @@
 袅: niǎo
 袆: huī
 袇: rán
+袈: jiā
+袉: tuó tuǒ
+袊: lǐng líng

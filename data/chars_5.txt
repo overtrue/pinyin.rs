@@ -1,6 +1,3 @@
-袈: jiā
-袉: tuó tuǒ
-袊: lǐng líng
 袋: dài
 袌: bào páo pào
 袍: páo bào
@@ -520,7 +517,6 @@
 誏: lǎng làng
 誐: é ě
 誑: kuáng
-誒: éi xī yì ê̄ ế ê̌ ěi ề èi ēi
 誓: shì
 誔: tǐng
 誕: dàn
@@ -4148,3 +4144,7 @@
 颻: yáo yào
 颼: sōu
 颽: kǎi
+颾: sōu sāo
+颿: fān
+飀: liú
+飁: xí

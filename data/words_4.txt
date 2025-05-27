@@ -1,4 +1,3 @@
-抗敌: kàng dí
 抗斗: kàng dòu
 抗旌: kàng jīng
 抗旍: kàng jīng
@@ -30788,7 +30787,7 @@
 朝闻道夕死可矣: zhāo wén dào xī sǐ kě yǐ
 朝闼: cháo tà
 朝阙: cháo quē
-朝阳: zhāo yáng
+朝阳: cháo yáng
 朝阳丹凤: cháo yáng dān fèng
 朝阳产业: zhāo yáng chǎn yè
 朝阳凤: zhāo yáng fèng
@@ -37795,3 +37794,4 @@
 枭呼: xiāo hū
 枭处: xiāo chǔ
 枭夷: xiāo yí
+枭将: xiāo jiāng

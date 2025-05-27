@@ -1,4 +1,3 @@
-远翰: yuǎn hàn
 远耗: yuǎn hào
 远胄: yuǎn zhòu
 远背: yuǎn bèi
@@ -9121,7 +9120,7 @@
 那么点儿: nà me diǎn er
 那么着: nà me zhāo
 那也好: nà yě hǎo
-那些: nà xiē
+那些: nèi xiē
 那些个: nèi xiē gè
 那们: nà men
 那会儿: nà huì er

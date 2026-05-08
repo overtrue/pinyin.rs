@@ -125,12 +125,21 @@ jobs:
             echo "tag=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Generate release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh api "repos/${{ github.repository }}/releases/generate-notes" \
+            -f tag_name="${{ steps.tag.outputs.tag }}" \
+            --jq .body > release-notes.md
+
       - uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
           name: Pinyin.rs ${{ steps.tag.outputs.tag }}
           files: artifacts/**/*
-          generate_release_notes: true
+          body_path: release-notes.md
 
   crates:
     name: Publish crate

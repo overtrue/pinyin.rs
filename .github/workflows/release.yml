@@ -158,8 +158,13 @@ jobs:
               python3 -c 'import json, sys; package = json.load(sys.stdin)["packages"][0]; print(package["name"], package["version"])'
           )
 
-          http_status=$(curl -sS -o /tmp/crate.json -w '%{http_code}' "https://crates.io/api/v1/crates/${crate_name}")
-          if [[ "$http_status" == "200" ]] && python3 - "$crate_version" /tmp/crate.json <<'PY'
+          index_path=$(
+            python3 -c 'import sys; name = sys.argv[1]; print(f"1/{name}" if len(name) == 1 else f"2/{name}" if len(name) == 2 else f"3/{name[0]}/{name}" if len(name) == 3 else f"{name[0:2]}/{name[2:4]}/{name}")' "$crate_name"
+          )
+          http_status=$(curl -sS -A "overtrue/pinyin.rs release workflow" -o /tmp/crate-index.jsonl -w '%{http_code}' "https://index.crates.io/${index_path}")
+          echo "crates.io index status for ${crate_name}: ${http_status}"
+
+          if [[ "$http_status" == "200" ]] && python3 - "$crate_version" /tmp/crate-index.jsonl <<'PY'
           import json
           import sys
 
@@ -167,9 +172,11 @@ jobs:
           path = sys.argv[2]
 
           with open(path, "r", encoding="utf-8") as handle:
-              payload = json.load(handle)
+              for line in handle:
+                  if line.strip() and json.loads(line).get("vers") == version:
+                      sys.exit(0)
 
-          sys.exit(0 if any(item.get("num") == version for item in payload.get("versions", [])) else 1)
+          sys.exit(1)
           PY
           then
             echo "${crate_name} ${crate_version} is already published on crates.io."

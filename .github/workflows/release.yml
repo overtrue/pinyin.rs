@@ -92,7 +92,7 @@ jobs:
           cp README.md LICENSE "dist/$name/"
 
           if [[ "${{ matrix.archive }}" == "zip" ]]; then
-            (cd dist && zip -r "$name.zip" "$name")
+            powershell -NoProfile -Command "Compress-Archive -Path 'dist/$name' -DestinationPath 'dist/$name.zip' -Force"
           else
             tar -czf "dist/$name.tar.gz" -C dist "$name"
           fi

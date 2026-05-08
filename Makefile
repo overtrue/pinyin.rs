@@ -1,157 +1,138 @@
 # Pinyin.rs Makefile
-# 参考 PHP 版本的 overtrue/pinyin 项目结构
+# 简化常用的开发和构建任务
 
-.PHONY: help build test bench clean install format lint doc benchmark-test
+.PHONY: help build test clean fmt clippy bench install release-local check-all
 
 # 默认目标
 help:
-	@echo "Pinyin.rs 项目管理工具"
+	@echo "Pinyin.rs 开发工具"
 	@echo ""
 	@echo "可用命令:"
-	@echo "  build          - 构建项目"
-	@echo "  test           - 运行所有测试"
-	@echo "  bench          - 运行基准测试"
-	@echo "  benchmark-test - 运行自定义基准测试脚本"
-	@echo "  clean          - 清理构建文件"
-	@echo "  install        - 安装依赖"
-	@echo "  format         - 格式化代码"
-	@echo "  lint           - 代码检查"
-	@echo "  doc            - 生成文档"
-	@echo "  release        - 发布版本"
-	@echo ""
+	@echo "  build          构建项目"
+	@echo "  test           运行测试"
+	@echo "  bench          运行基准测试"
+	@echo "  clean          清理构建文件"
+	@echo "  fmt            格式化代码"
+	@echo "  clippy         运行 clippy 检查"
+	@echo "  install        安装到系统"
+	@echo "  release-local  本地构建 release 版本"
+	@echo "  check-all      运行所有检查（测试、格式、clippy）"
+	@echo "  help           显示此帮助信息"
 
 # 构建项目
 build:
-	@echo "构建 Pinyin.rs..."
-	cargo build --release
+	@echo "🔨 构建项目..."
+	cargo build
 
 # 运行测试
 test:
-	@echo "运行单元测试..."
-	cargo test --verbose
+	@echo "🧪 运行测试..."
+	cargo test
 
 # 运行基准测试
 bench:
-	@echo "运行基准测试..."
+	@echo "📊 运行基准测试..."
 	cargo bench
-
-# 运行自定义基准测试脚本
-benchmark-test:
-	@echo "运行自定义基准测试脚本..."
-	@if [ -f "benchmark_test.rs" ]; then \
-		echo "编译基准测试脚本..."; \
-		rustc --edition 2021 -L target/release/deps benchmark_test.rs -o benchmark_test --extern pinyin=target/release/libpinyin.rlib; \
-		echo "运行基准测试..."; \
-		./benchmark_test; \
-		rm -f benchmark_test; \
-	else \
-		echo "基准测试脚本不存在，请先创建 benchmark_test.rs"; \
-	fi
 
 # 清理构建文件
 clean:
-	@echo "清理构建文件..."
+	@echo "🧹 清理构建文件..."
 	cargo clean
-	rm -f benchmark_test
-
-# 安装依赖
-install:
-	@echo "安装依赖..."
-	cargo fetch
 
 # 格式化代码
-format:
-	@echo "格式化代码..."
+fmt:
+	@echo "✨ 格式化代码..."
 	cargo fmt
 
-# 代码检查
-lint:
-	@echo "运行代码检查..."
-	cargo clippy -- -D warnings
+# 检查代码格式
+fmt-check:
+	@echo "🔍 检查代码格式..."
+	cargo fmt --check
 
-# 生成文档
-doc:
-	@echo "生成文档..."
+# 运行 clippy
+clippy:
+	@echo "📎 运行 clippy 检查..."
+	cargo clippy --all-targets --all-features -- -D warnings
+
+# 安装到系统
+install:
+	@echo "📦 安装到系统..."
+	cargo install --path .
+
+# 本地构建 release 版本
+release-local:
+	@echo "🚀 本地构建 release 版本..."
+	./scripts/build.sh
+
+# 运行所有检查
+check-all: fmt-check clippy test
+	@echo "✅ 所有检查完成！"
+
+# 快速开发循环
+dev: fmt clippy test
+	@echo "🔄 开发检查完成！"
+
+# 准备发布
+prepare-release: check-all release-local
+	@echo "🎯 发布准备完成！"
+	@echo ""
+	@echo "下一步："
+	@echo "1. 更新版本号: Cargo.toml"
+	@echo "2. 提交更改: git commit -am 'Bump version to x.y.z'"
+	@echo "3. 创建标签: git tag vx.y.z"
+	@echo "4. 推送标签: git push origin vx.y.z"
+
+# 性能测试
+perf:
+	@echo "⚡ 运行性能测试..."
+	cargo run --example longtext_performance --release
+
+# 运行长文本基准测试
+longtext-bench:
+	@echo "📈 运行长文本基准测试..."
+	cargo bench --bench longtext_benchmark
+
+# 查看帮助
+usage:
+	@echo "📚 查看命令行工具用法..."
+	cargo run -- --help
+
+# 测试命令行工具
+test-cli:
+	@echo "🔧 测试命令行工具..."
+	@echo "基本转换:"
+	cargo run -- "你好世界"
+	@echo ""
+	@echo "数字声调:"
+	cargo run -- -t number "你好"
+	@echo ""
+	@echo "permalink:"
+	cargo run -- --permalink "中华人民共和国"
+	@echo ""
+	@echo "缩写:"
+	cargo run -- --abbr "北京大学"
+
+# 文档生成
+docs:
+	@echo "📖 生成文档..."
 	cargo doc --open
 
-# 发布版本
-release: clean format lint test
-	@echo "准备发布版本..."
-	cargo build --release
-	@echo "发布完成！"
-
-# 完整测试套件（参考 PHP 版本）
-test-all: format lint test bench benchmark-test
-	@echo "所有测试完成！"
-
-# 性能分析
-profile:
-	@echo "运行性能分析..."
-	cargo build --release
-	@if command -v perf >/dev/null 2>&1; then \
-		echo "使用 perf 进行性能分析..."; \
-		perf record --call-graph=dwarf cargo test --release; \
-		perf report; \
-	else \
-		echo "perf 工具未安装，跳过性能分析"; \
-	fi
-
-# 内存检查
-memory-check:
-	@echo "运行内存检查..."
-	@if command -v valgrind >/dev/null 2>&1; then \
-		echo "使用 valgrind 进行内存检查..."; \
-		cargo build; \
-		valgrind --tool=memcheck --leak-check=full cargo test; \
-	else \
-		echo "valgrind 工具未安装，跳过内存检查"; \
-	fi
-
-# 代码覆盖率
-coverage:
-	@echo "生成代码覆盖率报告..."
-	@if command -v cargo-tarpaulin >/dev/null 2>&1; then \
-		cargo tarpaulin --out Html; \
-		echo "覆盖率报告已生成到 tarpaulin-report.html"; \
-	else \
-		echo "cargo-tarpaulin 未安装，请运行: cargo install cargo-tarpaulin"; \
-	fi
+# 检查依赖更新
+update-deps:
+	@echo "🔄 检查依赖更新..."
+	cargo update
 
 # 安全审计
 audit:
-	@echo "运行安全审计..."
-	@if command -v cargo-audit >/dev/null 2>&1; then \
-		cargo audit; \
-	else \
-		echo "cargo-audit 未安装，请运行: cargo install cargo-audit"; \
-	fi
+	@echo "🔒 运行安全审计..."
+	cargo audit
 
-# 依赖更新
-update:
-	@echo "更新依赖..."
-	cargo update
+# 覆盖率测试（需要安装 tarpaulin）
+coverage:
+	@echo "📊 运行覆盖率测试..."
+	cargo tarpaulin --out Html
 
-# 检查过时依赖
-outdated:
-	@echo "检查过时依赖..."
-	@if command -v cargo-outdated >/dev/null 2>&1; then \
-		cargo outdated; \
-	else \
-		echo "cargo-outdated 未安装，请运行: cargo install cargo-outdated"; \
-	fi
-
-# 开发环境设置
-dev-setup:
-	@echo "设置开发环境..."
-	rustup component add rustfmt clippy
-	cargo install cargo-tarpaulin cargo-audit cargo-outdated
-	@echo "开发环境设置完成！"
-
-# 快速测试（类似 PHP 版本的快速验证）
-quick-test:
-	@echo "快速功能测试..."
-	@echo "测试基本转换功能..."
-	@cargo run --example basic_usage 2>/dev/null || echo "示例程序不存在"
-	@echo "运行核心测试..."
-	cargo test --lib --quiet
-	@echo "快速测试完成！"
+# 交叉编译测试（需要安装 cross）
+cross-build:
+	@echo "🌐 交叉编译测试..."
+	cross build --target x86_64-unknown-linux-musl --release

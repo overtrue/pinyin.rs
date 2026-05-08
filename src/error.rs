@@ -1,42 +1,44 @@
 use thiserror::Error;
 
-/// 拼音库错误类型
-#[derive(Error, Debug)]
-pub enum PingyinError {
-    /// 字符串解析错误
-    #[error("Failed to parse string: {0}")]
-    ParseStrError(String),
+#[derive(Debug, Error, PartialEq, Eq)]
+pub enum PinyinError {
+    #[error("input is too long: {actual} bytes, max {max} bytes")]
+    InputTooLong { actual: usize, max: usize },
 
-    /// 无效的声调
-    #[error("Invalid tone: {0}, expected 1-5")]
-    InvalidTone(u8),
+    #[error("invalid max input length: {0}")]
+    InvalidMaxInputLength(usize),
 
-    /// 无效的拼音格式
-    #[error("Invalid pinyin format: {0}")]
-    InvalidFormat(String),
+    #[error("invalid permalink delimiter: {0:?}")]
+    InvalidDelimiter(String),
 
-    /// 数据加载错误
-    #[error("Failed to load data: {0}")]
-    DataLoadError(String),
+    #[error("invalid input: {0}")]
+    InvalidInput(String),
 
-    /// 匹配器构建错误
-    #[error("Failed to build matcher: {0}")]
-    MatcherBuildError(String),
+    #[error("configuration error: {0}")]
+    ConfigError(String),
 }
 
-impl PingyinError {
-    /// 创建解析错误
-    pub fn parse_error(input: &str) -> Self {
-        Self::ParseStrError(input.to_string())
-    }
+pub type Result<T> = std::result::Result<T, PinyinError>;
 
-    /// 创建声调错误
-    pub fn tone_error(tone: u8) -> Self {
-        Self::InvalidTone(tone)
+impl PinyinError {
+    pub(crate) fn invalid_delimiter(delimiter: &str) -> Self {
+        Self::InvalidDelimiter(delimiter.to_string())
     }
+}
 
-    /// 创建格式错误
-    pub fn format_error(input: &str) -> Self {
-        Self::InvalidFormat(input.to_string())
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn formats_errors() {
+        assert_eq!(
+            PinyinError::InputTooLong { actual: 10, max: 3 }.to_string(),
+            "input is too long: 10 bytes, max 3 bytes"
+        );
+        assert_eq!(
+            PinyinError::invalid_delimiter("=").to_string(),
+            "invalid permalink delimiter: \"=\""
+        );
     }
 }

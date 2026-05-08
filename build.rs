@@ -1,286 +1,168 @@
-use anyhow::{Context, Result};
+use anyhow::{Context, Result, anyhow};
 use std::collections::HashMap;
-use std::fs::OpenOptions;
-use std::io::prelude::*;
-use std::path::Path;
+use std::fs::{self, File};
+use std::io::Write;
+use std::path::{Path, PathBuf};
 
-const DATA_PATH: &str = "data";
+const CHUNK_COUNT: usize = 10;
 
 fn main() -> Result<()> {
-    println!("cargo:rerun-if-changed=sources/");
-
-    cleanup()?;
-    generate_chars()?;
-    generate_words()?;
-    generate_surnames()?;
-    generate_heteronyms()?;
-
-    println!("Data generation completed successfully");
-    Ok(())
-}
-
-/// 清理并创建数据目录
-fn cleanup() -> Result<()> {
-    if Path::new(DATA_PATH).exists() {
-        std::fs::remove_dir_all(DATA_PATH)
-            .with_context(|| format!("Failed to remove directory: {}", DATA_PATH))?;
-    }
-    std::fs::create_dir(DATA_PATH)
-        .with_context(|| format!("Failed to create directory: {}", DATA_PATH))?;
-    Ok(())
-}
-
-/// 生成字符数据
-fn generate_chars() -> Result<()> {
-    println!("Generating character data...");
-    let mut data = Vec::new();
-
-    // 加载原始数据和补丁数据
     for path in [
-        Path::new("sources/chars.txt"),
-        Path::new("sources/patches/chars.txt"),
+        "sources/chars.txt",
+        "sources/patches/chars.txt",
+        "sources/words.txt",
+        "sources/patches/words.txt",
+        "sources/surnames.txt",
+        "sources/heteronyms.txt",
     ] {
-        if !path.exists() {
-            println!("Warning: {} does not exist, skipping", path.display());
-            continue;
-        }
-
-        let content = std::fs::read_to_string(path)
-            .with_context(|| format!("Failed to read file: {}", path.display()))?;
-
-        for (line_num, line) in content.lines().enumerate() {
-            if let Some(item) = parse_line(line) {
-                data.push(item);
-            } else if !line.trim().is_empty() && !line.trim().starts_with('#') {
-                println!("Warning: Failed to parse line {} in {}: {}",
-                    line_num + 1, path.display(), line);
-            }
-        }
+        println!("cargo:rerun-if-changed={path}");
     }
 
-    if data.is_empty() {
-        return Err(anyhow::anyhow!("No character data found"));
+    let data_dir = PathBuf::from(std::env::var("OUT_DIR")?).join("data");
+    if data_dir.exists() {
+        fs::remove_dir_all(&data_dir)
+            .with_context(|| format!("failed to clean {}", data_dir.display()))?;
     }
+    fs::create_dir_all(&data_dir)
+        .with_context(|| format!("failed to create {}", data_dir.display()))?;
 
-    let chunk_size = div_ceil(data.len(), 10);
-    println!("Processing {} characters in chunks of {}", data.len(), chunk_size);
+    generate_chars(&data_dir)?;
+    generate_words(&data_dir)?;
+    generate_surnames(&data_dir)?;
+    generate_heteronyms(&data_dir)?;
 
-    for (count, (unicode, pinyin)) in data.iter().enumerate() {
-        // unicode: "U+4E00"
-        let code_point = u32::from_str_radix(&unicode[2..], 16)
-            .with_context(|| format!("Invalid Unicode code point: {}", unicode))?;
-
-        let chunk_file_name = format!("chars_{}.txt", count / chunk_size);
-        let mut file = OpenOptions::new()
-            .create(true)
-            .append(true)
-            .open(Path::new(DATA_PATH).join(&chunk_file_name))
-            .with_context(|| format!("Failed to open file: {}", chunk_file_name))?;
-
-        if let Some(chinese) = char::from_u32(code_point) {
-            writeln!(file, "{}: {}", chinese, pinyin)
-                .with_context(|| format!("Failed to write to file: {}", chunk_file_name))?;
-        } else {
-            println!("Warning: Invalid Unicode code point: {}", unicode);
-        }
-    }
-
-    println!("Generated {} character files", 10);
     Ok(())
 }
 
-/// 生成词汇数据
-fn generate_words() -> Result<()> {
-    println!("Generating word data...");
-    let mut data = HashMap::new();
-
-    // 加载原始数据和补丁数据，补丁数据优先级更高
-    for path in [
-        Path::new("sources/words.txt"),
-        Path::new("sources/patches/words.txt"),
-    ] {
-        if !path.exists() {
-            println!("Warning: {} does not exist, skipping", path.display());
-            continue;
-        }
-
-        let content = std::fs::read_to_string(path)
-            .with_context(|| format!("Failed to read file: {}", path.display()))?;
-
-        for (line_num, line) in content.lines().enumerate() {
-            if let Some((chinese, pinyin)) = parse_line(line) {
-                data.insert(chinese, pinyin);
-            } else if !line.trim().is_empty() && !line.trim().starts_with('#') {
-                println!("Warning: Failed to parse line {} in {}: {}",
-                    line_num + 1, path.display(), line);
-            }
+fn generate_chars(data_dir: &Path) -> Result<()> {
+    let mut rows = Vec::new();
+    for path in ["sources/chars.txt", "sources/patches/chars.txt"] {
+        for (key, pinyin) in read_source(path)? {
+            let code = key
+                .strip_prefix("U+")
+                .ok_or_else(|| anyhow!("expected unicode key in {path}: {key}"))?;
+            let code_point = u32::from_str_radix(code, 16)
+                .with_context(|| format!("invalid unicode code point {key}"))?;
+            let ch = char::from_u32(code_point)
+                .ok_or_else(|| anyhow!("invalid unicode scalar value {key}"))?;
+            rows.push((ch.to_string(), pinyin));
         }
     }
 
-    if data.is_empty() {
-        return Err(anyhow::anyhow!("No word data found"));
+    if rows.is_empty() {
+        return Err(anyhow!("no character data found"));
     }
 
-    let chunk_size = div_ceil(data.len(), 10);
-    println!("Processing {} words in chunks of {}", data.len(), chunk_size);
-
-    for (count, (chinese, pinyin)) in hashmap_to_sorted_vec(data).iter().enumerate() {
-        let chunk_file_name = format!("words_{}.txt", count / chunk_size);
-        let mut file = OpenOptions::new()
-            .create(true)
-            .append(true)
-            .open(Path::new(DATA_PATH).join(&chunk_file_name))
-            .with_context(|| format!("Failed to open file: {}", chunk_file_name))?;
-
-        writeln!(file, "{}: {}", chinese, pinyin)
-            .with_context(|| format!("Failed to write to file: {}", chunk_file_name))?;
-    }
-
-    println!("Generated {} word files", 10);
-    Ok(())
+    write_chunks(data_dir, "chars", rows)
 }
 
-/// 生成姓氏数据
-fn generate_surnames() -> Result<()> {
-    println!("Generating surname data...");
-    let mut data = Vec::new();
-
-    let path = Path::new("sources/surnames.txt");
-    if !path.exists() {
-        return Err(anyhow::anyhow!("Surnames file not found: {}", path.display()));
-    }
-
-    let content = std::fs::read_to_string(path)
-        .with_context(|| format!("Failed to read file: {}", path.display()))?;
-
-    for (line_num, line) in content.lines().enumerate() {
-        if let Some(item) = parse_line(line) {
-            data.push(item);
-        } else if !line.trim().is_empty() && !line.trim().starts_with('#') {
-            println!("Warning: Failed to parse line {} in {}: {}",
-                line_num + 1, path.display(), line);
+fn generate_words(data_dir: &Path) -> Result<()> {
+    let mut rows = HashMap::new();
+    for path in ["sources/words.txt", "sources/patches/words.txt"] {
+        for (word, pinyin) in read_source(path)? {
+            rows.insert(word, pinyin);
         }
     }
 
-    if data.is_empty() {
-        return Err(anyhow::anyhow!("No surname data found"));
+    if rows.is_empty() {
+        return Err(anyhow!("no word data found"));
     }
 
-    // 将结果写入文件
-    let mut file = OpenOptions::new()
-        .create(true)
-        .write(true)
-        .truncate(true)
-        .open(Path::new(DATA_PATH).join("surnames.txt"))
-        .context("Failed to create surnames.txt")?;
+    let mut rows = rows.into_iter().collect::<Vec<_>>();
+    rows.sort_by(|left, right| left.0.cmp(&right.0));
+    write_chunks(data_dir, "words", rows)
+}
 
-    for (chinese, pinyin) in data.iter() {
-        writeln!(file, "{}: {}", chinese, pinyin)
-            .context("Failed to write surnames to file")?;
+fn generate_surnames(data_dir: &Path) -> Result<()> {
+    let rows = read_source("sources/surnames.txt")?;
+    if rows.is_empty() {
+        return Err(anyhow!("no surname data found"));
     }
 
-    println!("Generated surnames file with {} entries", data.len());
+    write_lines(&data_dir.join("surnames.txt"), rows)
+}
+
+fn generate_heteronyms(data_dir: &Path) -> Result<()> {
+    let content = fs::read_to_string("sources/heteronyms.txt")
+        .context("failed to read sources/heteronyms.txt")?;
+    let mut file =
+        File::create(data_dir.join("heteronyms.txt")).context("failed to create heteronyms.txt")?;
+
+    for item in content
+        .split(',')
+        .map(str::trim)
+        .filter(|item| !item.is_empty())
+    {
+        writeln!(file, "{item}").context("failed to write heteronym data")?;
+    }
+
     Ok(())
 }
 
-/// 生成多音字数据
-fn generate_heteronyms() -> Result<()> {
-    println!("Generating heteronym data...");
+fn read_source(path: impl AsRef<Path>) -> Result<Vec<(String, String)>> {
+    let path = path.as_ref();
+    let content =
+        fs::read_to_string(path).with_context(|| format!("failed to read {}", path.display()))?;
+    let mut rows = Vec::new();
 
-    let path = Path::new("sources/heteronyms.txt");
-    if !path.exists() {
-        return Err(anyhow::anyhow!("Heteronyms file not found: {}", path.display()));
+    for line in content.lines() {
+        if let Some(row) = parse_line(line) {
+            rows.push(row);
+        }
     }
 
-    let content = std::fs::read_to_string(path)
-        .with_context(|| format!("Failed to read file: {}", path.display()))?;
-
-    let data: Vec<&str> = content.split(',').map(|s| s.trim()).filter(|s| !s.is_empty()).collect();
-
-    if data.is_empty() {
-        return Err(anyhow::anyhow!("No heteronym data found"));
-    }
-
-    let data_len = data.len(); // 保存长度用于后续打印
-
-    // 将结果写入文件
-    let mut file = OpenOptions::new()
-        .create(true)
-        .write(true)
-        .truncate(true)
-        .open(Path::new(DATA_PATH).join("heteronyms.txt"))
-        .context("Failed to create heteronyms.txt")?;
-
-    for item in data {
-        writeln!(file, "{}", item)
-            .context("Failed to write heteronyms to file")?;
-    }
-
-    println!("Generated heteronyms file with {} entries", data_len);
-    Ok(())
+    Ok(rows)
 }
 
-/// 将 HashMap 转换为按键排序的 Vec
-fn hashmap_to_sorted_vec(map: HashMap<String, String>) -> Vec<(String, String)> {
-    let mut vec: Vec<(String, String)> = map.into_iter().collect();
-    vec.sort_by(|a, b| a.0.cmp(&b.0));
-    vec
-}
-
-/// 解析数据行
-///
-/// 支持格式：
-/// - "字符: 拼音"
-/// - "U+4E00: 拼音 # 注释"
 fn parse_line(line: &str) -> Option<(String, String)> {
     let line = line.trim();
-
-    // 跳过空行和注释行
     if line.is_empty() || line.starts_with('#') {
         return None;
     }
 
-    let parts: Vec<&str> = line.split(':').collect();
-    if parts.len() < 2 {
-        return None;
-    }
-
-    let chinese = parts[0].trim();
-    let pinyin_part = parts[1].trim();
-
-    // 移除注释部分
-    let pinyin = pinyin_part
+    let (key, value) = line.split_once(':')?;
+    let pinyin = value
         .split_whitespace()
-        .take_while(|s| !s.starts_with('#'))
-        .collect::<Vec<&str>>()
+        .take_while(|part| !part.starts_with('#'))
+        .collect::<Vec<_>>()
         .join(" ");
 
-    if chinese.is_empty() || pinyin.is_empty() {
+    let key = key.trim();
+    if key.is_empty() || pinyin.is_empty() {
         return None;
     }
 
-    // 验证拼音格式（基本检查）
-    if !is_valid_pinyin(&pinyin) {
-        println!("Warning: Invalid pinyin format: {}", pinyin);
-        return None;
+    Some((key.to_string(), pinyin))
+}
+
+fn write_chunks(data_dir: &Path, prefix: &str, rows: Vec<(String, String)>) -> Result<()> {
+    let chunk_size = rows.len().div_ceil(CHUNK_COUNT);
+
+    for index in 0..CHUNK_COUNT {
+        let start = index * chunk_size;
+        let end = ((index + 1) * chunk_size).min(rows.len());
+        let chunk = if start < rows.len() {
+            &rows[start..end]
+        } else {
+            &[]
+        };
+        write_lines(
+            &data_dir.join(format!("{prefix}_{index}.txt")),
+            chunk.iter().cloned(),
+        )?;
     }
 
-    Some((chinese.to_string(), pinyin))
+    Ok(())
 }
 
-/// 验证拼音格式
-fn is_valid_pinyin(pinyin: &str) -> bool {
-    // 基本验证：只包含字母、空格、声调符号
-    pinyin.chars().all(|c| {
-        c.is_alphabetic() || c.is_whitespace() ||
-        "āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ".contains(c)
-    })
-}
-
-/// 向上取整除法
-fn div_ceil(num: usize, denom: usize) -> usize {
-    assert!(denom > 0, "Denominator must be greater than 0");
-    (num + denom - 1) / denom
+fn write_lines(path: &Path, rows: impl IntoIterator<Item = (String, String)>) -> Result<()> {
+    let mut file =
+        File::create(path).with_context(|| format!("failed to create {}", path.display()))?;
+    for (key, pinyin) in rows {
+        writeln!(file, "{key}: {pinyin}")
+            .with_context(|| format!("failed to write {}", path.display()))?;
+    }
+    Ok(())
 }
 
 #[cfg(test)]
@@ -288,52 +170,12 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_parse_line() {
-        // 正常格式
-        assert_eq!(
-            parse_line("中国: zhōng guó"),
-            Some(("中国".to_string(), "zhōng guó".to_string()))
-        );
-
-        // Unicode 格式
+    fn parses_source_lines() {
         assert_eq!(
             parse_line("U+4E2D: zhōng # 中"),
             Some(("U+4E2D".to_string(), "zhōng".to_string()))
         );
-
-        // 空行
-        assert_eq!(parse_line(""), None);
-        assert_eq!(parse_line("   "), None);
-
-        // 注释行
-        assert_eq!(parse_line("# 这是注释"), None);
-
-        // 格式错误
-        assert_eq!(parse_line("中国"), None);
-        assert_eq!(parse_line("中国:"), None);
-    }
-
-    #[test]
-    fn test_is_valid_pinyin() {
-        assert!(is_valid_pinyin("zhōng guó"));
-        assert!(is_valid_pinyin("nǐ hǎo"));
-        assert!(is_valid_pinyin("a"));
-
-        assert!(!is_valid_pinyin("123"));
-        assert!(!is_valid_pinyin("hello@world"));
-    }
-
-    #[test]
-    fn test_div_ceil() {
-        assert_eq!(div_ceil(10, 3), 4);
-        assert_eq!(div_ceil(9, 3), 3);
-        assert_eq!(div_ceil(1, 1), 1);
-        assert_eq!(div_ceil(0, 5), 0);
-    }
-
-    #[test]
-    #[should_panic]
-    fn test_div_ceil_zero_denom() {
-        div_ceil(10, 0);
+        assert_eq!(parse_line("# comment"), None);
+        assert_eq!(parse_line("broken"), None);
     }
 }

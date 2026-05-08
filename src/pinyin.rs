@@ -1,407 +1,139 @@
-use crate::error::PingyinError;
-use std::{cmp::PartialEq, fmt::Display, str::FromStr};
+use crate::{ToneStyle, YuStyle};
 
-#[allow(dead_code)]
-#[derive(Debug, PartialEq)]
-enum ToneStyle {
-    Number,
-    Mark,
-    None,
+pub(crate) fn format_phrase(phrase: &str, tone_style: ToneStyle, yu_style: YuStyle) -> String {
+    phrase
+        .split_whitespace()
+        .map(|syllable| format_syllable(syllable, tone_style, yu_style))
+        .collect::<Vec<_>>()
+        .join(" ")
 }
 
-#[derive(Debug)]
-struct Pinyin {
-    pub pinyin: String,
-    pub tone: u8,
-}
-
-impl Pinyin {
-    #[allow(dead_code)]
-    pub fn new(pinyin: &str, tone: u8) -> Self {
-        assert!((1..=5).contains(&tone));
-
-        Self {
-            pinyin: pinyin.to_string(),
-            tone,
+pub(crate) fn format_syllable(syllable: &str, tone_style: ToneStyle, yu_style: YuStyle) -> String {
+    match tone_style {
+        ToneStyle::Mark if yu_style == YuStyle::Umlaut => syllable.to_string(),
+        ToneStyle::Mark => render_base(&normalize(syllable).0, yu_style),
+        ToneStyle::Number => {
+            let (base, tone) = normalize(syllable);
+            let mut rendered = render_base(&base, yu_style);
+            if (1..=4).contains(&tone) {
+                rendered.push(char::from_digit(tone as u32, 10).expect("tone is a digit"));
+            }
+            rendered
         }
-    }
-
-    #[allow(dead_code)]
-    pub fn is_toneless(&self) -> bool {
-        self.tone == 5
-    }
-
-    #[allow(dead_code)]
-    pub fn format(&self, style: ToneStyle) -> String {
-        match style {
-            ToneStyle::Number => self.to_string(),
-            ToneStyle::Mark => format_tone(&self.pinyin, self.tone),
-            ToneStyle::None => self.pinyin.clone(),
-        }
+        ToneStyle::None => render_base(&normalize(syllable).0, yu_style),
     }
 }
 
-impl Display for Pinyin {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}{}", self.pinyin, self.tone)
-    }
+pub(crate) fn first_pronunciation(phrase: &str) -> &str {
+    phrase.split_whitespace().next().unwrap_or(phrase)
 }
 
-impl FromStr for Pinyin {
-    type Err = PingyinError;
+pub(crate) fn split_phrase(phrase: &str) -> Vec<&str> {
+    phrase.split_whitespace().collect()
+}
 
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let mut tone = 5;
-        let mut end = s.len();
-        let c = match s.chars().last() {
-            Some(c) => c,
-            None => {
-                return Err(PingyinError::ParseStrError(s.to_string()));
+pub(crate) fn initials_token(token: &str) -> String {
+    let plain = format_phrase(token, ToneStyle::None, YuStyle::V);
+    let cleaned = plain
+        .chars()
+        .filter(|ch| ch.is_ascii_alphanumeric())
+        .collect::<String>();
+
+    if cleaned.chars().any(|ch| ch.is_ascii_digit()) {
+        return cleaned;
+    }
+
+    cleaned
+        .chars()
+        .next()
+        .map(|ch| ch.to_string())
+        .unwrap_or_default()
+}
+
+pub(crate) fn slug_token(token: &str) -> String {
+    format_phrase(token, ToneStyle::None, YuStyle::V)
+        .chars()
+        .filter(|ch| ch.is_ascii_alphanumeric())
+        .collect::<String>()
+        .to_ascii_lowercase()
+}
+
+fn normalize(syllable: &str) -> (String, u8) {
+    let mut tone = 5;
+    let mut base = String::with_capacity(syllable.len());
+
+    for ch in syllable.chars() {
+        let (plain, mark_tone) = match ch {
+            'ā' => ('a', 1),
+            'á' => ('a', 2),
+            'ǎ' => ('a', 3),
+            'à' => ('a', 4),
+            'ē' => ('e', 1),
+            'é' => ('e', 2),
+            'ě' => ('e', 3),
+            'è' => ('e', 4),
+            'ī' => ('i', 1),
+            'í' => ('i', 2),
+            'ǐ' => ('i', 3),
+            'ì' => ('i', 4),
+            'ō' => ('o', 1),
+            'ó' => ('o', 2),
+            'ǒ' => ('o', 3),
+            'ò' => ('o', 4),
+            'ū' => ('u', 1),
+            'ú' => ('u', 2),
+            'ǔ' => ('u', 3),
+            'ù' => ('u', 4),
+            'ǖ' => ('ü', 1),
+            'ǘ' => ('ü', 2),
+            'ǚ' => ('ü', 3),
+            'ǜ' => ('ü', 4),
+            _ => {
+                base.push(ch);
+                continue;
             }
         };
-        if c.is_numeric() {
-            tone = c.to_digit(10).unwrap() as u8;
-            end -= 1;
-        }
-
-        let pinyin: String = s.chars().take(end).collect();
-        Ok(Self { pinyin, tone })
-    }
-}
-
-#[derive(Debug)]
-struct PinyinWord {
-    // "重庆"
-    pub word: String,
-    // [["chong", 2], ["qing", 4]]
-    pub pinyin: Vec<Pinyin>,
-}
-
-impl PinyinWord {
-    #[allow(dead_code)]
-    pub fn new(word: &str, pinyin: Vec<Pinyin>) -> Self {
-        Self {
-            word: word.to_string(),
-            pinyin,
-        }
-    }
-}
-
-impl Display for PinyinWord {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let pinyin = self
-            .pinyin
-            .iter()
-            .map(|p| p.to_string())
-            .collect::<Vec<_>>()
-            .join(" ");
-
-        write!(f, "{}:{}", self.word, pinyin)
-    }
-}
-
-impl FromStr for PinyinWord {
-    type Err = PingyinError;
-
-    // "重:zhong4 chong2" -> PinyinWord { word: "重", pinyin: [["zhong", 4], ["chong", 2]] }
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let mut parts = s.split(':');
-        let word = parts
-            .next()
-            .ok_or_else(|| PingyinError::ParseStrError(s.to_string()))?
-            .to_string();
-        let mut pinyin = vec![];
-        for p in parts
-            .next()
-            .ok_or_else(|| PingyinError::ParseStrError(s.to_string()))?
-            .split(' ')
-        {
-            pinyin.push(Pinyin::from_str(p)?);
-        }
-
-        Ok(Self { word, pinyin })
-    }
-}
-
-fn format_tone(pinyin: &str, tone: u8) -> String {
-    // find the vowel to mark
-    // if the vowel is 'i' or 'u' or 'ü', find the next vowel
-    let mut chars: Vec<char> = pinyin.chars().collect();
-    let mut last_vowel_idx = 0;
-
-    for (idx, c) in chars.iter().enumerate() {
-        if "aeiouü".contains(*c) {
-            last_vowel_idx = idx;
-            if *c != 'i' && *c != 'u' && *c != 'ü' {
-                break;
-            }
-        }
+        tone = mark_tone;
+        base.push(plain);
     }
 
-    let vowel = chars[last_vowel_idx];
-    chars[last_vowel_idx] = mark_vowel(vowel, tone);
-    chars.into_iter().collect()
+    (base, tone)
 }
 
-fn mark_vowel(vowel: char, tone: u8) -> char {
-    if tone == 0 || tone == 5 {
-        return vowel;
+fn render_base(base: &str, yu_style: YuStyle) -> String {
+    match yu_style {
+        YuStyle::Umlaut => base.to_string(),
+        YuStyle::V => base.replace('ü', "v"),
+        YuStyle::Yu => base.replace('ü', "yu"),
+        YuStyle::U => base.replace('ü', "u"),
     }
-
-    let tone_marks = [
-        'ā', 'á', 'ǎ', 'à', 'ē', 'é', 'ě', 'è', 'ī', 'í', 'ǐ', 'ì', 'ō', 'ó', 'ǒ', 'ò', 'ū', 'ú',
-        'ǔ', 'ù', 'ǖ', 'ǘ', 'ǚ', 'ǜ',
-    ];
-    let index = match vowel {
-        'a' => tone,
-        'e' => tone + 4,
-        'i' => tone + 8,
-        'o' => tone + 12,
-        'u' => tone + 16,
-        'ü' => tone + 20,
-        _ => panic!("Invalid vowel: {}", vowel),
-    } as usize;
-
-    tone_marks[index - 1]
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{mark_vowel, Pinyin, PinyinWord, ToneStyle};
-    use std::str::FromStr;
+    use super::*;
 
     #[test]
-    fn test_pinyin_new() {
-        let pinyin = Pinyin::new("zhong", 4);
-        assert_eq!(pinyin.pinyin, "zhong");
-        assert_eq!(pinyin.tone, 4);
-
-        let pinyin = Pinyin::new("a", 5);
-        assert_eq!(pinyin.pinyin, "a");
+    fn formats_tone_numbers_at_the_end() {
+        assert_eq!(
+            format_syllable("hǎo", ToneStyle::Number, YuStyle::V),
+            "hao3"
+        );
+        assert_eq!(format_syllable("lǚ", ToneStyle::Number, YuStyle::V), "lv3");
     }
 
     #[test]
-    #[should_panic]
-    fn test_pinyin_new_panic_with_invalid_tone() {
-        let _pinyin = Pinyin::new("zhong", 6);
+    fn keeps_umlaut_for_mark_style_by_default() {
+        assert_eq!(
+            format_syllable("lǚ", ToneStyle::Mark, YuStyle::Umlaut),
+            "lǚ"
+        );
+        assert_eq!(format_syllable("lǚ", ToneStyle::None, YuStyle::Yu), "lyu");
     }
 
     #[test]
-    #[should_panic]
-    fn test_pinyin_new_panic_with_zero_tone() {
-        let _pinyin = Pinyin::new("zhong", 0);
-    }
-
-    #[test]
-    fn test_pinyin_is_toneless() {
-        let pinyin = Pinyin::new("zhong", 4);
-        assert!(!pinyin.is_toneless());
-
-        let pinyin = Pinyin::new("zhong", 5);
-        assert!(pinyin.is_toneless());
-    }
-
-    #[test]
-    fn test_pinyin_to_string() {
-        let pinyin = Pinyin::new("zhong", 4);
-        assert_eq!(pinyin.to_string(), "zhong4");
-    }
-
-    #[test]
-    fn test_pinyin_from_string() {
-        let pinyin = Pinyin::from_str("zhong4").unwrap();
-        assert_eq!(pinyin.pinyin, "zhong");
-        assert_eq!(pinyin.tone, 4);
-
-        let pinyin = Pinyin::from_str("zhong").unwrap();
-        assert_eq!(pinyin.pinyin, "zhong");
-        assert_eq!(pinyin.tone, 5);
-    }
-
-    #[test]
-    fn test_pinyin_word_new() {
-        let pinyin = vec![Pinyin::new("zhong", 4), Pinyin::new("chong", 2)];
-        let pinyin_word = PinyinWord::new("重", pinyin);
-        assert_eq!(pinyin_word.word, "重");
-        assert_eq!(pinyin_word.pinyin.len(), 2);
-    }
-
-    #[test]
-    fn test_pinyin_word_to_string() {
-        let pinyin = vec![Pinyin::new("zhong", 4), Pinyin::new("chong", 2)];
-        let pinyin_word = PinyinWord::new("重", pinyin);
-        assert_eq!(pinyin_word.to_string(), "重:zhong4 chong2");
-    }
-
-    #[test]
-    fn test_pinyin_word_from_string() {
-        let pinyin_word = PinyinWord::from_str("重:zhong4 chong2").unwrap();
-        assert_eq!(pinyin_word.word, "重");
-        assert_eq!(pinyin_word.pinyin.len(), 2);
-        assert_eq!(pinyin_word.to_string(), "重:zhong4 chong2");
-
-        let pinyin_word = PinyinWord::from_str("重庆:chong2 qing4").unwrap();
-        assert_eq!(pinyin_word.word, "重庆");
-        assert_eq!(pinyin_word.pinyin.len(), 2);
-        assert_eq!(pinyin_word.to_string(), "重庆:chong2 qing4");
-
-        let pinyin_word = PinyinWord::from_str("重庆口味:chong2 qing4 kou3 wei4").unwrap();
-        assert_eq!(pinyin_word.word, "重庆口味");
-        assert_eq!(pinyin_word.pinyin.len(), 4);
-        assert_eq!(pinyin_word.to_string(), "重庆口味:chong2 qing4 kou3 wei4");
-    }
-
-    #[test]
-    fn test_mark_vowel() {
-        assert_eq!(mark_vowel('a', 1), 'ā');
-        assert_eq!(mark_vowel('a', 2), 'á');
-        assert_eq!(mark_vowel('a', 3), 'ǎ');
-        assert_eq!(mark_vowel('a', 4), 'à');
-        assert_eq!(mark_vowel('a', 5), 'a');
-        assert_eq!(mark_vowel('e', 1), 'ē');
-        assert_eq!(mark_vowel('e', 2), 'é');
-        assert_eq!(mark_vowel('e', 3), 'ě');
-        assert_eq!(mark_vowel('e', 4), 'è');
-        assert_eq!(mark_vowel('e', 5), 'e');
-        assert_eq!(mark_vowel('i', 1), 'ī');
-        assert_eq!(mark_vowel('i', 2), 'í');
-        assert_eq!(mark_vowel('i', 3), 'ǐ');
-        assert_eq!(mark_vowel('i', 4), 'ì');
-        assert_eq!(mark_vowel('i', 5), 'i');
-        assert_eq!(mark_vowel('o', 1), 'ō');
-        assert_eq!(mark_vowel('o', 2), 'ó');
-        assert_eq!(mark_vowel('o', 3), 'ǒ');
-        assert_eq!(mark_vowel('o', 4), 'ò');
-        assert_eq!(mark_vowel('o', 5), 'o');
-        assert_eq!(mark_vowel('u', 1), 'ū');
-        assert_eq!(mark_vowel('u', 2), 'ú');
-        assert_eq!(mark_vowel('u', 3), 'ǔ');
-        assert_eq!(mark_vowel('u', 4), 'ù');
-        assert_eq!(mark_vowel('u', 5), 'u');
-        assert_eq!(mark_vowel('ü', 1), 'ǖ');
-        assert_eq!(mark_vowel('ü', 2), 'ǘ');
-        assert_eq!(mark_vowel('ü', 3), 'ǚ');
-        assert_eq!(mark_vowel('ü', 4), 'ǜ');
-        assert_eq!(mark_vowel('ü', 5), 'ü');
-    }
-
-    #[test]
-    #[should_panic]
-    fn test_mark_vowel_panic_with_invalid_vowel() {
-        mark_vowel('b', 1);
-    }
-
-    // TODO
-    #[test]
-    #[ignore]
-    #[should_panic]
-    fn test_mark_vowel_panic_with_invalid_tone() {
-        mark_vowel('a', 6);
-    }
-
-    // TODO
-    #[test]
-    #[ignore]
-    #[should_panic]
-    fn test_mark_vowel_panic_with_zero_tone() {
-        mark_vowel('a', 0);
-    }
-
-    #[test]
-    fn test_mark_vowel_with_toneless() {
-        assert_eq!(mark_vowel('a', 5), 'a');
-    }
-
-    #[test]
-    fn test_pinyin_format() {
-        let pinyin = Pinyin::new("zhong", 4);
-        assert_eq!(pinyin.format(ToneStyle::Number), "zhong4");
-        assert_eq!(pinyin.format(ToneStyle::Mark), "zhòng");
-        assert_eq!(pinyin.format(ToneStyle::None), "zhong");
-
-        let pinyin = Pinyin::new("a", 5);
-        assert_eq!(pinyin.format(ToneStyle::Number), "a5");
-        assert_eq!(pinyin.format(ToneStyle::Mark), "a");
-        assert_eq!(pinyin.format(ToneStyle::None), "a");
-    }
-
-    // ========== PHP 兼容性测试 ==========
-
-    #[test]
-    fn test_php_tone_style_compatibility() {
-        // 测试不同声调风格的兼容性
-        use crate::convert;
-
-        let test_text = "你好世界";
-        let result = convert(test_text);
-
-        println!("Tone style test: {}", test_text);
-        println!("Result: {:?}", result);
-
-        // 验证包含声调符号（默认应该是 symbol 风格）
-        let joined = result.join(" ");
-        let has_tone_marks = joined.chars().any(|c| {
-            matches!(c,
-                'ā' | 'á' | 'ǎ' | 'à' |
-                'ē' | 'é' | 'ě' | 'è' |
-                'ī' | 'í' | 'ǐ' | 'ì' |
-                'ō' | 'ó' | 'ǒ' | 'ò' |
-                'ū' | 'ú' | 'ǔ' | 'ù' |
-                'ǖ' | 'ǘ' | 'ǚ' | 'ǜ'
-            )
-        });
-
-        assert!(has_tone_marks, "Should contain tone marks in default mode");
-    }
-
-    #[test]
-    fn test_tone_mark_variations() {
-        // 测试各种声调符号的正确性
-        let test_cases = vec![
-            ("妈", 'ā'), // 第一声
-            ("麻", 'á'), // 第二声
-            ("马", 'ǎ'), // 第三声
-            ("骂", 'à'), // 第四声
-        ];
-
-        for (input, expected_tone_char) in test_cases {
-            use crate::convert;
-            let result = convert(input);
-
-            if !result.is_empty() {
-                let pinyin = &result[0];
-                let has_expected_tone = pinyin.chars().any(|c| c == expected_tone_char);
-
-                println!("Input: {}, Result: {}, Expected tone: {}", input, pinyin, expected_tone_char);
-
-                // 验证包含预期的声调符号
-                assert!(has_expected_tone || pinyin.contains("ma"),
-                       "Should contain expected tone mark {} in {}", expected_tone_char, pinyin);
-            }
-        }
-    }
-
-    #[test]
-    fn test_tone_style_formatting() {
-        // 测试不同声调风格的格式化
-        let pinyin = Pinyin::new("ma", 1);
-        assert_eq!(pinyin.format(ToneStyle::Mark), "mā");
-        assert_eq!(pinyin.format(ToneStyle::Number), "ma1");
-        assert_eq!(pinyin.format(ToneStyle::None), "ma");
-
-        let pinyin = Pinyin::new("ma", 2);
-        assert_eq!(pinyin.format(ToneStyle::Mark), "má");
-        assert_eq!(pinyin.format(ToneStyle::Number), "ma2");
-        assert_eq!(pinyin.format(ToneStyle::None), "ma");
-
-        let pinyin = Pinyin::new("ma", 3);
-        assert_eq!(pinyin.format(ToneStyle::Mark), "mǎ");
-        assert_eq!(pinyin.format(ToneStyle::Number), "ma3");
-        assert_eq!(pinyin.format(ToneStyle::None), "ma");
-
-        let pinyin = Pinyin::new("ma", 4);
-        assert_eq!(pinyin.format(ToneStyle::Mark), "mà");
-        assert_eq!(pinyin.format(ToneStyle::Number), "ma4");
-        assert_eq!(pinyin.format(ToneStyle::None), "ma");
+    fn builds_slug_tokens() {
+        assert_eq!(slug_token("lǚ"), "lv");
+        assert_eq!(slug_token("Hello!"), "hello");
     }
 }

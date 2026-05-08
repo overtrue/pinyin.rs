@@ -1,23 +1,45 @@
 [package]
-name = "pinyin"
+name = "pinyin-converter"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
+rust-version = "1.95"
+description = "Fast, dictionary-backed Chinese to Pinyin conversion for Rust and the command line."
+license = "MIT"
+repository = "https://github.com/overtrue/pinyin.rs"
+homepage = "https://github.com/overtrue/pinyin.rs"
+documentation = "https://docs.rs/pinyin-converter"
+readme = "README.md"
+keywords = ["pinyin", "chinese", "slug", "cli"]
+categories = ["command-line-utilities", "internationalization", "text-processing"]
+build = "build.rs"
+
+[lib]
+name = "pinyin"
+path = "src/lib.rs"
+
+[[bin]]
+name = "pinyin"
+path = "src/main.rs"
 
 [dependencies]
-daachorse = "1.0.0"
-rayon = "1.10.0"
-thiserror = "1.0.63"
-
-[dev-dependencies]
-pretty_assertions = "0.6.1"
-criterion = "0.5"
-
-[build]
-script = "build.rs"
+clap = { version = "4.6.1", features = ["derive", "cargo"] }
+thiserror = "2.0.18"
 
 [build-dependencies]
-anyhow = "1.0.86"
+anyhow = "1.0.102"
+
+[dev-dependencies]
+criterion = "0.8.2"
+pretty_assertions = "1.4.1"
 
 [[bench]]
 name = "benchmark"
+harness = false
+
+[[bench]]
+name = "performance"
+harness = false
+
+[[bench]]
+name = "longtext_benchmark"
 harness = false

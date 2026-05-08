@@ -1,48 +1,40 @@
+name: CI
+
 on:
   pull_request:
   push:
     branches:
       - master
 
-name: CI
+env:
+  CARGO_TERM_COLOR: always
 
-# Adapted from recipe: https://github.com/actions-rs/meta/blob/master/recipes/matrix.md#workflow.
 jobs:
-  ci:
+  test:
+    name: Rust ${{ matrix.toolchain }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        rust:
+        toolchain:
           - stable
-          - beta
-          - nightly
-          - 1.70.0  # MSRV
+          - "1.95.0"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@master
         with:
-          profile: minimal
-          toolchain: ${{ matrix.rust }}
-          override: true
+          toolchain: ${{ matrix.toolchain }}
           components: rustfmt, clippy
 
-      - uses: actions-rs/cargo@v1
-        with:
-          command: build
+      - uses: Swatinem/rust-cache@v2
 
-      - uses: actions-rs/cargo@v1
-        with:
-          command: test
+      - name: Format
+        run: cargo fmt --all -- --check
 
-      - uses: actions-rs/cargo@v1
-        with:
-          command: fmt
-          args: --all -- --check
+      - name: Test
+        run: cargo test --all-targets --all-features
 
-      - uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-          # clippy::needless_lifetimes suggest unsound code in this crate
-          args: -- -D warnings -A clippy::needless_lifetimes
+      - name: Clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
